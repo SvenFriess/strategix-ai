@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI-Wissen & Ressourcen • Strategix-AI</title>
+  <meta name="description" content="Artikel, Guides und Downloads rund um lokale KI-Chatbots, Signal-Integration und Ollama.">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}
+    .filters button{padding:8px 12px;border-radius:999px;border:1px solid #2b396b;background:#0f1631;color:#cfd6ff;cursor:pointer}
+    .filters button.active{outline:2px solid var(--brand)}
+    .list{display:grid;gap:var(--gap);grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .list .card h3{margin-top:4px}
+    .empty{color:#aab2da}
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="logo logo-img" href="/"><img src="logo.svg" alt=""/> <span>Strategix-AI</span></a>
+    <nav><a href="/">Start</a></nav>
+  </header>
+  <main class="section">
+    <h1>AI‑Wissen & Ressourcen</h1>
+    <p>Kurze Tutorials, Cheatsheets und Downloads. Neue Inhalte fügen wir laufend hinzu.</p>
+    <div class="filters" id="filters"></div>
+    <div class="list" id="list"></div>
+    <p class="empty" id="empty" style="display:none">Noch keine Inhalte für diesen Filter.</p>
+  </main>
+  <footer class="footer">
+    <p>© <span id="y"></span> Strategix-AI</p>
+  </footer>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const state = { tag:null };
+    const list = document.getElementById('list');
+    const filters = document.getElementById('filters');
+    const empty = document.getElementById('empty');
+    fetch('content/manifest.json')
+      .then(r=>r.json())
+      .then(data=>{
+        const tags = Array.from(new Set(data.items.flatMap(i=>i.tags))).sort();
+        // render filters
+        const allBtn = document.createElement('button');
+        allBtn.textContent = 'Alle';
+        allBtn.className = 'active';
+        allBtn.onclick = ()=>{ state.tag=null; update(); setActive(allBtn); };
+        filters.appendChild(allBtn);
+        tags.forEach(t=>{
+          const b = document.createElement('button');
+          b.textContent = t;
+          b.onclick = ()=>{ state.tag=t; update(); setActive(b); };
+          filters.appendChild(b);
+        });
+        function setActive(btn){
+          [...filters.children].forEach(c=>c.classList.remove('active'));
+          btn.classList.add('active');
+        }
+        function card(item){
+          const el = document.createElement('article');
+          el.className = 'card';
+          el.innerHTML = `<h3>${item.title}</h3>
+            <p class="meta">${item.date} • ${item.tags.join(', ')}</p>
+            <div class="actions">
+              <a class="btn primary" href="content/${item.file}">Öffnen</a>
+            </div>`;
+          return el;
+        }
+        function update(){
+          list.innerHTML='';
+          const items = data.items
+            .filter(i => !state.tag || i.tags.includes(state.tag))
+            .sort((a,b)=> b.date.localeCompare(a.date));
+          items.forEach(i=> list.appendChild(card(i)));
+          empty.style.display = items.length? 'none':'block';
+        }
+        update();
+      })
+      .catch(err=>{
+        list.innerHTML = '<p class="empty">Manifest konnte nicht geladen werden.</p>';
+        console.error(err);
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "updated": "2025-09-03",
+  "items": [
+    {
+      "id": "lokale-llms-einfuehrung",
+      "title": "Lokale LLMs: Einführung & Setup",
+      "date": "2025-09-03",
+      "tags": [
+        "LLM",
+        "Ollama",
+        "Setup"
+      ],
+      "file": "lokale-llms-einfuehrung.html"
+    },
+    {
+      "id": "signal-cli-cheatsheet",
+      "title": "Signal-CLI Cheatsheet für Chatbots",
+      "date": "2025-09-03",
+      "tags": [
+        "Signal",
+        "CLI",
+        "Chatbot"
+      ],
+      "file": "signal-cli-cheatsheet.html"
+    }
+  ]
+}

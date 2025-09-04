@@ -1,88 +1,248 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>strategix – Local AI Solutions</title>
-<meta name="description" content="Lokale KI-Lösungen für echte Projekte – Chatbots, RAG, ngrok-Demos, Beratung">
-<style>
-  body { font-family: system-ui, sans-serif; margin: 0; line-height: 1.5; background: #f7f9fc; color: #222; }
-  header, section { max-width: 900px; margin: auto; padding: 20px; }
-  header h1 { font-size: 1.8em; display: flex; align-items: center; gap: 0.5em; }
-  h2 { border-bottom: 2px solid #eee; padding-bottom: 4px; }
-  ul { padding-left: 20px; }
-  .demo-list li { margin-bottom: 4px; }
-  footer { text-align: center; font-size: 0.85em; color: #666; padding: 20px; }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Strategix-AI • Lokale KI-Chatbots für KMU</title>
+  <meta name="description" content="DSGVO-konforme, lokal betriebene KI-Chatbots & Digital-Worker für KMU. Signal-Integration, Mac-Mini-Setup, modular erweiterbar – ohne Cloud-Zwang.">
+  <meta name="theme-color" content="#0b1020">
+  <meta property="og:title" content="Strategix-AI • Lokale KI-Chatbots für KMU">
+  <meta property="og:description" content="DSGVO-konforme, lokal betriebene KI-Chatbots & Digital-Worker – schnell, sicher, bezahlbar.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://strategix-ai.tech/">
+  <meta property="og:image" content="/og-image.png">
+  <link rel="icon" href="/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <header class="nav">
+    <a class="logo logo-img" href="#top"><img src="logo.svg" alt="Strategix-AI Logo"/> <span>Strategix-AI</span></a>
+    <nav>
+      <a href="#warum">Warum wir</a>
+      <a href="#lösungen">Lösungen</a>
+      <a href="#usecases">Use Cases</a>
+      <a href="#stack">Tech-Stack</a>
+      <a href="#preise">Preise</a>
+      <a class="cta" href="#kontakt">Kontakt</a>
+    </nav>
+  </header>
 
-<header>
-  <h1>🇬🇧 strategix – Local AI Solutions</h1>
-  <p>Lokale KI-Lösungen für echte Projekte</p>
-</header>
+  <main id="top">
+    <section class="hero">
+      <p class="eyebrow">🚀 Lokal. DSGVO-konform. Cloudfrei.</p>
+      <h1>KI-Chatbots, die <em>wirklich</em> arbeiten.<br>Auf Ihrer eigenen Hardware.</h1>
+      <p class="sub">Wir bauen modulare Digital-Worker auf Mac-Mini-Basis – mit Signal-Integration, klarer Kostenkontrolle und ohne Vendor-Lock-in.</p>
+      <div class="actions">
+        <a class="btn primary" href="#kontakt">Kostenloses Erstgespräch</a>
+        <a class="btn ghost" href="#usecases">Live-Demos ansehen</a>
+      </div>
 
-<section>
-  <h2>Leistungen</h2>
-  <ul>
-    <li>Lokaler Aufbau von Chatbots (Mac Mini, Open Source)</li>
-    <li>Einbindung Ihres Wissens (PDF, Webseite, Datenbank) via RAG</li>
-    <li>Online-Demo über sicheren Tunnel (ngrok, Cloudflare)</li>
-    <li>Beratung zur Cloud-Kostenreduktion</li>
-  </ul>
-</section>
+      <ul class="badges">
+        <li>🔒 <strong>DSGVO-konform</strong></li>
+        <li>🧩 <strong>Modular erweiterbar</strong></li>
+        <li>💻 <strong>Läuft on-prem (Mac Mini)</strong></li>
+        <li>💬 <strong>Signal-Messenger integriert</strong></li>
+        <li>💶 <strong>Klarer Festpreis</strong></li>
+      </ul>
+    </section>
 
-<section>
-  <h2>Live-Demo</h2>
-  <p>Testen Sie meine laufenden Chatbot-Prototypen:</p>
-  <ul class="demo-list">
-    <li><strong>Borgo Batone</strong> – Ferienhaus-Chatbot mit Kontextdaten</li>
-    <li><strong>Feinefahrten</strong> – Camper-Vermietung mit Reisedaten</li>
-    <li><strong>Versio</strong> – IT-Beratung & Policy-Fragen</li>
-  </ul>
-</section>
+<section id="warum" class="section alt">
+      <h2>Warum Strategix-AI?</h2>
+      <div class="grid three usps">
+        <article class="card">
+          <h3><img src="icons/dsgvo.svg" alt="DSGVO"/> DSGVO-konform</h3>
+          <p>Alle Daten bleiben in Ihrem Haus. Keine Cloud, keine Drittanbieter. 100% Rechtssicherheit und volle Datenhoheit.</p>
+        </article>
+        <article class="card">
+          <h3><img src="icons/lokal.svg" alt="Lokal"/> Lokal betrieben</h3>
+          <p>Unsere Chatbots laufen auf Ihrer eigenen Hardware (z. B. Mac Mini). Damit haben Sie Geschwindigkeit, Kontrolle und Autonomie.</p>
+        </article>
+        <article class="card">
+          <h3><img src="icons/kosten.svg" alt="Kosten"/> Kosteneffizient</h3>
+          <p>Klare Festpreise statt Abo-Falle. Sie investieren einmalig – und sparen langfristig Kosten für externe SaaS-Lösungen.</p>
+        </article>
+        <article class="card">
+          <h3><img src="icons/modular.svg" alt="Modular"/> Modular erweiterbar</h3>
+          <p>Signal-Integration, Dokumenten-RAG, Multi-LLM-Auswahl – bauen Sie den Chatbot Schritt für Schritt nach Ihrem Bedarf aus.</p>
+        </article>
+        <article class="card">
+          <h3><img src="icons/schnell.svg" alt="Schnell"/> Schnell einsetzbar</h3>
+          <p>Starten Sie innerhalb eines Tages mit einem Pilot-System. Direkt testbar und sofort wertstiftend für Ihr Team.</p>
+        </article>
+        <article class="card">
+          <h3><img src="icons/vendor.svg" alt="Keine Vendor-Lock-ins"/> Keine Vendor-Lock-ins</h3>
+          <p>Wir setzen auf offene Standards (Python, Ollama, Signal-CLI). Sie bleiben flexibel und unabhängig von einzelnen Anbietern.</p>
+        </article>
+        <article class="card">
+          <h3><img src="icons/kmu.svg" alt="KMU"/> KMU-Fokus</h3>
+          <p>Unsere Lösungen sind praxisnah, leicht zu bedienen und speziell auf die Anforderungen kleiner und mittlerer Unternehmen abgestimmt.</p>
+        </article>
+      </div>
+    </section>
 
-<section>
-  <h2>Technologien</h2>
-  <ul>
-    <li>Modelle: Mistral, Gemma 2, LLaMA</li>
-    <li>Frameworks: Python, Flask</li>
-    <li>Infrastruktur: ngrok, Cloudflare, Mac Mini lokal gehostet</li>
-    <li>Datenschutzkonform & unabhängig von Cloud-Plattformen</li>
-  </ul>
-</section>
 
-<section>
-  <h2>Über mich</h2>
-  <p><strong>Sven Friess</strong> – Nach 20 Jahren IT-Erfahrung, davon 16 Jahre bei SAP, entwickle ich heute individuelle AI-Chatbots – lokal, DSGVO-konform und ohne Cloud-Abhängigkeit.</p>
-</section>
 
-<section>
-  <h2>Blog & Ressourcen</h2>
-  <p>Ich veröffentliche regelmäßig Beiträge auf LinkedIn zu folgenden Themen:</p>
-  <ul>
-    <li>Praktische Erfahrungen aus KI-Projekten</li>
-    <li>Vergleich lokaler LLMs und Modellwahl</li>
-    <li>Optimierung deutschsprachiger Chatbots</li>
-    <li>Gedanken zur KI-Kommunikation in der Wirtschaft</li>
-  </ul>
-  <p>👉 <a href="https://www.linkedin.com/in/svenfriess" target="_blank">Beiträge auf LinkedIn ansehen</a></p>
-</section>
+    
+    <section id="lösungen" class="section">
+      <h2>Unsere Lösungen</h2>
+      <div class="grid three">
+        <article class="card">
+          <h3>🏪 KMU-Chatbot (Signal)</h3>
+          <p>Antwortet auf Kundenfragen, nimmt Anfragen auf, strukturiert Leads und übergibt an Ihr Team.</p>
+          <ul>
+            <li>FAQ + individuelle Workflows</li>
+            <li>Öffnungszeiten, Termine, Formulare</li>
+            <li>Mehrsprachig (DE/EN/FR)</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>🧠 Digital-Worker</h3>
+          <p>Automatisiert wiederkehrende Aufgaben: Dokumente, Protokolle, Zusammenfassungen, Datenabgleiche.</p>
+          <ul>
+            <li>Lokale LLMs via Ollama</li>
+            <li>RAG mit Ihren Dokumenten</li>
+            <li>Export nach E-Mail/CRM</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>🛠️ Beratung & Setup</h3>
+          <p>Von der Mac-Mini-Beschaffung bis zum Betrieb: Architektur, Sicherheit, Monitoring, Schulung.</p>
+          <ul>
+            <li>1-Tag-Pilot möglich</li>
+            <li>Dokumentation & Übergabe</li>
+            <li>Optional: Support-Paket</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-<section>
-  <h2>CV</h2>
-  <p><a href="#">Sven Friess – Freelance Profile</a></p>
-</section>
+    <section id="usecases" class="section alt">
+      <h2>Use Cases & Demos</h2>
+      <div class="grid two">
+        <article class="case">
+          <h3>🏖️ Borgo Batone (Hospitality)</h3>
+          <p>Signal-Chatbot für Gäste-Infos, Reservierungen und interne Abläufe. Läuft lokal, mehrsprachig.</p>
+          <p class="meta">Stack: Signal-CLI · Python · Ollama (Mistral/Gemma) · RAG</p>
+        </article>
+        <article class="case">
+          <h3>🚐 Feine Fahrten (Vermietung)</h3>
+          <p>Beratung zu Ausstattung, Routen & Verfügbarkeit. Lead-Erfassung und saubere Übergabe an die Dispo.</p>
+          <p class="meta">Stack: Web + Signal · Slot-Logik · Templates</p>
+        </article>
+      </div>
+    </section>
 
-<section>
-  <h2>Kontakt</h2>
-  <p>📧 <a href="mailto:freelance.svenfriess@gmail.com">freelance.svenfriess@gmail.com</a></p>
-  <p>🔗 <a href="https://www.linkedin.com/in/svenfriess" target="_blank">LinkedIn-Profil</a></p>
-</section>
 
-<footer>
-  Version 1.4 – © Sven Friess
-</footer>
+    <section id="tutorials" class="section">
+      <h2>Tutorials &amp; Support</h2>
+      <div class="grid three">
+        <article class="card">
+          <h3 class="icon"><img src="icons/video.svg" alt="Video Icon"> Video‑Tutorials</h3>
+          <p>Kurze 5–10‑Minuten‑Clips zeigen Einrichtung, Updates und Best Practices – sofort nachvollziehbar.</p>
+          <div class="actions">
+            <a class="btn primary" href="tutorials.html#videos">Jetzt ansehen</a>
+            <a class="btn ghost" href="#kontakt">Fragen?</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3 class="icon"><img src="icons/book.svg" alt="How-to Icon"> Kurzanleitungen</h3>
+          <p>Schritt‑für‑Schritt‑Guides für typische Aufgaben (Setup, RAG‑Pool, Signal‑Nummer, Updates).</p>
+          <div class="actions">
+            <a class="btn primary" href="docs/kurzanleitung.html">Öffnen</a>
+            <a class="btn ghost" href="tutorials.html#docs">Alle Anleitungen</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3 class="icon"><img src="icons/operator.svg" alt="Operator Icon"> Live‑Operator</h3>
+          <p>Geführte Demo oder Begleitung im Erst-Setup – wir klicken gemeinsam durch und lösen Hürden sofort.</p>
+          <div class="actions">
+            <a class="btn primary" href="mailto:hello@strategix-ai.tech?subject=Demo%20mit%20Operator&body=Kurz%20Wunschtermin%20und%20Thema%20nennen.">Operator buchen</a>
+            <a class="btn ghost" href="#preise">Preise ansehen</a>
+          </div>
+        </article>
+      </div>
+    </section>
 
+
+
+
+    <section id="stack" class="section">
+      <h2>Tech-Stack</h2>
+      <div class="stack">
+        <span>Signal-CLI</span>
+        <span>Python</span>
+        <span>Ollama</span>
+        <span>Mistral / Gemma / Qwen</span>
+        <span>RAG</span>
+        <span>GitHub Pages</span>
+        <span>Mac Mini M-Series</span>
+      </div>
+      <p class="note">100% Datenhoheit: Ihre Daten verlassen Ihr Netzwerk nicht.</p>
+    </section>
+
+    
+    
+    
+
+
+    <section id="preise" class="section alt">
+      <h2>Preise</h2>
+      <div class="grid three">
+        <article class="pricing">
+          <h3>Starter</h3>
+          <p class="price">€990 <span>einmalig</span></p>
+          <ul>
+            <li>Signal-Chatbot Basissetup</li>
+            <li>1 Use Case + FAQ</li>
+            <li>Kurzanleitung</li>
+          </ul>
+        </article>
+        <article class="pricing highlight">
+          <h3>Pro</h3>
+          <p class="price">€2.490 <span>einmalig</span></p>
+          <ul>
+            <li>3 Workflows + RAG-Dokupool</li>
+            <li>Branding + Übergabe an CRM</li>
+            <li>Schulung (2h) & Doku</li>
+          </ul>
+        </article>
+        <article class="pricing">
+          <h3>Service</h3>
+          <p class="price">ab €190 <span>/Monat</span></p>
+          <ul>
+            <li>Monitoring & Updates</li>
+            <li>Kontingent für Anpassungen</li>
+            <li>Antwort-Qualitätstests</li>
+          </ul>
+        </article>
+      </div>
+      <p class="fine">Alle Preise zzgl. USt. Richtwerte – wir machen Ihnen gern ein Festpreis-Angebot.</p>
+    </section>
+
+    <section id="kontakt" class="section">
+      <h2>Kontakt</h2>
+      <p>Kurzes Kennenlernen? Schreiben Sie uns – wir antworten binnen 24h.</p>
+      <form class="contact" action="mailto:hello@strategix-ai.tech" method="post" enctype="text/plain">
+        <input name="name" type="text" placeholder="Ihr Name" required>
+        <input name="email" type="email" placeholder="Ihre E-Mail" required>
+        <textarea name="message" rows="5" placeholder="Worum geht’s?" required></textarea>
+        <button type="submit" class="btn primary">Nachricht senden</button>
+      </form>
+      <p class="alt-contact">Oder direkt per Signal: <a href="#" aria-disabled="true" title="Signal-Nummer folgt">+49 •••</a></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="y"></span> Strategix-AI • Lokale KI für KMU</p>
+    <nav>
+      <a href="/impressum.html">Impressum</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+    </nav>
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
