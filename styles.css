@@ -78,3 +78,16 @@ To adjust brand, change --brand and --brand-2.
 .card h3.icon img{height:22px;width:22px;display:inline-block}
 
 .card .actions{display:flex;gap:10px;justify-content:flex-start;margin-top:10px}
+
+
+/* --- Fix oversized icons/images in cards --- */
+.card img {
+  max-width: 120px;
+  height: auto;
+  display: block;
+  margin: 0 auto 1rem auto; /* zentriert mit Abstand */
+}
+.small-icon {
+  max-width: 100px;
+  height: auto;
+}
