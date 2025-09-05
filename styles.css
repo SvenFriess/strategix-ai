@@ -104,3 +104,18 @@ To adjust brand, change --brand and --brand-2.
     height: 32px;  /* größer auf Desktop */
   }
 }
+
+
+/* Text "Strategix-AI" im Header sichtbar und größer */
+.logo-img span {
+  font-size: 18px;
+  font-weight: 600;
+  color: #e8ebff;   /* helle Schrift im Dark Mode */
+  line-height: 1;
+}
+
+@media (prefers-color-scheme: light) {
+  .logo-img span {
+    color: #0a1025; /* dunkle Schrift im Light Mode */
+  }
+}
