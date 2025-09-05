@@ -91,3 +91,16 @@ To adjust brand, change --brand and --brand-2.
   max-width: 100px;
   height: auto;
 }
+
+
+/* Logo im Header konsistent skalieren */
+.logo-img img {
+  height: 24px;    /* Standard auf kleineren Screens */
+  width: auto;
+}
+
+@media (min-width: 900px) {
+  .logo-img img {
+    height: 32px;  /* größer auf Desktop */
+  }
+}
