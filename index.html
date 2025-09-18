@@ -1,3 +1,6 @@
+Hier dein HTML mit Sprachumschalter (oben rechts im Header).
+Der Button wechselt zwischen Deutsch (Startseite /) und Englisch (/strategix-AI-EN.html).
+
 <!doctype html>
 <html lang="de">
 <head>
@@ -16,6 +19,22 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <!-- SEO für Sprachversionen -->
+  <link rel="alternate" hreflang="de" href="https://strategix-ai.tech/">
+  <link rel="alternate" hreflang="en" href="https://strategix-ai.tech/strategix-AI-EN.html">
+  <link rel="x-default" href="https://strategix-ai.tech/">
+
+  <style>
+    .lang-btn {
+      margin-left: 1rem;
+      padding: .4rem .8rem;
+      border: 1px solid #ccc;
+      border-radius: 999px;
+      font-size: .85rem;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
   <header class="nav">
@@ -30,213 +49,13 @@
       <a href="#stack">Tech-Stack</a>
       <a href="#preise">Preise</a>
       <a class="cta" href="#kontakt">Kontakt</a>
+      <!-- Sprachumschalter -->
+      <a id="lang-toggle" class="lang-btn" href="#">English</a>
     </nav>
   </header>
 
   <main id="top">
-    <section class="hero">
-      <p class="eyebrow">🚀 Lokal. DSGVO-konform. Cloudfrei.</p>
-      <h1>KI-Chatbots, die <em>wirklich</em> arbeiten.<br>Auf Ihrer eigenen Hardware.</h1>
-      <p class="sub">Wir bauen modulare Digital-Worker auf Mac-Mini-Basis – mit Signal-Integration, klarer Kostenkontrolle und ohne Vendor-Lock-in.</p>
-      <div class="actions">
-        <a class="btn primary" href="#kontakt">Kostenloses Erstgespräch</a>
-        <a class="btn ghost" href="#usecases">Live-Demos ansehen</a>
-      </div>
-
-      <ul class="badges">
-        <li>🔒 <strong>DSGVO-konform</strong></li>
-        <li>🧩 <strong>Modular erweiterbar</strong></li>
-        <li>💻 <strong>Läuft on-prem (Mac Mini)</strong></li>
-        <li>💬 <strong>Signal-Messenger integriert</strong></li>
-        <li>💶 <strong>Klarer Festpreis</strong></li>
-      </ul>
-    </section>
-
-<section id="warum" class="section alt">
-      <h2>Warum Strategix-AI?</h2>
-      <div class="grid three usps">
-        <article class="card">
-          <h3><img src="icons/dsgvo.svg" alt="DSGVO"/> DSGVO-konform</h3>
-          <p>Alle Daten bleiben in Ihrem Haus. Keine Cloud, keine Drittanbieter. 100% Rechtssicherheit und volle Datenhoheit.</p>
-        </article>
-        <article class="card">
-          <h3><img src="icons/lokal.svg" alt="Lokal"/> Lokal betrieben</h3>
-          <p>Unsere Chatbots laufen auf Ihrer eigenen Hardware (z. B. Mac Mini). Damit haben Sie Geschwindigkeit, Kontrolle und Autonomie.</p>
-        </article>
-        <article class="card">
-          <h3><img src="icons/kosten.svg" alt="Kosten"/> Kosteneffizient</h3>
-          <p>Klare Festpreise statt Abo-Falle. Sie investieren einmalig – und sparen langfristig Kosten für externe SaaS-Lösungen.</p>
-        </article>
-        <article class="card">
-          <h3><img src="icons/modular.svg" alt="Modular"/> Modular erweiterbar</h3>
-          <p>Signal-Integration, Dokumenten-RAG, Multi-LLM-Auswahl – bauen Sie den Chatbot Schritt für Schritt nach Ihrem Bedarf aus.</p>
-        </article>
-        <article class="card">
-          <h3><img src="icons/schnell.svg" alt="Schnell"/> Schnell einsetzbar</h3>
-          <p>Starten Sie innerhalb eines Tages mit einem Pilot-System. Direkt testbar und sofort wertstiftend für Ihr Team.</p>
-        </article>
-        <article class="card">
-          <h3><img src="icons/vendor.svg" alt="Keine Vendor-Lock-ins"/> Keine Vendor-Lock-ins</h3>
-          <p>Wir setzen auf offene Standards (Python, Ollama, Signal-CLI). Sie bleiben flexibel und unabhängig von einzelnen Anbietern.</p>
-        </article>
-        <article class="card">
-          <h3><img src="icons/kmu.svg" alt="KMU"/> KMU-Fokus</h3>
-          <p>Unsere Lösungen sind praxisnah, leicht zu bedienen und speziell auf die Anforderungen kleiner und mittlerer Unternehmen abgestimmt.</p>
-        </article>
-      </div>
-    </section>
-
-
-
-    
-    <section id="lösungen" class="section">
-      <h2>Unsere Lösungen</h2>
-      <div class="grid three">
-        <article class="card">
-          <h3>🏪 KMU-Chatbot (Signal)</h3>
-          <p>Antwortet auf Kundenfragen, nimmt Anfragen auf, strukturiert Leads und übergibt an Ihr Team.</p>
-          <ul>
-            <li>FAQ + individuelle Workflows</li>
-            <li>Öffnungszeiten, Termine, Formulare</li>
-            <li>Mehrsprachig (DE/EN/FR)</li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>🧠 Digital-Worker</h3>
-          <p>Automatisiert wiederkehrende Aufgaben: Dokumente, Protokolle, Zusammenfassungen, Datenabgleiche.</p>
-          <ul>
-            <li>Lokale LLMs via Ollama</li>
-            <li>RAG mit Ihren Dokumenten</li>
-            <li>Export nach E-Mail/CRM</li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>🛠️ Beratung & Setup</h3>
-          <p>Von der Mac-Mini-Beschaffung bis zum Betrieb: Architektur, Sicherheit, Monitoring, Schulung.</p>
-          <ul>
-            <li>1-Tag-Pilot möglich</li>
-            <li>Dokumentation & Übergabe</li>
-            <li>Optional: Support-Paket</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section id="usecases" class="section alt">
-      <h2>Use Cases & Demos</h2>
-      <div class="grid two">
-        <article class="case">
-          <h3>🏖️ Borgo Batone (Hospitality)</h3>
-          <p>Signal-Chatbot für Gäste-Infos, Reservierungen und interne Abläufe. Läuft lokal, mehrsprachig.</p>
-          <p class="meta">Stack: Signal-CLI · Python · Ollama (Mistral/Gemma) · RAG</p>
-        </article>
-        <article class="case">
-          <h3>🚐 Feine Fahrten (Vermietung)</h3>
-          <p>Beratung zu Ausstattung, Routen & Verfügbarkeit. Lead-Erfassung und saubere Übergabe an die Dispo.</p>
-          <p class="meta">Stack: Web + Signal · Slot-Logik · Templates</p>
-        </article>
-      </div>
-    </section>
-
-
-    <section id="tutorials" class="section">
-      <h2>Tutorials &amp; Support</h2>
-      <div class="grid three">
-        <article class="card">
-          <h3 class="icon"><img src="icons/video.svg" alt="Video Icon"> Video‑Tutorials</h3>
-          <p>Kurze 5–10‑Minuten‑Clips zeigen Einrichtung, Updates und Best Practices – sofort nachvollziehbar.</p>
-          <div class="actions">
-            <a class="btn primary" href="tutorials.html#videos">Jetzt ansehen</a>
-            <a class="btn ghost" href="#kontakt">Fragen?</a>
-          </div>
-        </article>
-        <article class="card">
-          <h3 class="icon"><img src="icons/book.svg" alt="How-to Icon"> Kurzanleitungen</h3>
-          <p>Schritt‑für‑Schritt‑Guides für typische Aufgaben (Setup, RAG‑Pool, Signal‑Nummer, Updates).</p>
-          <div class="actions">
-            <a class="btn primary" href="docs/kurzanleitung.html">Öffnen</a>
-            <a class="btn ghost" href="tutorials.html#docs">Alle Anleitungen</a>
-          </div>
-        </article>
-        <article class="card">
-          <h3 class="icon"><img src="icons/operator.svg" alt="Operator Icon"> Live‑Operator</h3>
-          <p>Geführte Demo oder Begleitung im Erst-Setup – wir klicken gemeinsam durch und lösen Hürden sofort.</p>
-          <div class="actions">
-            <a class="btn primary" href="mailto:hello@strategix-ai.tech?subject=Demo%20mit%20Operator&body=Kurz%20Wunschtermin%20und%20Thema%20nennen.">Operator buchen</a>
-            <a class="btn ghost" href="#preise">Preise ansehen</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-
-
-
-    <section id="stack" class="section">
-      <h2>Tech-Stack</h2>
-      <div class="stack">
-        <span>Signal-CLI</span>
-        <span>Python</span>
-        <span>Ollama</span>
-        <span>Mistral / Gemma / Qwen</span>
-        <span>RAG</span>
-        <span>GitHub Pages</span>
-        <span>Mac Mini M-Series</span>
-      </div>
-      <p class="note">100% Datenhoheit: Ihre Daten verlassen Ihr Netzwerk nicht.</p>
-    </section>
-
-    
-    
-    
-
-
-    <section id="preise" class="section alt">
-      <h2>Preise</h2>
-      <div class="grid three">
-        <article class="pricing">
-          <h3>Starter</h3>
-          <p class="price">€990 <span>einmalig</span></p>
-          <ul>
-            <li>Signal-Chatbot Basissetup</li>
-            <li>1 Use Case + FAQ</li>
-            <li>Kurzanleitung</li>
-          </ul>
-        </article>
-        <article class="pricing highlight">
-          <h3>Pro</h3>
-          <p class="price">€2.490 <span>einmalig</span></p>
-          <ul>
-            <li>3 Workflows + RAG-Dokupool</li>
-            <li>Branding + Übergabe an CRM</li>
-            <li>Schulung (2h) & Doku</li>
-          </ul>
-        </article>
-        <article class="pricing">
-          <h3>Service</h3>
-          <p class="price">ab €190 <span>/Monat</span></p>
-          <ul>
-            <li>Monitoring & Updates</li>
-            <li>Kontingent für Anpassungen</li>
-            <li>Antwort-Qualitätstests</li>
-          </ul>
-        </article>
-      </div>
-      <p class="fine">Alle Preise zzgl. USt. Richtwerte – wir machen Ihnen gern ein Festpreis-Angebot.</p>
-    </section>
-
-    <section id="kontakt" class="section">
-      <h2>Kontakt</h2>
-      <p>Kurzes Kennenlernen? Schreiben Sie uns – wir antworten binnen 24h.</p>
-      <form class="contact" action="mailto:hello@strategix-ai.tech" method="post" enctype="text/plain">
-        <input name="name" type="text" placeholder="Ihr Name" required>
-        <input name="email" type="email" placeholder="Ihre E-Mail" required>
-        <textarea name="message" rows="5" placeholder="Worum geht’s?" required></textarea>
-        <button type="submit" class="btn primary">Nachricht senden</button>
-      </form>
-      <p class="alt-contact">Oder direkt per Signal: <a href="#" aria-disabled="true" title="Signal-Nummer folgt">+49 176 56841206</a></p>
-      <p class="alt-contact">Oder direkt mobil: <a href="#" aria-disabled="true" title="Signal-Nummer folgt">+49 160 90822476</a></p>
-    </section>
+    <!-- dein Content wie bisher ... -->
   </main>
 
   <footer class="footer">
@@ -247,6 +66,24 @@
     </nav>
   </footer>
 
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    (function(){
+      const btn = document.getElementById('lang-toggle');
+      if(!btn) return;
+      const path = location.pathname;
+      const isEN = /-EN\.html$/i.test(path);
+      const target = isEN ? "/" : "/strategix-AI-EN.html";
+      btn.href = target;
+      btn.textContent = isEN ? "Deutsch" : "English";
+      btn.setAttribute("hreflang", isEN ? "de" : "en");
+    })();
+  </script>
 </body>
 </html>
+
+👉 Ergebnis:
+	•	Auf der deutschen Seite steht rechts „English“ → Link zur englischen Version.
+	•	Auf der englischen Seite zeigt er automatisch „Deutsch“ → zurück zur Startseite.
+
+Soll ich dir den gleichen Button auch schon fix in die strategix-AI-EN.html einbauen (angepasst auf englische Labels im Menü)?
