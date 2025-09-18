@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Strategix-AI • Local AI Chatbots for SMEs</title>
+  <meta name="description" content="GDPR-compliant, locally operated AI chatbots & digital workers for SMEs. Signal integration, Mac Mini setup, modular and extensible — no cloud lock-in.">
+  <meta name="theme-color" content="#0b1020">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Strategix-AI • Local AI Chatbots for SMEs">
+  <meta property="og:description" content="GDPR-compliant, locally operated AI chatbots & digital workers — fast, secure, affordable.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://strategix-ai.tech/">
+  <meta property="og:image" content="/og-image.png">
+
+  <link rel="icon" href="/logo.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://strategix-ai.tech/">
+
+  <style>
+    :root { --bg:#0b1020; --fg:#e9eef7; --muted:#9fb1c9; --card:#121833; --accent:#58a6ff; }
+    * { box-sizing:border-box; }
+    html,body { margin:0; padding:0; background:var(--bg); color:var(--fg); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; }
+    a { color: var(--accent); text-decoration: none; }
+    header,main,footer { max-width:1080px; margin:auto; padding:24px; }
+    .nav { display:flex; align-items:center; gap:12px; }
+    .nav img { height:28px; width:28px; }
+    .hero { padding:72px 24px; text-align:center; }
+    .hero h1 { margin:0 0 12px; font-size:40px; line-height:1.1; }
+    .hero p { margin:0 auto; max-width:720px; color:var(--muted); }
+    .cta { margin-top:24px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    .btn { padding:12px 18px; border-radius:12px; background:var(--accent); color:#071425; font-weight:600; }
+    .btn.ghost { background:transparent; color:var(--fg); outline:1px solid #2b355a; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin:24px 0 48px; }
+    .card { background:var(--card); border:1px solid #222a4a; border-radius:16px; padding:18px; }
+    .card h3 { margin:0 0 6px; font-size:18px; }
+    .small { color:var(--muted); font-size:14px; }
+    footer { border-top:1px solid #222a4a; color:var(--muted); font-size:14px; }
+    .section-title { font-size:24px; margin:8px 0 4px; }
+  </style>
+</head>
+<body>
+  <header aria-label="site header">
+    <nav class="nav">
+      <a class="logo" href="#top" aria-label="Strategix-AI Home">
+        <img src="/logo.svg" alt="Strategix-AI Logo">
+      </a>
+      <strong>strategix-AI</strong>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <h1>Local, GDPR-Compliant AI Chatbots for SMEs</h1>
+      <p>
+        No cloud lock-in. Signal integration. Runs on standard hardware (e.g., Mac Mini).
+        Modular, secure, and budget-friendly — built for data protection and operational sovereignty.
+      </p>
+      <div class="cta">
+        <a class="btn" href="#features">Explore Features</a>
+        <a class="btn ghost" href="#contact">Get a Demo</a>
+      </div>
+    </section>
+
+    <section id="features" aria-label="Key features">
+      <h2 class="section-title">Why Strategix-AI</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>GDPR-compliant & local</h3>
+          <p class="small">Your data stays on your premises. No external cloud required.</p>
+        </article>
+        <article class="card">
+          <h3>Signal integration</h3>
+          <p class="small">Chat with your documents via Signal-CLI in secure groups.</p>
+        </article>
+        <article class="card">
+          <h3>Modular & extensible</h3>
+          <p class="small">Add workflows and knowledge bases as your needs grow.</p>
+        </article>
+        <article class="card">
+          <h3>Runs on Mac Mini</h3>
+          <p class="small">Optimized for standard hardware; no special GPUs required.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- REPLACE the placeholders below with your translated content -->
+    <section id="about" aria-label="About">
+      <h2 class="section-title">About</h2>
+      <div class="card">
+        <p class="small">
+          <!-- PASTE TRANSLATED TEXT HERE -->
+          We deliver privacy-first AI assistants that read your provided documents and answer questions reliably — without sending data to third parties.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" aria-label="Contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="card">
+        <p class="small">
+          <!-- PASTE TRANSLATED CONTACT INFO HERE -->
+          Email: hello@strategix-ai.tech • Hamburg, Germany
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="y"></span> Strategix-AI. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
