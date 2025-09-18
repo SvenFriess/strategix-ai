@@ -18,13 +18,18 @@
   <link rel="icon" href="/logo.svg" type="image/svg+xml">
   <link rel="canonical" href="https://strategix-ai.tech/">
 
+  <!-- SEO for language versions -->
+  <link rel="alternate" hreflang="de" href="https://strategix-ai.tech/">
+  <link rel="alternate" hreflang="en" href="https://strategix-ai.tech/strategix-AI-EN.html">
+  <link rel="x-default" href="https://strategix-ai.tech/">
+
   <style>
     :root { --bg:#0b1020; --fg:#e9eef7; --muted:#9fb1c9; --card:#121833; --accent:#58a6ff; }
     * { box-sizing:border-box; }
     html,body { margin:0; padding:0; background:var(--bg); color:var(--fg); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; }
     a { color: var(--accent); text-decoration: none; }
     header,main,footer { max-width:1080px; margin:auto; padding:24px; }
-    .nav { display:flex; align-items:center; gap:12px; }
+    .nav { display:flex; align-items:center; gap:12px; justify-content:space-between; }
     .nav img { height:28px; width:28px; }
     .hero { padding:72px 24px; text-align:center; }
     .hero h1 { margin:0 0 12px; font-size:40px; line-height:1.1; }
@@ -38,15 +43,20 @@
     .small { color:var(--muted); font-size:14px; }
     footer { border-top:1px solid #222a4a; color:var(--muted); font-size:14px; }
     .section-title { font-size:24px; margin:8px 0 4px; }
+    .lang-btn { padding:6px 12px; border:1px solid #ccc; border-radius:999px; font-size:14px; text-decoration:none; }
   </style>
 </head>
 <body>
   <header aria-label="site header">
     <nav class="nav">
-      <a class="logo" href="#top" aria-label="Strategix-AI Home">
-        <img src="/logo.svg" alt="Strategix-AI Logo">
-      </a>
-      <strong>strategix-AI</strong>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <a class="logo" href="#top" aria-label="Strategix-AI Home">
+          <img src="/logo.svg" alt="Strategix-AI Logo">
+        </a>
+        <strong>strategix-AI</strong>
+      </div>
+      <!-- Language switch -->
+      <a id="lang-toggle" class="lang-btn" href="#">Deutsch</a>
     </nav>
   </header>
 
@@ -85,12 +95,10 @@
       </div>
     </section>
 
-    <!-- REPLACE the placeholders below with your translated content -->
     <section id="about" aria-label="About">
       <h2 class="section-title">About</h2>
       <div class="card">
         <p class="small">
-          <!-- PASTE TRANSLATED TEXT HERE -->
           We deliver privacy-first AI assistants that read your provided documents and answer questions reliably — without sending data to third parties.
         </p>
       </div>
@@ -100,7 +108,6 @@
       <h2 class="section-title">Contact</h2>
       <div class="card">
         <p class="small">
-          <!-- PASTE TRANSLATED CONTACT INFO HERE -->
           Email: hello@strategix-ai.tech • Hamburg, Germany
         </p>
       </div>
@@ -113,6 +120,18 @@
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+    (function(){
+      const btn = document.getElementById('lang-toggle');
+      if(!btn) return;
+      const path = location.pathname;
+      const isEN = /-EN\.html$/i.test(path);
+      const target = isEN ? "/" : "/strategix-AI-EN.html";
+      btn.href = target;
+      btn.textContent = isEN ? "Deutsch" : "English";
+      btn.setAttribute("hreflang", isEN ? "de" : "en");
+    })();
   </script>
 </body>
 </html>
+
+Möchtest du, dass der Button zusätzlich mit einer kleinen 🇩🇪/🇬🇧 Flagge dargestellt wird?
