@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KVHS-Vechta Demo · strategix-AI</title>
+  <meta name="description" content="KVHS-Vechta Chat-Demo: Fragen zu Kursen, Orten und Zeiten – lokal gehostet, DSGVO-konform." />
+  <style>
+    :root{--bg:#0b0d10;--card:#141a22;--txt:#e8eef5;--muted:#b1c0d0;--pri:#66d9e8;--max:900px}
+    *{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,#0b0d10,#0e1319);color:var(--txt);font:16px/1.5 system-ui,Segoe UI,Roboto,Helvetica,Arial}
+    header,main,footer{max-width:var(--max);margin:24px auto;padding:0 16px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:36px;height:36px;border-radius:10px;background:var(--pri)}
+    h1{margin:0 0 4px;font-size:1.5rem}
+    .card{background:var(--card);border:1px solid #1e2630;border-radius:16px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .hint{color:var(--muted);font-size:.9rem}
+    .links{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .tag{display:inline-block;padding:8px 12px;border:1px solid #2a3240;border-radius:999px;color:var(--muted);font-size:.85rem;background:#0f141b;cursor:pointer}
+    .row{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:10px}
+    input,button{padding:12px;border-radius:12px;border:1px solid #2a3240;background:#0f141b;color:var(--txt)}
+    button{background:var(--pri);border:none;color:#002129;font-weight:600;cursor:pointer}
+    pre{white-space:pre-wrap;background:#0e141b;border:1px solid #213043;border-radius:12px;padding:12px;margin-top:12px;min-height:110px}
+    a{color:var(--pri);text-decoration:none} a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>KVHS-Vechta · Demo</h1>
+        <div class="hint">Lokaler, DSGVO-konformer Chat-Prototyp · Stand: Mai-Datenabzug</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="card">
+      <div class="links" role="group" aria-label="Schnellabfragen">
+        <button type="button" id="btnExcel" class="tag">Excel Einsteiger</button>
+        <button type="button" id="btnSpanischA1" class="tag">Spanisch A1 in Vechta</button>
+        <button type="button" id="btnDi18" class="tag">Di ab 18:00</button>
+      </div>
+
+      <form id="form">
+        <label for="q" class="hint">Freie Frage an die KVHS-Demo</label>
+        <div class="row">
+          <input id="q" name="q" placeholder="z. B. Sportkurse in Vechta oder Eltern-Kind-Gruppen in Visbek" required />
+          <button id="askBtn" type="submit">Fragen</button>
+        </div>
+        <div class="hint">API: <code>https://kvhs.strategix-ai.tech/search</code></div>
+      </form>
+
+      <pre id="out" hidden></pre>
+
+      <div class="links" style="margin-top:4px">
+        <span class="tag">/health</span>
+        <a href="https://kvhs.strategix-ai.tech/health" target="_blank" rel="noopener">Health-Check öffnen</a>
+        <a href="https://github.com/SvenFriess/kvhs-vechta-toolkit" target="_blank" rel="noopener">GitHub: kvhs-vechta-toolkit</a>
+      </div>
+      <div class="hint" style="margin-top:6px">Hinweis: Antworten basieren auf dem gescrapten Stand (Mai). Live-Links werden, falls möglich, bevorzugt.</div>
+    </div>
+  </main>
+
+  <footer class="hint">
+    strategix-AI · Lokale Chatbots für KMU · <a href="https://strategix-ai.tech" target="_blank" rel="noopener">Website</a>
+  </footer>
+
+  <script>
+    const outEl = document.getElementById('out');
+    const btn = document.getElementById('askBtn');
+
+    async function callSearch(payload){
+      const res = await fetch('https://kvhs.strategix-ai.tech/search', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ k: 12, answer: true, ...payload })
+      });
+      if(!res.ok){ throw new Error(`HTTP ${res.status}: ${await res.text()}`); }
+      return res.json();
+    }
+    async function runPreset(payload){
+      outEl.hidden = false; outEl.textContent = '• Anfrage wird gesendet …';
+      try{
+        const data = await callSearch(payload);
+        outEl.textContent = data?.answer ? `Antwort:\n${data.answer}` : JSON.stringify(data, null, 2);
+      }catch(err){ outEl.textContent = 'Fehler: ' + err.message; }
+    }
+    document.getElementById('btnExcel').addEventListener('click', ()=>runPreset({
+      q:"Welche Einsteigerkurse für Excel gibt es?",
+      include_any:["excel","tabellenkalkulation","ms excel","office"],
+      exclude_any:["babysitter","latein","französisch","spanisch","ki","künstliche intelligenz"]
+    }));
+    document.getElementById('btnSpanischA1').addEventListener('click', ()=>runPreset({
+      q:"Spanisch A1 in Vechta",
+      include_any:["spanisch","a1","vechta"],
+      exclude_any:["a1.2","a2","b1","französisch","online"]
+    }));
+    document.getElementById('btnDi18').addEventListener('click', ()=>runPreset({
+      q:"Kurse dienstags ab 18 Uhr in Vechta",
+      include_any:["dienstag","di ","di.","18 uhr","18:00","18.00","ab 18"],
+      exclude_any:["online"]
+    }));
+    document.getElementById('form').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const q = document.getElementById('q').value.trim(); if(!q) return;
+      btn.disabled = true; btn.textContent = 'Suche…';
+      outEl.hidden = false; outEl.textContent = '• Anfrage wird gesendet …';
+      try{
+        const data = await callSearch({ q });
+        outEl.textContent = data?.answer ? `Antwort:\n${data.answer}` : JSON.stringify(data, null, 2);
+      }catch(err){ outEl.textContent = 'Fehler: ' + err.message; }
+      finally{ btn.disabled = false; btn.textContent = 'Fragen'; }
+    });
+  </script>
+</body>
+</html>
