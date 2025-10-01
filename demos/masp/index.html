@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <title>MASP Bot Demo – Strategix-AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="./masp-icon.jpeg" />
+  <style>
+    :root{--brand:#0b0d10;--brand-2:#111827;--glass:rgba(255,255,255,.08);--shadow:0 10px 30px rgba(0,0,0,.25);--radius:16px}
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;color:#fff;font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+         background:#0f1115 url("./masp-site-logo.png") center/cover fixed no-repeat}
+    header{background:linear-gradient(90deg,var(--brand),var(--brand-2));padding:18px 20px;text-align:center;box-shadow:var(--shadow)}
+    header h1{margin:0;font-size:clamp(18px,2vw,24px);font-weight:700}
+    main{max-width:980px;margin:32px auto;padding:18px;background:var(--glass);border:1px solid rgba(255,255,255,.12);
+         border-radius:var(--radius);backdrop-filter:blur(6px)}
+    .muted{color:#9ca3af}
+    #chat-launcher{position:fixed;right:22px;bottom:22px;width:64px;height:64px;border-radius:50%;background:#fff;border:0;
+                   cursor:pointer;box-shadow:var(--shadow);display:grid;place-items:center;transition:transform .15s,box-shadow .15s}
+    #chat-launcher:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.35)}
+    #chat-launcher img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+    .modal{position:fixed;inset:0;z-index:1000;display:none;background:rgba(0,0,0,.55)}
+    .modal.open{display:block}
+    .modal__panel{position:absolute;right:24px;bottom:100px;width:min(92vw,420px);height:min(80vh,680px);background:#0d1016;
+                  border:1px solid rgba(255,255,255,.12);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);
+                  display:flex;flex-direction:column}
+    .modal__header{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:#0b0d10;
+                   border-bottom:1px solid rgba(255,255,255,.08)}
+    .modal__title{font-weight:600;font-size:14px}
+    .modal__close{appearance:none;border:0;background:transparent;color:#e5e7eb;font-size:20px;cursor:pointer;line-height:1;
+                  padding:4px 8px;border-radius:8px}
+    .modal__close:hover{background:rgba(255,255,255,.08)}
+    .modal__body{flex:1;background:#0f1117}
+    .modal__body iframe{width:100%;height:100%;border:0}
+    @media (max-width:520px){.modal__panel{inset:10px;width:auto;height:auto;right:10px;bottom:10px}}
+    footer{text-align:center;padding:18px;color:#cbd5e1;font-size:13px}
+    a{color:#93c5fd;text-decoration:none} a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <header><h1>🤖 MASP Bot Demo</h1></header>
+  <main>
+    <p>Klicken Sie rechts unten auf das Icon, um den Chat zu öffnen.</p>
+    <p class="muted">Der Chat lädt im iFrame von <code>masp.strategix-ai.tech</code>.</p>
+  </main>
+
+  <button id="chat-launcher" aria-label="MASP Chat öffnen">
+    <img src="./masp-icon.jpeg" alt="MASP Chat Icon">
+  </button>
+
+  <div id="chat-modal" class="modal" aria-hidden="true" role="dialog" aria-label="MASP Chat">
+    <div class="modal__panel">
+      <div class="modal__header">
+        <div class="modal__title">MASP Chat</div>
+        <button class="modal__close" id="chat-close" aria-label="Fenster schließen">×</button>
+      </div>
+      <div class="modal__body">
+        <!-- Bot-URL hier anpassen -->
+        <iframe src="https://masp.strategix-ai.tech" title="MASP Bot"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <footer>© Strategix-AI • <a href="https://strategix-ai.tech" target="_blank" rel="noopener">Website</a></footer>
+
+  <script>
+    const modal=document.getElementById('chat-modal');
+    document.getElementById('chat-launcher').addEventListener('click',()=>{modal.classList.add('open');modal.setAttribute('aria-hidden','false')});
+    document.getElementById('chat-close').addEventListener('click',()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true')});
+    modal.addEventListener('click',e=>{ if(e.target===modal){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }});
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }});
+  </script>
+</body>
+</html>
