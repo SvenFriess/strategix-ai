@@ -1,85 +1,126 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI-Wissen & Ressourcen • Strategix-AI</title>
-  <meta name="description" content="Artikel, Guides und Downloads rund um lokale KI-Chatbots, Signal-Integration und Ollama.">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI‑Wissen & Ressourcen • strategix AI</title>
+  <meta name="description" content="Kuratiertes Know‑how für lokale, DSGVO‑konforme KI‑Assistenten. Inhalte werden automatisch aus content/manifest.json geladen.">
+  <link rel="icon" href="icons/LOGO-strategixAI-tech.png">
   <link rel="stylesheet" href="styles.css">
   <style>
-    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}
-    .filters button{padding:8px 12px;border-radius:999px;border:1px solid #2b396b;background:#0f1631;color:#cfd6ff;cursor:pointer}
-    .filters button.active{outline:2px solid var(--brand)}
-    .list{display:grid;gap:var(--gap);grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .list .card h3{margin-top:4px}
-    .empty{color:#aab2da}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+    .card{padding:16px;border-radius:16px;background:var(--card,#151a20);box-shadow:0 6px 24px rgba(0,0,0,.22);transition:transform .12s ease, box-shadow .12s ease}
+    .card:hover{transform:translateY(-2px) scale(1.01);box-shadow:0 10px 28px rgba(0,0,0,.28)}
+    .card h3{margin:0 0 8px 0;font-size:1.05rem}
+    .muted{opacity:.85;font-size:.92rem}
+    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .tag{padding:.2rem .55rem;border-radius:999px;background:rgba(124,77,255,.14);font-size:.8rem}
+    .filters{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+    .filters button{padding:.35rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:transparent;cursor:pointer}
+    .filters button.active{border-color:currentColor}
+    .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 14px}
+    .search{flex:1;min-width:220px}
+    .search input{width:100%;padding:.55rem .75rem;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:transparent;color:inherit}
+    .btn{display:inline-block;padding:.45rem .8rem;border:1px solid rgba(255,255,255,.18);border-radius:10px;text-decoration:none}
   </style>
 </head>
 <body>
-  <header class="nav">
-    <a class="logo logo-img" href="/"><img src="logo.svg" alt=""/> <span>Strategix-AI</span></a>
-    <nav><a href="/">Start</a></nav>
-  </header>
-  <main class="section">
-    <h1>AI‑Wissen & Ressourcen</h1>
-    <p>Kurze Tutorials, Cheatsheets und Downloads. Neue Inhalte fügen wir laufend hinzu.</p>
-    <div class="filters" id="filters"></div>
-    <div class="list" id="list"></div>
-    <p class="empty" id="empty" style="display:none">Noch keine Inhalte für diesen Filter.</p>
-  </main>
-  <footer class="footer">
-    <p>© <span id="y"></span> Strategix-AI</p>
-  </footer>
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-    const state = { tag:null };
-    const list = document.getElementById('list');
-    const filters = document.getElementById('filters');
-    const empty = document.getElementById('empty');
-    fetch('content/manifest.json')
-      .then(r=>r.json())
-      .then(data=>{
-        const tags = Array.from(new Set(data.items.flatMap(i=>i.tags))).sort();
-        // render filters
-        const allBtn = document.createElement('button');
-        allBtn.textContent = 'Alle';
-        allBtn.className = 'active';
-        allBtn.onclick = ()=>{ state.tag=null; update(); setActive(allBtn); };
-        filters.appendChild(allBtn);
-        tags.forEach(t=>{
-          const b = document.createElement('button');
-          b.textContent = t;
-          b.onclick = ()=>{ state.tag=t; update(); setActive(b); };
-          filters.appendChild(b);
-        });
-        function setActive(btn){
-          [...filters.children].forEach(c=>c.classList.remove('active'));
-          btn.classList.add('active');
-        }
-        function card(item){
-          const el = document.createElement('article');
-          el.className = 'card';
-          el.innerHTML = `<h3>${item.title}</h3>
-            <p class="meta">${item.date} • ${item.tags.join(', ')}</p>
-            <div class="actions">
-              <a class="btn primary" href="content/${item.file}">Öffnen</a>
-            </div>`;
-          return el;
-        }
-        function update(){
-          list.innerHTML='';
-          const items = data.items
-            .filter(i => !state.tag || i.tags.includes(state.tag))
-            .sort((a,b)=> b.date.localeCompare(a.date));
-          items.forEach(i=> list.appendChild(card(i)));
-          empty.style.display = items.length? 'none':'block';
-        }
-        update();
-      })
-      .catch(err=>{
-        list.innerHTML = '<p class="empty">Manifest konnte nicht geladen werden.</p>';
-        console.error(err);
-      });
-  </script>
+<header class="nav">
+  <a class="logo logo-img" href="/"><img src="logo.svg" alt="" /> <span>strategix AI</span></a>
+</header>
+
+<main class="section">
+  <h1>AI‑Wissen &amp; Ressourcen</h1>
+  <p class="muted">Kuratiertes Know‑how für lokale, DSGVO‑konforme KI‑Assistenten. Inhalte werden aus <code>content/manifest.json</code> geladen.</p>
+
+  <div id="status" class="muted" style="margin:6px 0 10px"></div>
+
+  <div class="toolbar">
+    <div class="search" aria-label="Suchen">
+      <input id="q" type="search" placeholder="Suchen nach Titel oder Tag …" autocomplete="off" />
+    </div>
+    <div class="filters" id="filters" aria-label="Filter nach Tags"></div>
+  </div>
+
+  <div class="grid" id="grid" aria-live="polite"></div>
+</main>
+
+<footer class="footer"><p>© <span id="y"></span> strategix AI</p></footer>
+
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  const state = { all: [], filtered: [], tag: 'Alle', q: '' };
+  const grid = document.getElementById('grid');
+  const filters = document.getElementById('filters');
+  const statusEl = document.getElementById('status');
+  const q = document.getElementById('q');
+
+  fetch('content/manifest.json')
+    .then(r => r.json())
+    .then(data => {
+      state.all = (data.items || []).slice().sort((a,b)=> (b.date||'').localeCompare(a.date||''));
+      state.filtered = state.all;
+      renderFilters();
+      render();
+      statusEl.textContent = `${state.all.length} Themen • Stand: ${data.generated || new Date().toISOString().slice(0,10)}`;
+    })
+    .catch(err => {
+      statusEl.textContent = 'Fehler beim Laden des Manifests.';
+      console.error(err);
+    });
+
+  function renderFilters(){
+    const tags = new Set(['Alle']);
+    state.all.forEach(i => (i.tags||[]).forEach(t => tags.add(t)));
+    filters.innerHTML = '';
+    tags.forEach(t => {
+      const b = document.createElement('button');
+      b.textContent = t;
+      b.className = (t===state.tag)?'active':'';
+      b.onclick = () => { state.tag = t; filterAndRender(); setActive(b); };
+      filters.appendChild(b);
+    });
+  }
+  function setActive(activeBtn){
+    Array.from(filters.children).forEach(c => c.classList.remove('active'));
+    activeBtn.classList.add('active');
+  }
+
+  q.addEventListener('input', () => { state.q = q.value.trim().toLowerCase(); filterAndRender(); });
+
+  function filterAndRender(){
+    const tag = state.tag;
+    const query = state.q;
+    state.filtered = state.all.filter(i => {
+      const inTag = (tag==='Alle') || (i.tags||[]).includes(tag);
+      const hay = (i.title||'') + ' ' + (i.tags||[]).join(' ');
+      const inQ = !query || hay.toLowerCase().includes(query);
+      return inTag && inQ;
+    });
+    render();
+  }
+
+  function card(item){
+    const url = `content/${item.file}`;
+    return `
+      <article class="card">
+        <h3><a href="${url}">${escapeHtml(item.title||'Ohne Titel')}</a></h3>
+        <div class="muted">${item.date || ''}</div>
+        <div class="tags">
+          ${(item.tags||[]).map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join('')}
+        </div>
+        <div style="margin-top:10px">
+          <a class="btn" href="${url}">Öffnen</a>
+        </div>
+      </article>`;
+  }
+  function render(){
+    grid.innerHTML = state.filtered.map(card).join('');
+  }
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+</script>
 </body>
 </html>

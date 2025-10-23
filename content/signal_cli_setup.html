@@ -1,0 +1,49 @@
+
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Signal‑CLI: Nummer verknüpfen & Gruppe anlegen</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="nav"><a class="logo logo-img" href="/"><img src="../logo.svg" alt=""/> <span>Strategix‑AI</span></a></header>
+  <main class="section">
+    <h1>Signal‑CLI: Nummer verknüpfen &amp; Gruppe anlegen</h1>
+    <p>So bindest du eine dedizierte Signal‑Nummer an den Bot und startest eine Gruppe.</p>
+    <h2>Vorbereitung</h2>
+    <ul>
+      <li>macOS oder Linux</li>
+      <li>Java installiert (<code>java -version</code>)</li>
+      <li>Signal‑CLI installiert</li>
+    </ul>
+    <h2>1) Nummer registrieren</h2>
+<pre><code># Registrieren
+signal-cli -u +49XXXXXXXXXX register
+
+# Verifizieren (per SMS/TAN)
+signal-cli -u +49XXXXXXXXXX verify 123456
+
+# Geräte‑Name setzen (optional)
+signal-cli -u +49XXXXXXXXXX updateProfile --name "Borgobatonebot"
+</code></pre>
+    <h2>2) Gruppe erstellen</h2>
+<pre><code># Neue Gruppe
+signal-cli -u +49XXXXXXXXXX --verbose updateGroup --create --name "Borgo‑Bot" +49AAAAAA +49BBBBBB
+
+# Gruppen‑ID anzeigen
+signal-cli -u +49XXXXXXXXXX listGroups
+</code></pre>
+    <h2>3) Nachrichten empfangen/senden (Test)</h2>
+<pre><code># Empfangen (Timeout 5s)
+signal-cli -u +49XXXXXXXXXX receive -t 5
+
+# Senden
+signal-cli -u +49XXXXXXXXXX send -m "Hallo aus dem Bot" +49AAAAAA
+</code></pre>
+    <p class="note">Tipp: Für den Produktivbetrieb nutze <code>signal-cli daemon</code> und ein System‑Service‑Script.</p>
+  </main>
+  <footer class="footer"><p>© 2025 Strategix‑AI</p></footer>
+</body>
+</html>

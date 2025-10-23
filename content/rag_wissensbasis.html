@@ -1,0 +1,37 @@
+
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RAG‑Wissensbasis: Dateien strukturieren & indizieren</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="nav"><a class="logo logo-img" href="/"><img src="../logo.svg" alt=""/> <span>Strategix‑AI</span></a></header>
+  <main class="section">
+    <h1>RAG‑Wissensbasis: Dateien strukturieren &amp; indizieren</h1>
+    <p>So bereitest du PDFs/HTML/Text für hohe Antwortqualität vor.</p>
+    <h2>Ordnerstruktur</h2>
+<pre><code>knowledge/
+├─ products/
+├─ services/
+├─ legal/
+└─ faq/
+</code></pre>
+    <h2>Best Practices</h2>
+    <ul>
+      <li>Kurze, thematische Abschnitte (300–800 Tokens)</li>
+      <li>Klare Überschriften, Datumsangaben, Versionen</li>
+      <li>Duplikate vermeiden, bevorzugt HTML/Markdown</li>
+    </ul>
+    <h2>Indexierung (Beispiel)</h2>
+<pre><code># Pseudocode
+for file in knowledge:
+  chunks = chunk(file, size=800, overlap=120)
+  store(embeddings(chunks), metadata)
+</code></pre>
+  </main>
+  <footer class="footer"><p>© 2025 Strategix‑AI</p></footer>
+</body>
+</html>

@@ -1,0 +1,31 @@
+name: Update content manifest
+
+on:
+  push:
+    paths:
+      - 'content/**'
+      - 'update_manifest.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Generate manifest.json
+        run: |
+          python3 update_manifest.py
+          echo "Manifest generated."
+      - name: Commit & push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: auto-update content/manifest.json"
+          commit_user_name: "strategix AI bot"
+          commit_user_email: "bot@users.noreply.github.com"
+          file_pattern: content/manifest.json

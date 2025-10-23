@@ -1,27 +1,64 @@
 {
-  "updated": "2025-09-03",
+  "version": 1,
+  "generated": "2025-10-23",
   "items": [
     {
-      "id": "lokale-llms-einfuehrung",
-      "title": "Lokale LLMs: Einführung & Setup",
-      "date": "2025-09-03",
+      "title": "DSGVO‑Checkliste für lokale KI‑Assistenten",
+      "date": "2025-10-23",
       "tags": [
-        "LLM",
-        "Ollama",
-        "Setup"
+        "dsgvo",
+        "checkliste"
+      ],
+      "file": "dsgvo_checkliste.html"
+    },
+    {
+      "title": "lokale-llms-einfuehrung",
+      "date": "2025-10-14",
+      "tags": [
+        "lokale",
+        "llms",
+        "einfuehrung"
       ],
       "file": "lokale-llms-einfuehrung.html"
     },
     {
-      "id": "signal-cli-cheatsheet",
-      "title": "Signal-CLI Cheatsheet für Chatbots",
-      "date": "2025-09-03",
+      "title": "Ollama + Mistral lokal installieren (macOS)",
+      "date": "2025-10-23",
       "tags": [
-        "Signal",
-        "CLI",
-        "Chatbot"
+        "ollama",
+        "mistral",
+        "install"
+      ],
+      "file": "ollama_mistral_install.html"
+    },
+    {
+      "title": "RAG‑Wissensbasis: Dateien strukturieren & indizieren",
+      "date": "2025-10-23",
+      "tags": [
+        "rag",
+        "wissensbasis"
+      ],
+      "file": "rag_wissensbasis.html"
+    },
+    {
+      "title": "signal-cli-cheatsheet",
+      "date": "2025-10-14",
+      "tags": [
+        "signal",
+        "cli",
+        "cheatsheet"
       ],
       "file": "signal-cli-cheatsheet.html"
+    },
+    {
+      "title": "Signal‑CLI: Nummer verknüpfen & Gruppe anlegen",
+      "date": "2025-10-23",
+      "tags": [
+        "signal",
+        "cli",
+        "setup"
+      ],
+      "file": "signal_cli_setup.html"
     }
   ]
 }

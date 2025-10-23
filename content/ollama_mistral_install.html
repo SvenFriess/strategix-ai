@@ -1,0 +1,46 @@
+
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ollama + Mistral lokal installieren (macOS)</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="nav"><a class="logo logo-img" href="/"><img src="../logo.svg" alt=""/> <span>Strategix‑AI</span></a></header>
+  <main class="section">
+    <h1>Ollama + Mistral lokal installieren (macOS)</h1>
+    <p>In wenigen Minuten ein lauffähiges LLM lokal aufsetzen.</p>
+    <h2>1) Ollama installieren</h2>
+<pre><code># Variante A: App (empfohlen)
+# Lade die aktuelle macOS‑App von ollama.com herunter und installiere sie.
+
+# Variante B: Homebrew
+brew install ollama
+ollama --version
+</code></pre>
+    <h2>2) Dienst starten</h2>
+<pre><code># Startet den lokalen API‑Dienst (Port 11434)
+ollama serve
+</code></pre>
+    <h2>3) Mistral‑Modell laden</h2>
+<pre><code># 7B‑Variante (gut für On‑Prem Demos)
+ollama pull mistral:7b
+ollama run mistral:7b
+</code></pre>
+    <h2>4) Test per curl</h2>
+<pre><code>curl http://localhost:11434/api/generate -d '{"model":"mistral:7b","prompt":"Sag Hallo in einem Satz."}'
+</code></pre>
+    <h2>5) Integration prüfen</h2>
+<pre><code># Beispiel‑Snippet (Python)
+import requests, json
+r = requests.post("http://127.0.0.1:11434/api/generate",
+                  json={"model":"mistral:7b","prompt":"Test"})
+print(r.json())
+</code></pre>
+    <p class="note">Hinweis: Für Mac mini M2/M4 genügt 8–16 GB RAM für kleine Modelle. Für RAG‑Workloads Datenspeicher (SSD) einplanen.</p>
+  </main>
+  <footer class="footer"><p>© 2025 Strategix‑AI</p></footer>
+</body>
+</html>
