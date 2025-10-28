@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generated": "2025-10-23",
+  "generated": "2025-10-28",
   "items": [
     {
       "title": "DSGVO‑Checkliste für lokale KI‑Assistenten",
-      "date": "2025-10-23",
+      "date": "2025-10-28",
       "tags": [
         "dsgvo",
         "checkliste"
@@ -13,7 +13,7 @@
     },
     {
       "title": "lokale-llms-einfuehrung",
-      "date": "2025-10-14",
+      "date": "2025-10-28",
       "tags": [
         "lokale",
         "llms",
@@ -23,7 +23,7 @@
     },
     {
       "title": "Ollama + Mistral lokal installieren (macOS)",
-      "date": "2025-10-23",
+      "date": "2025-10-28",
       "tags": [
         "ollama",
         "mistral",
@@ -33,7 +33,7 @@
     },
     {
       "title": "RAG‑Wissensbasis: Dateien strukturieren & indizieren",
-      "date": "2025-10-23",
+      "date": "2025-10-28",
       "tags": [
         "rag",
         "wissensbasis"
@@ -42,7 +42,7 @@
     },
     {
       "title": "signal-cli-cheatsheet",
-      "date": "2025-10-14",
+      "date": "2025-10-28",
       "tags": [
         "signal",
         "cli",
@@ -52,7 +52,7 @@
     },
     {
       "title": "Signal‑CLI: Nummer verknüpfen & Gruppe anlegen",
-      "date": "2025-10-23",
+      "date": "2025-10-28",
       "tags": [
         "signal",
         "cli",
