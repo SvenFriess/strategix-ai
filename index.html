@@ -17,7 +17,7 @@
     header{position:sticky;top:0;background:rgba(11,13,16,.7);backdrop-filter:blur(10px);border-bottom:1px solid #1f2630;z-index:10}
     .nav{display:flex;align-items:center;justify-content:space-between;max-width:var(--maxw);margin:0 auto;padding:14px 20px}
     .brand{display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:.3px}
-    .logo{width:34px;height:34px;border-radius:10px;background:radial-gradient(circle at 30% 25%,#9be9ff,transparent 40%),radial-gradient(circle at 70% 70%,#7c4dff,transparent 40%),linear-gradient(135deg,#0ea5e9,#7c4dff);box-shadow:0 6px 18px rgba(124,77,255,.35)}
+   .logo{width:68px;height:68px;border-radius:10px;box-shadow:0 6px 18px rgba(124,77,255,.35)}
     .menu{display:flex;gap:18px;align-items:center}
     .menu a{color:var(--muted)}
     .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:#1b222b;border:1px solid #26303b;color:var(--txt);box-shadow:var(--shadow)}
@@ -56,7 +56,24 @@
       .grid-3{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
     }
-  </style>
+  
+/* === USP Pie === */
+.usp-wrap{display:grid;grid-template-columns:1fr;gap:18px;margin-top:10px}
+@media (min-width:980px){.usp-wrap{grid-template-columns:1fr 1fr}}
+.usp-card{background:var(--card);border:1px solid #233042;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+.usp-pie{width:min(92vw,440px);height:min(92vw,440px);margin:auto;display:block}
+.usp-pie path{cursor:pointer;transition:transform .18s ease,opacity .18s ease}
+.usp-pie path[aria-current="true"]{filter:drop-shadow(0 0 10px rgba(255,255,255,.25));transform:scale(1.02)}
+.usp-detail h3{margin:.2rem 0 .4rem;font-size:20px}
+.usp-muted{color:var(--muted)}
+.usp-list{list-style:none;margin:.6rem 0 0;padding:0}
+.usp-list li{display:flex;gap:.6rem;align-items:flex-start;padding:.28rem 0}
+.usp-dot{width:.5rem;height:.5rem;margin-top:.55rem;border-radius:999px;background:#6b7280}
+.usp-switch{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.usp-switch button{background:#0f1620;border:1px solid #243143;color:var(--txt);padding:8px 10px;border-radius:10px;font-size:14px;cursor:pointer}
+.usp-switch button[aria-pressed="true"]{outline:2px solid #0ea5e9}
+
+</style>
 </head>
 <body>
   <header>
@@ -64,8 +81,8 @@
       <!-- <div class="brand"><div class="logo" aria-hidden="true"></div><span>strategix‑AI</span></div> -->
       
       <div class="brand">
-        <img class="logo" src="LOGO-strategix-AI-tech-with-text-v6.png" 
-             alt="strategix-AI Logo" width="34" height="34" loading="eager" />
+        <img class="logo" src="icons/LOGO-strategixAI-tech.png"
+            alt="strategix-AI Logo" width="68" height="68" loading="eager" />
         <span>strategix-AI</span>
       </div>
       
@@ -87,7 +104,7 @@
         <h1 class="title t" data-de="Lokale, DSGVO‑konforme KI – ohne Cloud‑Zwang" data-en="Local, GDPR‑compliant AI – no forced cloud">Lokale, DSGVO‑konforme KI – ohne Cloud‑Zwang</h1>
         <p class="lead t" data-de="strategix‑AI liefert Chatbots und Automatisierungen, die auf Ihrer eigenen Hardware laufen (z. B. Mac Mini). Modular, sicher und schnell integrierbar – per Signal oder Website." data-en="strategix‑AI delivers chatbots and automations running on your own hardware (e.g., Mac Mini). Modular, secure and fast to integrate – via Signal or Website.">strategix‑AI liefert Chatbots und Automatisierungen, die auf Ihrer eigenen Hardware laufen (z. B. Mac Mini). Modular, sicher und schnell integrierbar – per Signal oder Website.</p>
         <div class="cta-row">
-          <a class="btn primary t" href="/borgo-batone-testportal" data-de="Demo ansehen" data-en="View demo">Demo ansehen</a>
+
           <a class="btn" href="#contact"><span class="t" data-de="Unverbindlich anfragen" data-en="Request info">Unverbindlich anfragen</span></a>
         </div>
         <div class="badgebar" id="benefits">
@@ -108,6 +125,32 @@ $ python3 signal_bot.py --llm mistral:instruct
         <div class="muted" style="margin-top:8px">Schnelle Integration in bestehende Workflows – Chat über Signal oder Ihre Website.</div>
       </div>
     </section>
+
+<section class="section" id="usps" style="margin-top:10px">
+  <h2>USPs – Lokal · DSGVO · Kein Vendor-Lock-in</h2>
+  <div class="usp-wrap">
+    <!-- Pie -->
+    <div class="usp-card">
+      <svg class="usp-pie" viewBox="0 0 360 360" role="img" aria-label="USP-Tortendiagramm">
+        <defs><filter id="usp-hover"><feDropShadow dx="0" dy="0" stdDeviation="6" flood-opacity=".45"/></filter></defs>
+        <circle cx="180" cy="180" r="70" fill="white" opacity=".06"></circle>
+        <text x="180" y="180" text-anchor="middle" dominant-baseline="middle" fill="#cfd3e3"
+              style="font-size:13px;font-weight:600">Lokal • Sicher • Souverän</text>
+        <g id="usp-segments"></g>
+      </svg>
+    </div>
+
+    <!-- Details -->
+    <aside class="usp-card usp-detail" aria-live="polite">
+      <h3 id="usp-title">🧠 Lokal & unabhängig</h3>
+      <p class="usp-muted" id="usp-blurb">100 % On-Premise. Volle Kontrolle über Daten & Infrastruktur – keine Cloud-Abhängigkeit.</p>
+      <ul class="usp-list" id="usp-bullets"></ul>
+      <div class="usp-switch" id="usp-switch"></div>
+    </aside>
+  </div>
+</section>
+
+
 
     <section id="solutions" class="section" style="margin-top:10px">
       <h2 class="t" data-de="Lösungen" data-en="Solutions">Lösungen</h2>
@@ -142,13 +185,143 @@ $ python3 signal_bot.py --llm mistral:instruct
     </section>
 
     <section id="pricing" class="section" style="margin-top:26px">
-      <h2 class="t" data-de="Preise" data-en="Pricing">Preise</h2>
-      <div class="price">
-        <div class="card"><div class="tag">Starter</div><h3 class="t" data-de="Signal‑oder Website‑Bot" data-en="Signal or website bot">Signal‑oder Website‑Bot</h3><p class="muted t" data-de="Ein Use‑Case, Grund‑Setup, Einweisung." data-en="One use case, base setup, onboarding.">Ein Use‑Case, Grund‑Setup, Einweisung.</p><div class="pill t" data-de="ab € / Anfrage" data-en="from € / request">ab € / Anfrage</div></div>
-        <div class="card"><div class="tag">Pro</div><h3 class="t" data-de="On‑Prem Paket" data-en="On‑prem package">On‑Prem Paket</h3><p class="muted t" data-de="Lokales LLM, Monitoring, Updates, Support." data-en="Local LLM, monitoring, updates, support.">Lokales LLM, Monitoring, Updates, Support.</p><div class="pill t" data-de="individuell" data-en="custom">individuell</div></div>
-        <div class="card"><div class="tag">Enterprise</div><h3 class="t" data-de="Mehrere Bots & Integrationen" data-en="Multiple bots & integrations">Mehrere Bots & Integrationen</h3><p class="muted t" data-de="SSO, SLA, Compliance‑Add‑ons, Custom Workflows." data-en="SSO, SLA, compliance add‑ons, custom workflows.">SSO, SLA, Compliance‑Add‑ons, Custom Workflows.</p><div class="pill t" data-de="auf Anfrage" data-en="on request">auf Anfrage</div></div>
+  <h2>Preise</h2>
+  <div class="price">
+    <!-- 1) Fixed -->
+    <div class="card">
+      <div class="tag">Fixed (ohne LLM)</div>
+      <h3>„Einschränker“ – Regelbasierter Bot</h3>
+      <p class="muted">Feste Dialogflüsse & FAQ-Regeln – ohne LLM, maximale Stabilität und volle Kontrolle.</p>
+      <ul style="margin:10px 0 0 0; padding-left:18px">
+        <li>✅ Klare Antworten, kein Halluzinieren</li>
+        <li>🧩 Website-Widget oder Signal-Integration</li>
+        <li>📄 Bis 50 FAQ-Einträge / Flows</li>
+        <li>🔒 DSGVO-konform, On-Prem</li>
+        <li>⏱️ Go-Live in <b>2–3 Wochen</b></li>
+      </ul>
+
+      <!-- Preisstaffeln -->
+      <div style="margin-top:12px;border-top:1px solid #223042;padding-top:10px">
+        <div style="display:flex;justify-content:space-between">
+          <span class="muted">Standard</span>
+          <strong>1 490 €</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px">
+          <span class="muted">mit UI/Widget &amp; Schulung</span>
+          <strong>2 490 €</strong>
+        </div>
       </div>
-    </section>
+
+      <div class="mini-badges" style="margin-top:10px">
+        <span class="mini-badge">On-Prem</span>
+        <span class="mini-badge">DSGVO</span>
+        <span class="mini-badge">No Cloud</span>
+      </div>
+    </div>
+
+    <!-- 2) Assist -->
+    <div class="card">
+      <div class="tag">Assist</div>
+      <h3>„Assist“ – LLM + Wissensbasis + Content-Generierung</h3>
+      <p class="muted">
+        Lokales LLM (On-Prem) kombiniert mit kuratierter Wissensbasis.
+        Formuliert Antworten und generiert Content.
+      </p>
+      <ul style="margin:10px 0 0 0; padding-left:18px">
+        <li>🤖 On-Prem LLM (z. B. Mistral / Phi / Mixtral via Ollama)</li>
+        <li>📚 Wissensbasis aus Dokumenten/Webseiten (RAG)</li>
+        <li>🧠 Content-Generierung (Texte, Zusammenfassungen)</li>
+        <li>🔌 1 Integration (Signal <i>oder</i> Website)</li>
+        <li>📊 Logging &amp; einfache Evaluierung</li>
+        <li>⏱️ Go-Live in <b>3–4 Wochen</b></li>
+      </ul>
+
+      <!-- Preisstaffeln -->
+      <div style="margin-top:12px;border-top:1px solid #223042;padding-top:10px">
+        <div style="display:flex;justify-content:space-between">
+          <span class="muted">Klein (1 Quelle)</span>
+          <strong>3 900 €</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px">
+          <span class="muted">Standard KMU</span>
+          <strong>5 900–7 900 €</strong>
+        </div>
+      </div>
+
+      <div class="mini-badges" style="margin-top:10px">
+        <span class="mini-badge">On-Prem</span>
+        <span class="mini-badge">LLM</span>
+        <span class="mini-badge">RAG</span>
+        <span class="mini-badge">Content Gen</span>
+      </div>
+    </div>
+
+    <!-- 3) Codex -->
+    <div class="card">
+      <div class="tag">Codex</div>
+      <h3>„Codex“ – Content- &amp; Wissensaufbereitung</h3>
+      <p class="muted">
+        Strategische Aufbereitung Ihrer Inhalte: Taxonomie, Chunking,
+        QS, Embeddings-Optimierung und laufende Verbesserung.
+      </p>
+      <ul style="margin:10px 0 0 0; padding-left:18px">
+        <li>🏛️ Wissens-Codex (Taxonomie &amp; Struktur)</li>
+        <li>🧩 Aufbereitung von PDF, HTML, Doku, Supportfällen</li>
+        <li>🧠 Embeddings-Optimierung &amp; RAG-Qualitätstests</li>
+        <li>📈 Monitoring &amp; inhaltliche Pflege</li>
+        <li>👥 Team-Schulung zur Selbstpflege</li>
+        <li>⏱️ Projektphase <b>4–8 Wochen</b></li>
+      </ul>
+
+      <!-- Preisstaffeln -->
+      <div style="margin-top:12px;border-top:1px solid #223042;padding-top:10px">
+        <div style="display:flex;justify-content:space-between">
+          <span class="muted">Klein</span>
+          <strong>6 900 €</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px">
+          <span class="muted">Komplett Setup</span>
+          <strong>9 900–14 900 €</strong>
+        </div>
+      </div>
+
+      <div class="mini-badges" style="margin-top:10px">
+        <span class="mini-badge">Content Architecture</span>
+        <span class="mini-badge">Embeddings</span>
+        <span class="mini-badge">Quality</span>
+        <span class="mini-badge">Long-Term</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ➕ Add-ons -->
+  <div class="price" style="margin-top:12px">
+    <div class="card" style="flex:1">
+      <div class="tag">Add-ons</div>
+      <h3>Ergänzungen &amp; Services</h3>
+      <ul style="margin:10px 0 0 0; padding-left:18px">
+        <li>📱 Signal-Gruppen-Integration inkl. Hosting-Support (lokal) — <b>+ 590 €</b></li>
+        <li>🧩 Website-Widget (Frontend) — <b>+ 490 €</b></li>
+        <li>🎓 Schulung / Workshop (½ Tag) — <b>+ 350 €</b></li>
+        <li>🛠️ Wartung &amp; Updates (jährlich) — <b>10–15 % vom Projektwert</b></li>
+      </ul>
+    </div>
+
+    <div class="card" style="flex:1">
+      <div class="tag">Optional</div>
+      <h3>Managed Mac-mini Hosting (Startphase)</h3>
+      <p class="muted">Wir hosten Ihren Bot vorübergehend (EU), bis Ihre eigene Hardware bereit ist.</p>
+      <ul style="margin:10px 0 0 0; padding-left:18px">
+        <li>🖥️ Dedizierter Mac mini (M2/M4), VPN-Zugang</li>
+        <li>🔒 EU-Standort, verschlüsselte Backups</li>
+        <li>📊 Monitoring & Updates inklusive</li>
+        <li>🌐 Custom-Domain & HTTPS</li>
+        <li>🔄 Nahtloser Umzug On-Prem</li>
+      </ul>
+      <div class="pill">Preis auf Anfrage</div>
+    </div>
+  </div>
+</section>
 
     <section id="contact" class="section" style="margin:28px 0 10px">
       <h2 class="t" data-de="Kontakt" data-en="Contact">Kontakt</h2>
@@ -156,27 +329,28 @@ $ python3 signal_bot.py --llm mistral:instruct
         <div class="card">
           <p class="muted t" data-de="Schreiben Sie uns kurz Ihr Vorhaben. Wir melden uns mit einer passenden Empfehlung." data-en="Tell us briefly about your project. We'll reply with a fitting recommendation.">Schreiben Sie uns kurz Ihr Vorhaben. Wir melden uns mit einer passenden Empfehlung.</p>
           <p>📧 <a id="mail" href="mailto:info@strategix-ai.tech">info@strategix-ai.tech</a></p>
+          <p>📞 <a href="tel:+49XXXXXXXXX">+49 160 90822476</a> <span class="muted">– persönliche Rücksprache nach Anfrage</span></p>
+
+
+
           <p>🔒 <span class="t" data-de="Datenschutz‑Hinweis: Ihre Daten verlassen Ihr System nur, wenn Sie es möchten." data-en="Privacy note: your data never leaves your system unless you want it to.">Datenschutz‑Hinweis: Ihre Daten verlassen Ihr System nur, wenn Sie es möchten.</span></p>
           <div class="cta-row"><a class="btn primary" href="#" onclick="document.getElementById('brief').focus();return false;"><span class="t" data-de="Projekt anfragen" data-en="Request project">Projekt anfragen</span></a></div>
         </div>
         <form class="card" onsubmit="alert(document.getElementById('brief').value ? (lang==='de'?'Danke! Wir melden uns.':'Thanks! We\'ll be in touch.') : (lang==='de'?'Bitte kurz beschreiben.':'Please add a short note.'));return false;">
           <label class="t" data-de="Kurzbeschreibung" data-en="Short description">Kurzbeschreibung</label>
           <textarea id="brief" rows="5" placeholder="z. B. Website‑FAQ‑Bot für Autohaus, Start im Oktober" style="width:100%;margin-top:8px;background:#0f1318;border:1px solid #222b36;border-radius:12px;color:var(--txt);padding:10px"></textarea>
-          <div style="margin-top:10px" class="muted">(Demo‑Formular – versendet keine Daten)</div>
+          <div style="margin-top:10px" class="muted"> 🔒 Dieses Formular ist eine Vorschau – Eingaben werden nicht übertragen.</div>
         </form>
       </div>
     </section>
   </main>
 
-<footer class="container footer" style="padding:20px">
-  <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
-    <div>© <span id="year"></span> strategix-AI</div>
-    <div class="muted">
-      <a href="./impressum.html">Impressum</a> · 
-      <a href="./datenschutz.html">Datenschutz</a>
+  <footer class="container footer" style="padding:20px">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
+      <div>© <span id="year"></span> strategix‑AI</div>
+      <div class="muted"><a href="#">Impressum</a> · <a href="#">Datenschutz</a></div>
     </div>
-  </div>
-</footer>
+  </footer>
 
   <script>
     // Simple i18n toggle (DE/EN)
@@ -193,5 +367,102 @@ $ python3 signal_bot.py --llm mistral:instruct
     setLang('de');
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
+<script>
+  // === USP Pie (pure SVG/JS) ===
+  const USP_DATA = [
+    {
+      id:'local', label:'🧠 Lokal & unabhängig', color:'#66d9e8',
+      blurb:'100 % On-Premise. Volle Kontrolle über Daten & Infrastruktur – keine Cloud-Abhängigkeit.',
+      bullets:[
+        '💻 Standardhardware (Mac Mini, Linux-Server)',
+        '🚫 Kein Internetzwang, <b>0</b> externe Dienste',
+        '⚡ Niedrige Latenz, <b>keine</b> API-Limits',
+        '🔌 Integrationen: Signal-Bot, Web-Chat, CLI'
+      ]
+    },
+    {
+      id:'gdpr', label:'🛡️ DSGVO-konform & sicher', color:'#22c55e',
+      blurb:'Verarbeitung ausschließlich lokal. Keine Datenübertragung an Dritte.',
+      bullets:[
+        '🧾 Keine Cloud-Logs, kein Tracking, keine Accounts',
+        '🔒 Ende-zu-Ende-verschlüsselter Kommunikationskanal',
+        '📚 Einfache Audit-Doku (Art. 30/32 DSGVO)',
+        '⚖️ Rechtliche Basis: Art. 6 Abs. 1 lit. f/b DSGVO'
+      ]
+    },
+    {
+      id:'nolock', label:'🧩 Kein Vendor-Lock-in', color:'#7c4dff',
+      blurb:'Open-Source-First, offene Standards, volle Portabilität.',
+      bullets:[
+        '🧠 Europäische Modelle (Mistral/Mixtral, Aleph Alpha, etc.)',
+        '🧩 Offene Lizenzen/Standards (Apache, MIT, CC-BY)',
+        '🔄 Austauschbare Komponenten (LLM, RAG, UI)',
+        '🧭 Zukunftssicher: EU-AI-Act im Blick'
+      ]
+    }
+  ];
+
+  function uspArcPath(cx, cy, r, startDeg, endDeg){
+    const rad = d => (d - 90) * Math.PI/180;
+    const sx = cx + r * Math.cos(rad(startDeg));
+    const sy = cy + r * Math.sin(rad(startDeg));
+    const ex = cx + r * Math.cos(rad(endDeg));
+    const ey = cy + r * Math.sin(rad(endDeg));
+    const largeArc = (endDeg - startDeg) <= 180 ? 0 : 1;
+    return `M ${cx} ${cy} L ${sx} ${sy} A ${r} ${r} 0 ${largeArc} 1 ${ex} ${ey} Z`;
+  }
+
+  (function initUspPie(){
+    const segRoot = document.getElementById('usp-segments');
+    if(!segRoot) return;
+
+    const cx=180, cy=180, r=170;
+    const segs = [
+      { usp: USP_DATA[0], start: 0,   end:120 },
+      { usp: USP_DATA[1], start:120,  end:240 },
+      { usp: USP_DATA[2], start:240,  end:360 }
+    ];
+
+    const titleEl   = document.getElementById('usp-title');
+    const blurbEl   = document.getElementById('usp-blurb');
+    const bulletsEl = document.getElementById('usp-bullets');
+    const switchEl  = document.getElementById('usp-switch');
+
+    function renderDetail(u){
+      titleEl.textContent = u.label;
+      blurbEl.innerHTML = u.blurb;
+      bulletsEl.innerHTML = u.bullets.map(b => `<li><span class="usp-dot"></span><span>${b}</span></li>`).join('');
+      switchEl.innerHTML = USP_DATA.map(x =>
+        `<button type="button" data-id="${x.id}" aria-pressed="${x.id===u.id}">${x.label}</button>`).join('');
+      switchEl.querySelectorAll('button').forEach(btn =>
+        btn.addEventListener('click',()=> setActive(btn.dataset.id)));
+    }
+
+    function setActive(id){
+      segRoot.querySelectorAll('path').forEach(p =>
+        p.setAttribute('aria-current', p.dataset.id===id ? 'true' : 'false'));
+      renderDetail(USP_DATA.find(x => x.id===id));
+    }
+
+    segs.forEach(({usp,start,end})=>{
+      const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+      p.setAttribute('d', uspArcPath(cx,cy,r,start,end));
+      p.setAttribute('fill', usp.color);
+      p.setAttribute('opacity', '.95');
+      p.setAttribute('data-id', usp.id);
+      p.setAttribute('tabindex', '0');
+      p.setAttribute('role', 'button');
+      p.setAttribute('aria-label', usp.label);
+      p.addEventListener('mouseenter',()=> setActive(usp.id));
+      p.addEventListener('click',()=> setActive(usp.id));
+      p.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); setActive(usp.id);} });
+      segRoot.appendChild(p);
+    });
+
+    setActive(USP_DATA[0].id);
+  })();
+</script>
+
 </body>
 </html>
