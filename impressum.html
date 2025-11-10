@@ -1,118 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Impressum – strategix-AI</title>
-  <meta name="description" content="Impressum von strategix-AI." />
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Impressum · strategix AI</title>
+  <meta name="color-scheme" content="light dark">
   <style>
-    :root{
-      --bg:#0b0d10;--bg2:#12161b;--card:#151a20;--txt:#e8eef5;--muted:#b1c0d0;--pri:#66d9e8;--acc:#7c4dff;--ok:#22c55e;--warn:#f59e0b;--maxw:1200px;
-      --shadow:0 10px 30px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.25);
-      --radius:18px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--txt);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;}
-    a{color:var(--pri);text-decoration:none}
-    header{position:sticky;top:0;background:rgba(11,13,16,.7);backdrop-filter:blur(10px);border-bottom:1px solid #1f2630;z-index:10}
-    .nav{display:flex;align-items:center;justify-content:space-between;max-width:var(--maxw);margin:0 auto;padding:14px 20px}
-    .brand{display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:.3px}
-    .logo{width:34px;height:34px;border-radius:10px;background:radial-gradient(circle at 30% 25%,#9be9ff,transparent 40%),radial-gradient(circle at 70% 70%,#7c4dff,transparent 40%),linear-gradient(135deg,#0ea5e9,#7c4dff);box-shadow:0 6px 18px rgba(124,77,255,.35)}
-    .menu{display:flex;gap:18px;align-items:center}
-    .menu a{color:var(--muted)}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:#1b222b;border:1px solid #26303b;color:var(--txt);box-shadow:var(--shadow)}
-    .btn.ghost{background:transparent;border:1px solid #2c3642}
-    .container{max-width:var(--maxw);margin:0 auto;padding:40px 20px}
-    .card{background:var(--card);border:1px solid #233042;border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
-    .section h1{font-size:clamp(22px,3vw,30px);margin:0 0 12px}
-    .muted{color:var(--muted)}
-    .footer{border-top:1px solid #1f2732;color:#a8b6c6}
-    .t{transition:color .2s}
+    :root{--bg:#0b0f14;--panel:#10161d;--fg:#eaf0f6;--muted:#8a94a6;--max:860px}
+    *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#0b0f14,#0c1219);color:var(--fg);font:16px/1.6 Inter,ui-sans-serif,system-ui}
+    .wrap{max-width:var(--max);margin:0 auto;padding:26px 20px}
+    .card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px}
+    a{color:#8ab4f8}
   </style>
 </head>
 <body>
-  <header>
-    <div class="nav">
-      <div class="brand">
-        <img class="logo" src="LOGO-strategix-AI-tech-with-text-v6.png" alt="strategix-AI Logo" width="34" height="34" loading="eager" />
-        <span>strategix-AI</span>
-      </div>
-      <nav class="menu">
-        <a href="index.html" class="t" data-de="Start" data-en="Home">Start</a>
-        <a href="impressum.html" class="t" data-de="Impressum" data-en="Imprint">Impressum</a>
-        <a href="datenschutz.html" class="t" data-de="Datenschutz" data-en="Privacy">Datenschutz</a>
-        <button id="lang" class="btn ghost" aria-label="Language">DE</button>
-      </nav>
+  <div class="wrap">
+    <h1>Impressum</h1>
+    <div class="card">
+      <p><strong>strategix AI · LocalMind</strong><br>Hamburg · Germany<br>E-Mail: hello@strategix-ai.tech</p>
+      <p>Verantwortlich für den Inhalt: Sven Friess (Anschrift auf Anfrage)</p>
+      <p>Haftung für Inhalte: Wir sind für eigene Inhalte nach § 7 Abs.1 TMG verantwortlich. Für fremde Inhalte besteht keine Überwachungspflicht (§§ 8–10 TMG).</p>
+      <p>Haftung für Links: Trotz sorgfältiger Kontrolle übernehmen wir keine Haftung für externe Links. Für deren Inhalte sind ausschließlich deren Betreiber verantwortlich.</p>
+      <p>Urheberrecht: Inhalte dieser Seite sind urheberrechtlich geschützt. Vervielfältigung nur mit Zustimmung.</p>
     </div>
-  </header>
-
-  <main class="container">
-    <section class="section card">
-      <h1 class="t" data-de="Impressum" data-en="Imprint">Impressum</h1>
-
-      <h3 class="t" data-de="Angaben gemäß § 5 TMG" data-en="Information according to § 5 TMG">Angaben gemäß § 5 TMG</h3>
-      <p>
-        <strong>strategix-AI</strong><br />
-        <span class="t" data-de="Vertretungsberechtigt:" data-en="Authorized representative:">Vertretungsberechtigt:</span> <strong>Sven Friess</strong><br />
-        <span class="t" data-de="Anschrift:" data-en="Address:">Anschrift:</span> <strong>Sven Friess,  Am Buchwald 5, 60385 Frankfurt, Deutschland</strong><br />
-        <span class="t" data-de="Kontakt:" data-en="Contact:">Kontakt:</span> <a href="mailto:info@strategix-ai.tech">info@strategix-ai.tech</a><br />
-        <span class="t" data-de="Telefon: +49 160 90822476" data-en="Phone (optional):">Telefon (optional):</span> <br />
-      
-      </p>
-
-      <h3 class="t" data-de="Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV" data-en="Content responsibility (German law)">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
-      <p><strong>Sven Friess,  Am Buchwald 5, 60385 Frankfurt</strong></p>
-
-      <h3 class="t" data-de="Haftung für Inhalte" data-en="Liability for contents">Haftung für Inhalte</h3>
-      <p class="t" data-de="Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. 
-      Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. 
-      Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt." 
-      data-en="As a service provider we are responsible for our own contents on these pages according to § 7 (1) TMG. 
-      According to §§ 8 to 10 TMG, we are not obliged to monitor transmitted or stored third-party information or to investigate circumstances indicating illegal activity. 
-      Obligations to remove or block the use of information under general law remain unaffected.">
-      </p>
-
-      <h3 class="t" data-de="Haftung für Links" data-en="Liability for links">Haftung für Links</h3>
-      <p class="t" data-de="Unser Angebot enthält ggf. Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. 
-      Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. 
-      Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich."
-      data-en="Our offer may contain links to external third-party websites, on whose contents we have no influence. 
-      Therefore, we cannot assume any liability for these external contents. 
-      The respective provider or operator of the pages is always responsible for the contents of the linked pages.">
-      </p>
-
-      <h3 class="t" data-de="Urheberrecht" data-en="Copyright">Urheberrecht</h3>
-      <p class="t" data-de="Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. 
-      Beiträge Dritter sind als solche gekennzeichnet. 
-      Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers."
-      data-en="The contents and works created by the site operators on these pages are subject to German copyright law. 
-      Contributions by third parties are marked as such. 
-      Duplication, processing, distribution and any kind of exploitation outside the limits of copyright require the written consent of the respective author or creator.">
-      </p>
-
-      <p class="muted">
-        <span class="t" data-de="Stand:" data-en="Last updated:">Stand:</span> <span id="date"></span>
-      </p>
-    </section>
-  </main>
-
-  <footer class="container footer" style="padding:20px">
-    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
-      <div>© <span id="year"></span> strategix-AI</div>
-      <div class="muted"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>
-    </div>
-  </footer>
-
-  <script>
-    // i18n toggle (DE/EN) and dates
-    let lang = 'de';
-    const btn = document.getElementById('lang');
-    const els = document.querySelectorAll('.t');
-    function setLang(l){ lang=l; document.documentElement.lang=(l==='de'?'de':'en'); btn.textContent=l.toUpperCase(); els.forEach(el=>{const t=el.getAttribute('data-'+l); if(t) el.textContent=t;}); }
-    btn.addEventListener('click',()=> setLang(lang==='de'?'en':'de'));
-    setLang('de');
-    document.getElementById('year').textContent = new Date().getFullYear();
-    document.getElementById('date').textContent = new Date().toLocaleDateString(document.documentElement.lang || 'de-DE', { year:'numeric', month:'2-digit', day:'2-digit' });
-  </script>
+    <p style="margin-top:14px"><a href="/">← Zur Startseite</a></p>
+  </div>
 </body>
 </html>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>strategix-AI · KI-Chatbots für Steuerkanzleien · TaxArena Hamburg</title>
+  <meta name="description" content="Lokale KI-Chatbots für Steuerberater – DSGVO-konform, ohne Cloud, kein Vendor-Lock-in. Live-Demo auf der TaxArena Hamburg." />
+  <meta property="og:title" content="strategix-AI · KI für Steuerkanzleien" />
+  <meta property="og:description" content="Lokale KI-Chatbots für Steuerberater – DSGVO, ohne Cloud, kein Vendor-Lock-in." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0b1221" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1221; --card:#111a2e; --muted:#8ca0c0; --text:#eaf2ff; --accent:#3aa0ff; --border:#1e2a45; --shadow:0 8px 28px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:900px;margin:0 auto;padding:24px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:24px;margin-bottom:18px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:10px;background:var(--accent);color:#061325;font-weight:800;border:none;cursor:pointer;transition:transform .2s}
+    .btn:hover{transform:translateY(-2px);text-decoration:none}
+    .btn.secondary{background:transparent;color:var(--text);border:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:6px 0 24px;flex-wrap:wrap;gap:12px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
+    .brand img{width:40px;height:40px;border-radius:8px}
+    h1{font-size:clamp(28px,5vw,42px);line-height:1.2;margin:0 0 16px;font-weight:800}
+    h2{font-size:clamp(22px,4vw,28px);margin:0 0 12px;font-weight:700}
+    h3{font-size:20px;margin:0 0 10px;font-weight:700}
+    p{margin:0 0 16px}
+    .muted{color:var(--muted);font-size:15px}
+    .footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:14px;text-align:center}
+    .stack{display:grid;gap:18px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+    details{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:18px}
+    details summary{cursor:pointer;font-weight:700;font-size:18px}
+    .highlight{background:linear-gradient(135deg,rgba(58,160,255,.1),rgba(58,160,255,.05));border-left:3px solid var(--accent);padding:16px;border-radius:8px;margin:16px 0}
+    ul{margin:8px 0;padding-left:24px}
+    ul li{margin:8px 0}
+    .badge{display:inline-block;background:rgba(58,160,255,.15);color:var(--accent);padding:6px 12px;border-radius:6px;font-size:14px;font-weight:600;margin:4px 4px 4px 0}
+    @media (max-width: 600px){
+      .nav{flex-direction:column;align-items:flex-start}
+      .cta{flex-direction:column}
+      .btn{width:100%;justify-content:center}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- NAV -->
+    <div class="nav">
+      <div class="brand">
+      
+        <img src="logo-strategix-ai.png" alt="strategix-AI Logo" onerror="this.style.display='none'">
+        
+        <span>strategix-AI</span>
+      </div>
+      <div class="cta">
+        <a class="btn" href="#live-demo">📍 Live-Demo auf der TaxArena</a>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="card">
+      <span class="badge">🎯 TaxArena Hamburg · 13. November 2025</span>
+      <h1>KI-Chatbots für Steuerkanzleien – lokal, sicher, unabhängig</h1>
+      <p class="muted" style="font-size:18px">Mandantenanfragen automatisieren, Wissensmanagement digitalisieren – mit KI, die in Ihrer Kanzlei läuft. Ohne Cloud-Zwang, ohne Vendor-Lock-in.</p>
+      <div class="cta">
+        <a class="btn" href="#kontakt">Jetzt Termin sichern</a>
+        <a class="btn secondary" href="https://signal.me/#p/+491726945704" rel="noopener">📱 Signal-Kontakt</a>
+      </div>
+    </div>
+
+    <!-- HAUPTBOTSCHAFT -->
+    <section class="stack">
+      <div class="card">
+        <h2>Warum lokale KI für Ihre Steuerkanzlei?</h2>
+        <p>Als Steuerberater arbeiten Sie täglich mit sensiblen Mandantendaten. <strong>Cloud-basierte KI-Lösungen</strong> bedeuten: Ihre Daten verlassen das Haus, landen auf US-Servern, unterliegen fremder Kontrolle.</p>
+        
+        <div class="highlight">
+          <p style="margin:0"><strong>strategix-AI ist anders:</strong> Die KI läuft komplett auf Ihrer eigenen Hardware – z.B. einem Mac Mini in Ihrer Kanzlei. <strong>Kein Datentransfer</strong>, kein Cloud-Abo, keine Abhängigkeit von US-Anbietern.</p>
+        </div>
+
+        <p><strong>Das Ergebnis:</strong> DSGVO-konforme KI-Automatisierung, die Mandantenanfragen beantwortet, Dokumente durchsucht und Ihr Team entlastet – ohne Ihre Datensouveränität aufzugeben.</p>
+      </div>
+
+      <div class="card">
+        <h2>Konkrete Anwendungsfälle für Steuerkanzleien</h2>
+        <ul>
+          <li><strong>📞 Mandanten-FAQ-Bot:</strong> Automatische Beantwortung wiederkehrender Fragen (Freibeträge, Fristen, Dokumentenanforderungen) per Signal oder Website – 24/7 verfügbar</li>
+          <li><strong>📄 Intelligente Dokumentensuche (RAG):</strong> "Zeig mir alle Infos zur Photovoltaik-Förderung 2024" – die KI durchsucht Ihre PDFs, Wikis, interne Leitfäden in Sekunden</li>
+          <li><strong>🤖 Interne Prozess-Assistenz:</strong> Onboarding neuer Mitarbeiter, Workflow-Unterstützung, Zugriff auf Kanzlei-Wissen ohne lange Suche</li>
+          <li><strong>📧 E-Mail-Vorfilterung:</strong> KI kategorisiert eingehende Anfragen und schlägt Antworten vor (finale Prüfung bleibt bei Ihnen)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Ihre Vorteile auf einen Blick</h2>
+        <h3>🔒 100% Datensouveränität</h3>
+        <p>Daten bleiben physisch in Ihrer Kanzlei. Kein Upload, keine Cloud, kein Third-Party-Zugriff. DSGVO-konform ohne aufwändige Verträge (AVV entfällt bei On-Premise).</p>
+
+        <h3>⚡ Schnell einsatzbereit</h3>
+        <p>Live-Demo in unter 2 Stunden auf Ihrer Hardware lauffähig. Modulare Integration – starten Sie mit einem simplen FAQ-Bot, erweitern Sie später mit RAG-Funktionen.</p>
+
+        <h3>🚫 Kein Vendor-Lock-in</h3>
+        <p>Open-Source-Basis (Python, Ollama, lokale LLMs). Sie können jederzeit die Modelle wechseln, die Lösung selbst betreiben oder zu einem anderen Anbieter migrieren.</p>
+
+        <h3>💰 Transparente Kosten</h3>
+        <p>Einmalige Setup-Kosten + optionale Support-Pauschale. Keine monatlichen API-Gebühren, keine nutzungsabhängigen Kosten, keine Cloud-Abos. Hardware-Invest: ~€700 (Mac Mini M4 reicht für KMU-Workloads).</p>
+
+        <h3>📱 Sichere Kommunikation via Signal</h3>
+        <p>Optional: Signal-Bot für vertrauliche Mandantenkommunikation. Ende-zu-Ende-verschlüsselt, keine Telefonnummern-Speicherung auf Drittservern.</p>
+      </div>
+
+      <div class="card" id="live-demo">
+        <h2>🎯 Live-Demo auf der TaxArena Hamburg</h2>
+        <p><strong>Donnerstag, 13. November 2025</strong></p>
+        <p>Besuchen Sie mich am Stand und erleben Sie:</p>
+        <ul>
+          <li>✅ Live-Chatbot mit Steuerkanzlei-FAQ (funktioniert ohne Internet)</li>
+          <li>✅ RAG-Demo: Dokumentensuche in Echtzeit über PDF-Sammlung</li>
+          <li>✅ Signal-Bot: Mandanten-Kommunikation Ende-zu-Ende-verschlüsselt</li>
+          <li>✅ Q&A: DSGVO, Kosten, technische Integration</li>
+        </ul>
+        
+    <div class="cta">
+          <a class="btn" href="#kontakt">Termin auf der Messe vereinbaren</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Technische Basis – einfach erklärt</h2>
+        <p class="muted">Sie müssen kein IT-Experte sein. Die Lösung läuft out-of-the-box – wir kümmern uns um die technische Einrichtung.</p>
+        
+        <h3>Was Sie brauchen:</h3>
+        <ul>
+          <li><strong>Hardware:</strong> Mac Mini M4 (16 GB RAM) oder vergleichbarer Linux-Server – kostet ~€700 und reicht für 100+ Anfragen/Tag</li>
+          <li><strong>Software:</strong> Alles Open-Source – Ollama (lokale LLMs), Python-Backend, optional Signal-Integration</li>
+          <li><strong>Betrieb:</strong> Läuft im lokalen Netzwerk, optional VPN für Remote-Zugriff</li>
+        </ul>
+
+        <p><strong>Setup-Zeit:</strong> Pilot-System in 1-2 Tagen einsatzbereit. Anpassung an Ihre spezifischen Anforderungen erfolgt iterativ.</p>
+      </div>
+
+      <div class="card">
+        <h2>Preismodell – transparent und fair</h2>
+        <div class="highlight">
+          <h3 style="margin-top:0">Pilot-Projekt (empfohlen für Einstieg)</h3>
+          <p><strong>€8.000 – €12.000</strong> (einmalig)</p>
+          <ul style="margin-bottom:0">
+            <li>✅ Setup auf Ihrer Hardware</li>
+            <li>✅ FAQ-Bot mit 20-30 fixen Fragen</li>
+            <li>✅ Optional: RAG-Integration (1-2 Dokumenten-Quellen)</li>
+            <li>✅ 3 Monate Support & Anpassungen inklusive</li>
+            <li>✅ Schulung Ihres Teams (2-3 Stunden)</li>
+          </ul>
+        </div>
+
+        <p class="muted"><strong>Danach:</strong> Optional Support-Pauschale ab €300/Monat für Updates, Erweiterungen, technische Betreuung. Keine versteckten Kosten, keine Cloud-Gebühren.</p>
+
+        
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="kontakt" class="card">
+      <h2>Jetzt Termin vereinbaren</h2>
+      <p>Interesse? Lassen Sie uns auf der TaxArena sprechen oder vereinbaren Sie ein unverbindliches Erstgespräch.</p>
+      
+      <div class="cta">
+        <a class="btn" href="mailto:svenfriess@yahoo.de?subject=TaxArena%20Anfrage">📧 E-Mail senden</a>
+        <a class="btn secondary" href="tel:+491726945704">📞 +49 172 694 5704</a>
+        <a class="btn secondary" href="https://signal.me/#p/+491726945704" rel="noopener">📱 Signal-Chat</a>
+      </div>
+
+      <p class="muted" style="margin-top:20px">
+        <strong>Sven Friess</strong><br>
+        strategix-AI<br>
+        Falkensteiner Ufer 37, 22587 Hamburg
+      </p>
+    </section>
+
+    <!-- FAQ -->
+    <details>
+      <summary>❓ Häufige Fragen (FAQ)</summary>
+      <div style="margin-top:16px">
+        <h3>Brauche ich technisches Vorwissen?</h3>
+        <p>Nein. Ich übernehme Setup, Konfiguration und Schulung. Sie nutzen den Bot dann wie eine normale App.</p>
+
+        <h3>Funktioniert das auch ohne Internet?</h3>
+        <p>Ja! Die KI läuft komplett offline auf Ihrer Hardware. Internet wird nur für Software-Updates benötigt (optional).</p>
+
+        <h3>Welche Datenschutz-Vorteile habe ich konkret?</h3>
+        <p>Keine Datenübertragung = kein AVV nötig. Volle Kontrolle = einfache DSGVO-Doku. Auditierbar = Datenschutzbeauftragter kann alles lokal prüfen.</p>
+
+        <h3>Was passiert, wenn ich unzufrieden bin?</h3>
+        <p>Sie bezahlen nach Meilensteinen. Nach der ersten Demo (nach 1-2 Wochen) entscheiden Sie, ob wir weitermachen. Keine langfristigen Bindungen.</p>
+
+        <h3>Kann ich zwischen verschiedenen KI-Modellen wechseln?</h3>
+        <p>Ja. Wir nutzen offene Standards – Sie können zwischen Mistral, Llama, Mixtral oder europäischen Modellen (z.B. Aleph Alpha) wechseln.</p>
+      </div>
+    </details>
+
+    <!-- IMPRESSUM -->
+    <details style="margin-top:12px">
+      <summary>Impressum & Datenschutz</summary>
+      <div style="margin-top:16px">
+        <p><strong>strategix-AI</strong><br>
+          Vertretungsberechtigt: Sven Friess<br>
+          Falkensteiner Ufer 37, 22587 Hamburg, Deutschland<br>
+          E-Mail: <a href="mailto:svenfriess@yahoo.de">svenfriess@yahoo.de</a><br>
+          Telefon: <a href="tel:+491726945704">+49 172 694 5704</a>
+        </p>
+        <h3>Datenschutz</h3>
+        <p class="muted">Diese Website nutzt keine Cookies, kein Tracking, keine externen Schriften-CDNs. Kontaktdaten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben.</p>
+        <p class="muted"><strong>Hosting:</strong> Diese Seite liegt auf einem deutschen Server. IP-Adressen werden nur für technische Zwecke (max. 7 Tage) gespeichert.</p>
+      </div>
+    </details>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      © <span id="year"></span> strategix-AI · Sven Friess · Hamburg<br>
+      <span class="muted">Lokale KI-Lösungen für den deutschen Mittelstand</span>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
