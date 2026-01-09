@@ -358,7 +358,7 @@
         <form class="card" onsubmit="alert(document.getElementById('brief').value ? (lang==='de'?'Danke! Wir melden uns.':'Thanks! We\'ll be in touch.') : (lang==='de'?'Bitte kurz beschreiben.':'Please add a short note.'));return false;">
           <label class="t" data-de="Kurzbeschreibung" data-en="Short description">Kurzbeschreibung</label>
           <textarea id="brief" rows="5" placeholder="z. B. Website‑FAQ‑Bot für Autohaus, Start im Oktober" style="width:100%;margin-top:8px;background:#0f1318;border:1px solid #222b36;border-radius:12px;color:var(--txt);padding:10px"></textarea>
-          <div style="margin-top:10px" class="muted"> 🔒 Dieses Formular ist eine Vorschau – Eingaben werden nicht übertragen.</div>
+          <div style="margin-top:10px" class="muted"> 📧 Öffnet Ihr E-Mail-Programm zum Versenden.</div>
         </form>
       </div>
     </section>
@@ -493,5 +493,17 @@
   })();
 </script>
 
+
+<script>
+function validateForm() {
+  const brief = document.getElementById('brief').value.trim();
+  if (!brief) {
+    alert(lang === 'de' ? 'Bitte kurz beschreiben.' : 'Please add a short note.');
+    return false;
+  }
+  alert(lang === 'de' ? 'Ihr E-Mail-Programm wird geöffnet.' : 'Your email program will open.');
+  return true;
+}
+</script>
 </body>
 </html>
