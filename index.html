@@ -196,10 +196,27 @@
 
     <section id="demos" class="section" style="margin-top:26px">
       <h2 class="t" data-de="Demos & Use‑Cases" data-en="Demos & use cases">Demos & Use‑Cases</h2>
-      <div class="grid-3">
+      
+      <!-- Borgo-Bot Demo Video -->
+      <div class="card" style="padding:28px;margin-bottom:24px;max-width:900px;margin-left:auto;margin-right:auto">
+        <h3 style="margin:0 0 16px;font-size:22px">🎬 Borgo-Batone-Bot in Aktion</h3>
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#0f1318">
+          <video 
+            controls 
+            preload="metadata"
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"
+            poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Crect fill='%230f1318' width='1920' height='1080'/%3E%3Ctext x='50%25' y='50%25' font-size='48' fill='%2366d9e8' text-anchor='middle' dominant-baseline='middle'%3E▶ Demo Video%3C/text%3E%3C/svg%3E">
+            <source src="https://github.com/SvenFriess/strategix-ai/raw/main/40_borgobatone/Borgo-Bot-Video-V2.mp4" type="video/mp4">
+            <p class="muted t" data-de="Ihr Browser unterstützt HTML5 Video nicht. Laden Sie das Video hier herunter: " data-en="Your browser doesn't support HTML5 video. Download the video here: ">Ihr Browser unterstützt HTML5 Video nicht. <a href="https://github.com/SvenFriess/strategix-ai/raw/main/40_borgobatone/Borgo-Bot-Video-V2.mp4" style="color:var(--pri)">Video herunterladen</a></p>
+          </video>
+        </div>
+        <p class="muted" style="margin:12px 0 0;font-size:14px">
+          <span class="t" data-de="Signal-Integration mit lokalem LLM – DSGVO-konform, keine Cloud-Abhängigkeit" data-en="Signal integration with local LLM – GDPR-compliant, no cloud dependency">Signal-Integration mit lokalem LLM – DSGVO-konform, keine Cloud-Abhängigkeit</span>
+        </p>
+      </div>
+
+      <div style="max-width:400px;margin:0 auto">
         <div class="card"><h3>Borgo‑Batone‑Bot</h3><p class="muted t" data-de="Community‑/Hospitality‑Use‑Case: Gäste‑Infos, Parken, Hausregeln." data-en="Community/Hospitality use case: guest info, parking, house rules.">Community‑/Hospitality‑Use‑Case: Gäste‑Infos, Parken, Hausregeln.</p><a class="btn ghost" href="/borgo-batone-testportal">Demo</a></div>
-        <div class="card"><h3>KVHS‑Vechta (Demo)</h3><p class="muted t" data-de="Kurs‑Info‑Bot für Weiterbildungsanbieter." data-en="Course‑info bot for adult education.">Kurs‑Info‑Bot für Weiterbildungsanbieter.</p><span class="pill">Auf Anfrage</span></div>
-        <div class="card"><h3>KMU‑Website‑FAQ</h3><p class="muted t" data-de="Schnelle Antworten zu Leistungen, Terminen, Preisen – direkt auf Ihrer Seite." data-en="Fast answers about services, appointments and pricing – on your site.">Schnelle Antworten zu Leistungen, Terminen, Preisen – direkt auf Ihrer Seite.</p><span class="pill t" data-de="Pilot verfügbar" data-en="Pilot available">Pilot verfügbar</span></div>
       </div>
     </section>
 
@@ -347,7 +364,7 @@
       <div class="grid-2">
         <div class="card">
           <p class="muted t" data-de="Schreiben Sie uns kurz Ihr Vorhaben. Wir melden uns mit einer passenden Empfehlung." data-en="Tell us briefly about your project. We'll reply with a fitting recommendation.">Schreiben Sie uns kurz Ihr Vorhaben. Wir melden uns mit einer passenden Empfehlung.</p>
-          <p>📧 <a id="mail" href="mailto:info@strategix-ai.tech">info@strategix-ai.tech</a></p>
+          <p>📧 <a id="mail" href="/cdn-cgi/l/email-protection#ff96919990bf8c8b8d9e8b9a989687d29e96d18b9a9c97"><span class="__cf_email__" data-cfemail="0b62656d644b787f796a7f6e6c6273266a62257f6e6863">[email&#160;protected]</span></a></p>
           <p>📞 <a href="tel:+49XXXXXXXXX">+49 160 90822476</a> <span class="muted">– persönliche Rücksprache nach Anfrage</span></p>
 
 
@@ -379,7 +396,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Setze das aktuelle Jahr automatisch ein
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
@@ -510,14 +527,4 @@ function validateForm() {
 </script>
 
 <script>
-function validateForm() {
-  const brief = document.getElementById('brief').value.trim();
-  if (!brief) {
-    alert(lang === 'de' ? 'Bitte kurz beschreiben.' : 'Please add a short note.');
-    return false;
-  }
-  return true;
-}
-</script>
-</body>
-</html>
+fun
