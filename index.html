@@ -357,8 +357,11 @@
         </div>
         <form class="card" action="mailto:kontakt@strategix-ai.tech?subject=Projektanfrage%20strategix-AI" method="post" enctype="text/plain" onsubmit="return validateForm()">
           <label class="t" data-de="Kurzbeschreibung" data-en="Short description">Kurzbeschreibung</label>
-          <textarea id="brief" rows="5" placeholder="z. B. Website‑FAQ‑Bot für Autohaus, Start im Oktober" style="width:100%;margin-top:8px;background:#0f1318;border:1px solid #222b36;border-radius:12px;color:var(--txt);padding:10px"></textarea>
-          <div style="margin-top:10px" class="muted"> 📧 Öffnet Ihr E-Mail-Programm zum Versenden.</div>
+          <textarea id="brief" name="body" rows="5" placeholder="z. B. Website‑FAQ‑Bot für Autohaus, Start im Oktober" style="width:100%;margin-top:8px;background:#0f1318;border:1px solid #222b36;border-radius:12px;color:var(--txt);padding:10px"></textarea>
+          <button type="submit" class="btn primary" style="margin-top:14px;width:100%">
+          <span class="t" data-de="Anfrage senden" data-en="Send request">Anfrage senden</span>
+          </button>
+        <div style="margin-top:10px" class="muted">📧 Öffnet Ihr E-Mail-Programm zum Versenden.</div>     
         </form>
       </div>
     </section>
