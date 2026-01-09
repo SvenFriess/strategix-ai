@@ -355,7 +355,7 @@
           <p>🔒 <span class="t" data-de="Datenschutz‑Hinweis: Ihre Daten verlassen Ihr System nur, wenn Sie es möchten." data-en="Privacy note: your data never leaves your system unless you want it to.">Datenschutz‑Hinweis: Ihre Daten verlassen Ihr System nur, wenn Sie es möchten.</span></p>
           <div class="cta-row"><a class="btn primary" href="#" onclick="document.getElementById('brief').focus();return false;"><span class="t" data-de="Projekt anfragen" data-en="Request project">Projekt anfragen</span></a></div>
         </div>
-        <form class="card" onsubmit="alert(document.getElementById('brief').value ? (lang==='de'?'Danke! Wir melden uns.':'Thanks! We\'ll be in touch.') : (lang==='de'?'Bitte kurz beschreiben.':'Please add a short note.'));return false;">
+        <form class="card" action="mailto:kontakt@strategix-ai.tech?subject=Projektanfrage%20strategix-AI" method="post" enctype="text/plain" onsubmit="return validateForm()">
           <label class="t" data-de="Kurzbeschreibung" data-en="Short description">Kurzbeschreibung</label>
           <textarea id="brief" rows="5" placeholder="z. B. Website‑FAQ‑Bot für Autohaus, Start im Oktober" style="width:100%;margin-top:8px;background:#0f1318;border:1px solid #222b36;border-radius:12px;color:var(--txt);padding:10px"></textarea>
           <div style="margin-top:10px" class="muted"> 📧 Öffnet Ihr E-Mail-Programm zum Versenden.</div>
@@ -502,6 +502,17 @@ function validateForm() {
     return false;
   }
   alert(lang === 'de' ? 'Ihr E-Mail-Programm wird geöffnet.' : 'Your email program will open.');
+  return true;
+}
+</script>
+
+<script>
+function validateForm() {
+  const brief = document.getElementById('brief').value.trim();
+  if (!brief) {
+    alert(lang === 'de' ? 'Bitte kurz beschreiben.' : 'Please add a short note.');
+    return false;
+  }
   return true;
 }
 </script>
