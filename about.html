@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Über uns - strategix AI</title>
+  <meta name="description" content="Warum strategix AI anders denkt: Lokale KI-Lösungen für KMU, DSGVO-konform und unabhängig." />
+  <style>
+    :root{
+      --bg:#0b0d10;--bg2:#12161b;--card:#151a20;--txt:#e8eef5;--muted:#b1c0d0;--pri:#66d9e8;--acc:#7c4dff;
+      --shadow:0 10px 30px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.25);
+      --radius:18px;--maxw:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--txt);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;min-height:100vh}
+    a{color:var(--pri);text-decoration:none}
+    header{position:sticky;top:0;background:rgba(11,13,16,.7);backdrop-filter:blur(10px);border-bottom:1px solid #1f2630;z-index:10}
+    .nav{display:flex;align-items:center;justify-content:space-between;max-width:var(--maxw);margin:0 auto;padding:14px 20px}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:.3px}
+    .logo{width:68px;height:68px;border-radius:10px;box-shadow:0 6px 18px rgba(124,77,255,.35)}
+    .menu{display:flex;gap:18px;align-items:center}
+    .menu a{color:var(--muted)}
+    .menu a.active{color:var(--pri)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:#1b222b;border:1px solid #26303b;color:var(--txt);box-shadow:var(--shadow)}
+    .btn.ghost{background:transparent;border:1px solid #2c3642}
+    .container{max-width:var(--maxw);margin:0 auto;padding:40px 20px}
+    .about-hero{padding:4rem 0 2rem;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white}
+    .about-hero h1{font-size:2.5rem;margin:0}
+    .about-content{padding:4rem 0}
+    .content-box{max-width:800px;margin:0 auto;line-height:1.8}
+    .content-box p{margin-bottom:1.5rem;color:var(--txt);font-size:1.1rem}
+    .content-box .closing{margin-top:2rem;font-size:1.2rem;font-weight:500}
+    .content-box a{color:var(--pri);text-decoration:none;border-bottom:2px solid var(--pri)}
+    .content-box a:hover{color:#764ba2;border-color:#764ba2}
+    .footer{border-top:1px solid #1f2732;color:#a8b6c6;padding:20px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <img class="logo" src="icons/LOGO-strategixAI-tech.png"
+            alt="strategix-AI Logo" width="400" height="400" loading="eager" />
+        <span>strategix-AI</span>
+      </div>
+      <nav class="menu">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">Über uns</a>
+        <a href="index.html#contact">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="about-hero">
+    <div class="container">
+      <h1>Warum strategix AI</h1>
+    </div>
+  </section>
+
+  <section class="about-content">
+    <div class="container">
+      <div class="content-box">
+        <p>15 Jahre Enterprise-IT haben mir gezeigt: Die besten Systeme sind die, denen man vertrauen kann.</p>
+        
+        <p>Große Konzerne haben eigene Rechenzentren. Kleine Unternehmen, Steuerkanzleien, Arztpraxen wurden in die Cloud gedrängt – bis die erste Rechnung kam, Datenschutz-Fragen aufkamen oder der Zugang gesperrt war.</p>
+        
+        <p>Moderne KI läuft heute auf Standard-Hardware. Lokal. Sicher. Jederzeit verfügbar.</p>
+        
+        <p><strong>Genau das liefern wir:</strong> Maßgeschneiderte Assistenten auf Ihrer Hardware. Datensouveränität statt Bauchschmerzen. Signal-Chat statt komplizierte Software. Ehrliche Beratung statt Hype.</p>
+        
+        <p class="closing">Bereit für KI ohne Kontrollverlust? <a href="index.html#contact">Lassen Sie uns reden.</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="container footer">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
+      <div>© <span id="year"></span> strategix AI</div>
+      <div style="color:var(--muted)">
+        <a href="./impressum.html">Impressum</a> · 
+        <a href="./datenschutz.html">Datenschutz</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
