@@ -1,3 +1,0 @@
-[submodule "vendor/prompts"]
-	path = vendor/prompts
-	url = git@github.com:SvenFriess/strategix-AI-prompts.git
