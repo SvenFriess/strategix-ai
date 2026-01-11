@@ -1,1296 +1,683 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Borgo-Bot – AI Chatbot für Borgo Batone</title>
-  <meta name="description" content="Borgo-Bot v0.99 – Intelligenter Chatbot für die Borgo Batone Community mit lokaler KI-Technologie">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>strategix‑AI – Lokale, DSGVO‑konforme KI‑Chatbots für KMU</title>
+  <meta name="description" content="strategix‑AI: On‑Prem KI‑Chatbots für KMU – DSGVO‑konform, modular, ohne Vendor‑Lock‑in. Signal‑ und Web‑Integration. Läuft auf Standardhardware (z. B. Mac Mini)." />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap');
-    
-    :root {
-      --terracotta: #c4653c;
-      --sand: #f4e8d8;
-      --olive: #6b7a5a;
-      --ink: #2c2416;
-      --cream: #fdfbf7;
-      --stone: #8a7f72;
-      --clay: #a85a3b;
-      --shadow: rgba(44, 36, 22, 0.1);
-      --highlight: rgba(196, 101, 60, 0.08);
+    :root{
+      --bg:#0b0d10;--bg2:#12161b;--card:#151a20;--txt:#e8eef5;--muted:#b1c0d0;--pri:#66d9e8;--acc:#7c4dff;--ok:#22c55e;--warn:#f59e0b;--maxw:1200px;
+      --shadow:0 10px 30px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.25);
+      --radius:18px;
     }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Work Sans', sans-serif;
-      line-height: 1.7;
-      color: var(--ink);
-      background: var(--cream);
-      overflow-x: hidden;
-    }
-    
-    /* Typography */
-    h1, h2, h3, h4 {
-      font-family: 'Crimson Pro', serif;
-      font-weight: 700;
-      line-height: 1.2;
-    }
-    
-    h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
-    h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--terracotta); }
-    h3 { font-size: clamp(1.3rem, 2.5vw, 1.8rem); color: var(--olive); }
-    
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(253, 251, 247, 0.95);
-      backdrop-filter: blur(10px);
-      z-index: 100;
-      border-bottom: 1px solid rgba(196, 101, 60, 0.15);
-    }
-    
-    nav .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 1.2rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    nav .logo {
-      font-family: 'Crimson Pro', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--terracotta);
-      text-decoration: none;
-    }
-    
-    nav .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-    
-    nav a {
-      color: var(--ink);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-      font-size: 0.95rem;
-      letter-spacing: 0.02em;
-    }
-    
-    nav a:hover {
-      color: var(--terracotta);
-    }
-    
-    /* Hero Section */
-    .hero {
-      margin-top: 80px;
-      padding: 4rem 2rem 6rem;
-      background: linear-gradient(135deg, var(--sand) 0%, var(--cream) 100%);
-      border-bottom: 3px solid var(--terracotta);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(196, 101, 60, 0.08) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-    
-    .hero .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .hero-content {
-      max-width: 700px;
-      margin-bottom: 3rem;
-    }
-    
-    .hero h1 {
-      margin-bottom: 1.5rem;
-      color: var(--ink);
-    }
-    
-    .hero .subtitle {
-      font-size: clamp(1.1rem, 2vw, 1.4rem);
-      color: var(--stone);
-      margin-bottom: 2rem;
-      line-height: 1.6;
-    }
-    
-    .version-badge {
-      display: inline-block;
-      background: var(--olive);
-      color: white;
-      padding: 0.5rem 1.2rem;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      margin-bottom: 2rem;
-    }
-    
-    /* Video Section */
-    .video-container {
-      background: white;
-      padding: 3rem;
-      border-radius: 20px;
-      box-shadow: 0 20px 60px var(--shadow);
-      margin-top: 3rem;
-      position: relative;
-    }
-    
-    .video-container video {
-      width: 100%;
-      border-radius: 12px;
-      display: block;
-    }
-    
-    .video-caption {
-      margin-top: 1.5rem;
-      text-align: center;
-      color: var(--stone);
-      font-size: 0.95rem;
-      font-style: italic;
-    }
-    
-    /* Main Content Sections */
-    section {
-      padding: 6rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    section:nth-child(even) {
-      background: var(--highlight);
-    }
-    
-    .section-header {
-      margin-bottom: 3rem;
-      text-align: center;
-    }
-    
-    .section-header h2 {
-      margin-bottom: 1rem;
-    }
-    
-    .section-header p {
-      color: var(--stone);
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    
-    /* Features Grid */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.5rem;
-      margin-top: 3rem;
-    }
-    
-    .feature-card {
-      background: white;
-      padding: 2.5rem;
-      border-radius: 16px;
-      border: 2px solid transparent;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 20px var(--shadow);
-    }
-    
-    .feature-card:hover {
-      border-color: var(--terracotta);
-      transform: translateY(-5px);
-      box-shadow: 0 8px 30px var(--shadow);
-    }
-    
-    .feature-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-    
-    .feature-card h3 {
-      margin-bottom: 1rem;
-    }
-    
-    .feature-card p {
-      color: var(--stone);
-      line-height: 1.7;
-    }
-    
-    /* Pipeline Visualization */
-    .pipeline-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin: 3rem 0;
-      padding: 2rem;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 10px 40px var(--shadow);
-    }
-    
-    .pipeline-step {
-      flex: 0 1 auto;
-      min-width: 140px;
-      max-width: 160px;
-      padding: 1.5rem 1rem;
-      background: linear-gradient(135deg, var(--sand), white);
-      border: 2px solid var(--terracotta);
-      border-radius: 16px;
-      text-align: center;
-      position: relative;
-      transition: all 0.3s ease;
-    }
-    
-    .pipeline-step:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 30px var(--shadow);
-      border-color: var(--olive);
-    }
-    
-    .step-number {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 28px;
-      height: 28px;
-      background: var(--terracotta);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.85rem;
-      box-shadow: 0 2px 8px rgba(196, 101, 60, 0.4);
-    }
-    
-    .step-icon {
-      font-size: 2.5rem;
-      margin: 0.5rem 0;
-    }
-    
-    .pipeline-step h4 {
-      font-size: 1rem;
-      color: var(--ink);
-      margin: 0.5rem 0;
-    }
-    
-    .pipeline-step p {
-      font-size: 0.8rem;
-      color: var(--stone);
-      line-height: 1.4;
-      margin: 0;
-    }
-    
-    .pipeline-step code {
-      background: rgba(196, 101, 60, 0.1);
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      color: var(--terracotta);
-    }
-    
-    .pipeline-arrow {
-      font-size: 2rem;
-      color: var(--terracotta);
-      font-weight: 700;
-      flex: 0 0 auto;
-    }
-    
-    .tech-specs {
-      margin: 3rem 0;
-    }
-    
-    .tech-specs h3 {
-      text-align: center;
-      margin-bottom: 2rem;
-      color: var(--olive);
-    }
-    
-    .specs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-    }
-    
-    .spec-card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 12px;
-      border-left: 4px solid var(--olive);
-      box-shadow: 0 4px 15px var(--shadow);
-    }
-    
-    .spec-card strong {
-      display: block;
-      color: var(--olive);
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
-    
-    .spec-card p {
-      color: var(--stone);
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin: 0;
-    }
-    
-    @media (max-width: 768px) {
-      .pipeline-container {
-        flex-direction: column;
-      }
-      
-      .pipeline-arrow {
-        transform: rotate(90deg);
-      }
-      
-      .pipeline-step {
-        max-width: 100%;
-        width: 100%;
+    *{box-sizing:border-box}
+    html,body{margin:0;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--txt);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;}
+    a{color:var(--pri);text-decoration:none}
+    header{position:sticky;top:0;background:rgba(11,13,16,.7);backdrop-filter:blur(10px);border-bottom:1px solid #1f2630;z-index:10}
+    .nav{display:flex;align-items:center;justify-content:space-between;max-width:var(--maxw);margin:0 auto;padding:14px 20px}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:.3px}
+   .logo{width:68px;height:68px;border-radius:10px;box-shadow:0 6px 18px rgba(124,77,255,.35)}
+    .menu{display:flex;gap:18px;align-items:center}
+    .menu a{color:var(--muted)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:#1b222b;border:1px solid #26303b;color:var(--txt);box-shadow:var(--shadow)}
+    .btn.primary{background:linear-gradient(135deg,#0ea5e9,#7c4dff);border:0}
+    .btn.ghost{background:transparent;border:1px solid #2c3642}
+    .container{max-width:var(--maxw);margin:0 auto;padding:40px 20px}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:40px 0}
+    .title{font-size:clamp(28px,4.2vw,46px);line-height:1.1;margin:4px 0}
+    .lead{color:var(--muted);font-size:clamp(15px,2.1vw,18px)}
+    .badgebar{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:20px}
+    .badge{display:flex;gap:10px;align-items:center;background:var(--card);padding:10px 12px;border-radius:12px;border:1px solid #233042}
+    .badge svg{flex:0 0 18px}
+    .card{background:var(--card);border:1px solid #233042;border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .section h2{font-size:clamp(22px,3vw,30px);margin:0 0 12px}
+    pre{background:#0f1318;border:1px solid #222b36;border-radius:14px;padding:14px;overflow:auto}
+    code{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;color:#bfe4ff}
+    .pill{display:inline-block;background:#0f1620;border:1px solid #243143;padding:6px 10px;border-radius:999px;color:var(--muted);font-size:12px}
+    .footer{border-top:1px solid #1f2732;color:#a8b6c6}
+    .kicker{letter-spacing:.15em;text-transform:uppercase;color:#95a7ba;font-weight:600;font-size:12px}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+    .hero-visual{aspect-ratio:16/10;border-radius:18px;padding:14px;background:radial-gradient(1200px 400px at 10% 0%, rgba(102,217,232,.25), transparent 40%),linear-gradient(180deg,#0c1117,#0f141a);border:1px solid #26313f;box-shadow:var(--shadow)}
+    .steps{counter-reset:step}
+    .step{position:relative;padding-left:44px}
+    .step:before{counter-increment:step;content:counter(step);position:absolute;left:0;top:2px;width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#0ea5e9,#7c4dff);display:grid;place-items:center;font-weight:700}
+    .price{display:flex;gap:18px;flex-wrap:wrap}
+    .price .card{flex:1;min-width:260px}
+    .price h3{margin:6px 0}
+    .tag{font-weight:700}
+    .muted{color:var(--muted)}
+    .lang-toggle{cursor:pointer}
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr}
+      .badgebar{grid-template-columns:repeat(3,1fr)}
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      #about .card{grid-template-columns:1fr;text-align:center}
+      #about img{margin:0 auto}
+      /* Mac Mini Sektion responsive */
+      section .card[style*="grid-template-columns:1fr 1.2fr"]{
+        grid-template-columns:1fr !important;
+        text-align:center;
       }
     }
-    
-    /* Test Commands */
-    .test-commands {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-    
-    .command-card {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      border-left: 4px solid var(--terracotta);
-      box-shadow: 0 4px 15px var(--shadow);
-    }
-    
-    .command-card h3 {
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .command {
-      display: inline-block;
-      background: var(--sand);
-      border: 2px solid var(--terracotta);
-      border-radius: 8px;
-      padding: 0.6rem 1rem;
-      font-family: 'Courier New', monospace;
-      font-weight: 600;
-      color: var(--clay);
-      margin: 0.5rem 0;
-      font-size: 0.95rem;
-    }
-    
-    .badge {
-      display: inline-block;
-      background: var(--terracotta);
-      color: white;
-      padding: 0.25rem 0.7rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      margin-left: 0.5rem;
-    }
-    
-    /* Keywords Grid */
-    .keywords-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    
-    .keyword-tag {
-      background: white;
-      border: 2px solid var(--olive);
-      padding: 0.8rem 1rem;
-      border-radius: 30px;
-      text-align: center;
-      font-weight: 500;
-      color: var(--olive);
-      transition: all 0.3s;
-    }
-    
-    .keyword-tag:hover {
-      background: var(--olive);
-      color: white;
-      transform: scale(1.05);
-    }
-    
-    .keyword-tag.new {
-      border-color: var(--terracotta);
-      color: var(--terracotta);
-      position: relative;
-    }
-    
-    .keyword-tag.new::after {
-      content: '✨';
-      margin-left: 0.5rem;
-    }
-    
-    /* Version History */
-    .version-list {
-      margin-top: 3rem;
-    }
-    
-    .version-entry {
-      background: white;
-      padding: 2.5rem;
-      border-radius: 16px;
-      margin-bottom: 2rem;
-      border-left: 6px solid var(--terracotta);
-      box-shadow: 0 4px 20px var(--shadow);
-    }
-    
-    .version-entry h3 {
-      color: var(--terracotta);
-      margin-bottom: 1.5rem;
-      font-size: 1.8rem;
-    }
-    
-    .version-entry h4 {
-      color: var(--olive);
-      margin: 1.5rem 0 1rem;
-      font-size: 1.3rem;
-    }
-    
-    .version-entry ul {
-      margin-left: 1.5rem;
-      line-height: 1.9;
-    }
-    
-    .version-entry li {
-      margin-bottom: 0.8rem;
-      color: var(--ink);
-    }
-    
-    .status-badge {
-      display: inline-block;
-      background: var(--olive);
-      color: white;
-      padding: 0.5rem 1.5rem;
-      border-radius: 30px;
-      font-weight: 600;
-      margin-top: 1rem;
-      font-size: 0.95rem;
-    }
-    
-    /* Info Boxes */
-    .info-box {
-      background: white;
-      border-left: 6px solid var(--olive);
-      padding: 2rem;
-      border-radius: 12px;
-      margin: 2rem 0;
-      box-shadow: 0 4px 15px var(--shadow);
-    }
-    
-    .warning-box {
-      background: #fef9f0;
-      border-left: 6px solid #d4a373;
-      padding: 2rem;
-      border-radius: 12px;
-      margin: 2rem 0;
-    }
-    
-    .warning-box h4, .info-box h4 {
-      color: var(--olive);
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
-    }
-    
-    .warning-box ol, .info-box ol {
-      margin-top: 1rem;
-      padding-left: 1.5rem;
-      list-style-type: decimal;
-    }
-    
-    .warning-box ol li, .info-box ol li {
-      margin-bottom: 0.5rem;
-      color: var(--ink);
-    }
-    
-    .warning-box code, .info-box code {
-      background: rgba(196, 101, 60, 0.1);
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
-      font-size: 0.85rem;
-      color: var(--terracotta);
-      font-family: 'Courier New', monospace;
-    }
-    
-    .highlight-box {
-      background: linear-gradient(135deg, rgba(107, 122, 90, 0.08) 0%, rgba(196, 101, 60, 0.08) 100%);
-      border: 2px solid var(--terracotta);
-      padding: 2rem;
-      border-radius: 12px;
-      margin: 2rem 0;
-    }
-    
-    /* Footer */
-    footer {
-      background: var(--ink);
-      color: var(--sand);
-      padding: 4rem 2rem 2rem;
-      text-align: center;
-    }
-    
-    footer .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    footer h3 {
-      color: var(--terracotta);
-      margin-bottom: 1rem;
-    }
-    
-    footer p {
-      color: var(--stone);
-      margin-top: 2rem;
-      font-size: 0.9rem;
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      nav .nav-links {
-        gap: 1.5rem;
-        font-size: 0.9rem;
-      }
-      
-      .features-grid,
-      .test-commands {
-        grid-template-columns: 1fr;
-      }
-      
-      .video-container {
-        padding: 1.5rem;
-      }
-      
-      section {
-        padding: 4rem 1.5rem;
-      }
-    }
-    
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .hero-content {
-      animation: fadeInUp 0.8s ease-out;
-    }
-    
-    .video-container {
-      animation: fadeInUp 1s ease-out 0.2s backwards;
-    }
-    
-    .feature-card {
-      animation: fadeInUp 0.6s ease-out backwards;
-    }
-    
-    .feature-card:nth-child(1) { animation-delay: 0.1s; }
-    .feature-card:nth-child(2) { animation-delay: 0.2s; }
-    .feature-card:nth-child(3) { animation-delay: 0.3s; }
-    .feature-card:nth-child(4) { animation-delay: 0.4s; }
-  </style>
+  
+/* === USP Pie === */
+.usp-wrap{display:grid;grid-template-columns:1fr;gap:18px;margin-top:10px}
+@media (min-width:980px){.usp-wrap{grid-template-columns:1fr 1fr}}
+.usp-card{background:var(--card);border:1px solid #233042;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+.usp-pie{width:min(92vw,440px);height:min(92vw,440px);margin:auto;display:block}
+.usp-pie path{cursor:pointer;transition:transform .18s ease,opacity .18s ease}
+.usp-pie path[aria-current="true"]{filter:drop-shadow(0 0 10px rgba(255,255,255,.25));transform:scale(1.02)}
+.usp-detail h3{margin:.2rem 0 .4rem;font-size:20px}
+.usp-muted{color:var(--muted)}
+.usp-list{list-style:none;margin:.6rem 0 0;padding:0}
+.usp-list li{display:flex;gap:.6rem;align-items:flex-start;padding:.28rem 0}
+.usp-dot{width:.5rem;height:.5rem;margin-top:.55rem;border-radius:999px;background:#6b7280}
+.usp-switch{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.usp-switch button{background:#0f1620;border:1px solid #243143;color:var(--txt);padding:8px 10px;border-radius:10px;font-size:14px;cursor:pointer}
+.usp-switch button[aria-pressed="true"]{outline:2px solid #0ea5e9}
+
+</style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav>
-    <div class="container">
-      <a href="#" class="logo">🏰 Borgo-Bot</a>
-      <ul class="nav-links">
-        <li><a href="#demo">Demo</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#architecture">Architektur</a></li>
-        <li><a href="#testing">Testing</a></li>
-        <li><a href="#history">Versions</a></li>
-      </ul>
+  <header>
+    <div class="nav">
+      <!-- <div class="brand"><div class="logo" aria-hidden="true"></div><span>strategix‑AI</span></div> -->
+      
+      <div class="brand">
+        <img class="logo" src="icons/LOGO-strategixAI-tech.png"
+            alt="strategix-AI Logo" width="400" height="400" loading="eager" />
+        <span>strategix-AI</span>
+      </div>
+      
+      <nav class="menu">
+        <a href="#solutions" class="t" data-de="Lösungen" data-en="Solutions">Lösungen</a>
+        <a href="#benefits" class="t" data-de="Vorteile" data-en="Benefits">Vorteile</a>
+        <a href="#pricing" class="t" data-de="Preise" data-en="Pricing">Preise</a>
+        <a href="#about" class="t" data-de="Über uns" data-en="About">Über uns</a>
+        <a href="#contact" class="t" data-de="Kontakt" data-en="Contact">Kontakt</a>
+        <button id="lang" class="btn ghost lang-toggle" aria-label="Language">DE</button>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <div class="version-badge">v0.99 – Pre-Release</div>
-        <h1>Borgo-Bot</h1>
-        <p class="subtitle">
-          Intelligenter AI-Chatbot für die Borgo Batone Community. 
-          Lokale KI-Technologie, GDPR-konform, ohne Cloud-Abhängigkeit.
+  <main class="container">
+    <section class="hero">
+      <div>
+        <div class="kicker t" data-de="KI‑Chatbots für KMU" data-en="AI chatbots for SMBs">KI‑Chatbots für KMU</div>
+        <h1 class="title t" data-de="KI nutzen, ohne dass Ihre Daten das Haus verlassen" data-en="Use AI without your data leaving the building">KI nutzen, ohne dass Ihre Daten das Haus verlassen</h1>
+        <p class="lead t" data-de="strategix‑AI liefert Chatbots und Automatisierungen, die auf Ihrer eigenen Hardware laufen (z. B. Mac Mini). Modular, sicher und schnell integrierbar – per Signal oder Website." data-en="strategix‑AI delivers chatbots and automations running on your own hardware (e.g., Mac Mini). Modular, secure and fast to integrate – via Signal or Website.">strategix‑AI liefert Chatbots und Automatisierungen, die auf Ihrer eigenen Hardware laufen (z. B. Mac Mini). Modular, sicher und schnell integrierbar – per Signal oder Website.</p>
+        <div class="cta-row">
+
+          <a class="btn primary" href="#contact"><span class="t" data-de="Kostenloses Erstgespräch buchen" data-en="Book free consultation">Kostenloses Erstgespräch buchen</span></a>
+        </div>
+        <div class="badgebar" id="benefits">
+          <div class="badge"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z"/></svg><span class="t" data-de="DSGVO‑konform" data-en="GDPR‑compliant">DSGVO‑konform</span></div>
+          <div class="badge"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18"/><path d="M8 21h8"/><path d="M7 3h10"/></svg><span class="t" data-de="On‑Prem / Lokal" data-en="On‑prem / Local">On‑Prem / Lokal</span></div>
+          <div class="badge"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l4 7-4 2-4-2 4-7z"/><path d="M12 22l4-7-4-2-4 2 4 7z"/></svg><span class="t" data-de="Modular erweiterbar" data-en="Modular & Extensible">Modular erweiterbar</span></div>
+          <div class="badge"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="7" height="14" rx="2"/><rect x="14" y="7" width="7" height="8" rx="2"/></svg><span class="t" data-de="Standardhardware (Mac Mini)" data-en="Standard hardware (Mac Mini)">Standardhardware (Mac Mini)</span></div>
+          <div class="badge"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10a3 3 0 01-3 3H8l-5 4V5a3 3 0 013-3h12a3 3 0 013 3v5z"/></svg><span class="t" data-de="Signal‑Integration" data-en="Signal integration">Signal‑Integration</span></div>
+          <div class="badge"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2l5 5-5 5"/><path d="M2 7h20"/></svg><span class="t" data-de="Kein Vendor‑Lock‑in" data-en="No vendor lock‑in">Kein Vendor‑Lock‑in</span></div>
+        </div>
+      </div>
+      
+    </section>
+
+
+    <!-- Prozess Section -->
+    <section class="process" style="padding:4rem 0;background-color:#12161b">
+      <div class="container">
+        <h2 style="text-align:center;margin-bottom:3rem;font-size:2rem"><span class="t" data-de="So einfach geht's" data-en="How it works">So einfach geht's</span></h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;max-width:1000px;margin:0 auto">
+          <div style="text-align:center;padding:2rem">
+            <div style="font-size:3rem;margin-bottom:1rem">📄</div>
+            <h3 style="margin-bottom:1rem;color:var(--txt)"><span class="t" data-de="1. Wissen analysieren" data-en="1. Analyze knowledge">1. Wissen analysieren</span></h3>
+            <p style="color:var(--muted);line-height:1.6"><span class="t" data-de="Wir strukturieren Ihre Dokumente, Vorlagen und Fachwissen" data-en="We structure your documents, templates and expertise">Wir strukturieren Ihre Dokumente, Vorlagen und Fachwissen</span></p>
+          </div>
+          <div style="text-align:center;padding:2rem">
+            <div style="font-size:3rem;margin-bottom:1rem">🖥️</div>
+            <h3 style="margin-bottom:1rem;color:var(--txt)"><span class="t" data-de="2. KI installieren" data-en="2. Install AI">2. KI installieren</span></h3>
+            <p style="color:var(--muted);line-height:1.6"><span class="t" data-de="Kompakte Hardware bei Ihnen vor Ort – einfach einstecken" data-en="Compact hardware on-site – just plug in">Kompakte Hardware bei Ihnen vor Ort – einfach einstecken</span></p>
+          </div>
+          <div style="text-align:center;padding:2rem">
+            <div style="font-size:3rem;margin-bottom:1rem">💬</div>
+            <h3 style="margin-bottom:1rem;color:var(--txt)"><span class="t" data-de="3. Sicher chatten" data-en="3. Chat securely">3. Sicher chatten</span></h3>
+            <p style="color:var(--muted);line-height:1.6"><span class="t" data-de="Bedienung über Signal – vertraut und ohne neue Software (auf Wunsch auch WhatsApp)" data-en="Use via Signal – familiar and no new software (WhatsApp available on request)">Bedienung über Signal – vertraut und ohne neue Software (auf Wunsch auch WhatsApp)</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Vorteile Section -->
+    <section class="benefits" style="padding:4rem 0">
+      <div class="container">
+        <h2 style="text-align:center;margin-bottom:3rem;font-size:2rem"><span class="t" data-de="Warum KMU auf strategix AI setzen" data-en="Why SMBs choose strategix AI">Warum KMU auf strategix AI setzen</span></h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem">
+          <div class="card">
+            <div style="font-size:2.5rem;margin-bottom:1rem">🔒</div>
+            <h3 style="margin-bottom:1rem;color:var(--txt)"><span class="t" data-de="Datentresor-Effekt" data-en="Data vault effect">Datentresor-Effekt</span></h3>
+            <p style="color:var(--muted);line-height:1.6"><span class="t" data-de="Ihr KI-Bot lernt aus Ihren PDFs und Dokumenten – aber dieses Wissen bleibt physikalisch in Ihrem Unternehmen. Perfekt für Ärzte, Anwälte und diskrete Dienstleister." data-en="Your AI bot learns from your PDFs and documents – but this knowledge stays physically in your company. Perfect for doctors, lawyers and discreet service providers.">Ihr KI-Bot lernt aus Ihren PDFs und Dokumenten – aber dieses Wissen bleibt physikalisch in Ihrem Unternehmen. Perfekt für Ärzte, Anwälte und diskrete Dienstleister.</span></p>
+          </div>
+          <div class="card">
+            <div style="font-size:2.5rem;margin-bottom:1rem">💬</div>
+            <h3 style="margin-bottom:1rem;color:var(--txt)"><span class="t" data-de="Team-Mitglied in der Hosentasche" data-en="Team member in your pocket">Team-Mitglied in der Hosentasche</span></h3>
+            <p style="color:var(--muted);line-height:1.6"><span class="t" data-de="Auf der Baustelle oder im Kundentermin: Schreiben Sie Ihrem Bot via Signal. Er prüft Lagerbestände, fasst E-Mails zusammen oder sucht Infos aus Ihren Akten. Standard: Signal (datenschutzkonform) – auf Wunsch auch WhatsApp." data-en="On construction site or in customer meetings: Message your bot via Signal. It checks inventory, summarizes emails or searches your files. Standard: Signal (privacy-compliant) – WhatsApp available on request.">Auf der Baustelle oder im Kundentermin: Schreiben Sie Ihrem Bot via Signal. Er prüft Lagerbestände, fasst E-Mails zusammen oder sucht Infos aus Ihren Akten. Standard: Signal (datenschutzkonform) – auf Wunsch auch WhatsApp.</span></p>
+          </div>
+          <div class="card">
+            <div style="font-size:2.5rem;margin-bottom:1rem">💸</div>
+            <h3 style="margin-bottom:1rem;color:var(--txt)"><span class="t" data-de="Einmal kaufen, dauerhaft nutzen" data-en="Buy once, use forever">Einmal kaufen, dauerhaft nutzen</span></h3>
+            <p style="color:var(--muted);line-height:1.6"><span class="t" data-de="Schluss mit unkalkulierbaren API-Kosten. Da die KI auf Ihrer Hardware läuft, zahlen Sie keine „Miete" für jeden Gedanken, den die KI formuliert." data-en="No more unpredictable API costs. Since the AI runs on your hardware, you don't pay 'rent' for every thought the AI formulates.">Schluss mit unkalkulierbaren API-Kosten. Da die KI auf Ihrer Hardware läuft, zahlen Sie keine „Miete" für jeden Gedanken, den die KI formuliert.</span></p>
+          </div>
+          <div class="card">
+            <div style="font-size:2.5rem;margin-bottom:1rem">🗝️</div>
+            <h3 style="margin-bottom:1rem;color:var(--txt)"><span class="t" data-de="Unabhängigkeit" data-en="Independence">Unabhängigkeit</span></h3>
+            <p style="color:var(--muted);line-height:1.6"><span class="t" data-de="Offene Standards, keine Vendor-Lock-ins. Sollten wir wegfallen, läuft Ihre Hardware einfach weiter. Sie haben die volle Kontrolle." data-en="Open standards, no vendor lock-ins. If we disappear, your hardware simply continues running. You have full control.">Offene Standards, keine Vendor-Lock-ins. Sollten wir wegfallen, läuft Ihre Hardware einfach weiter. Sie haben die volle Kontrolle.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Mac Mini Hardware-Highlight -->
+    <section class="section" style="margin-top:20px">
+      <div class="card" style="display:grid;grid-template-columns:1fr 1.2fr;gap:32px;align-items:center;max-width:900px;margin:0 auto;padding:32px">
+        <img src="./Macmini-M4-16GB.jpg" 
+             alt="Mac Mini M4 16GB" 
+             style="width:100%;border-radius:12px;box-shadow:var(--shadow)"
+             loading="eager">
+        <div>
+          <div class="kicker" style="color:var(--pri)">🖥️ HARDWARE</div>
+          <h2 style="font-size:28px;margin:8px 0 12px">Ihre KI passt in eine Handfläche</h2>
+          <p class="muted" style="font-size:16px">
+            <span class="t" 
+                  data-de="Kein Serverraum, keine Cloud-Abos. Ein Mac Mini (ab 16 GB RAM) reicht für professionelle KI-Chatbots. Volle Kontrolle im eigenen Büro."
+                  data-en="No server room, no cloud subscriptions. A Mac Mini (16 GB+ RAM) is enough for professional AI chatbots. Full control in your office.">
+              Kein Serverraum, keine Cloud-Abos. Ein Mac Mini (ab 16 GB RAM) reicht für professionelle KI-Chatbots. Volle Kontrolle im eigenen Büro.
+            </span>
+          </p>
+          <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+            <div class="pill">💰 Keine monatlichen Cloud-Kosten</div>
+            <div class="pill">🔌 Plug & Play</div>
+            <div class="pill">📊 Niedrige Latenz</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Demo - prominent platziert -->
+    <section class="section" style="margin-top:26px">
+      <div class="card" style="padding:28px;margin-bottom:24px;max-width:900px;margin-left:auto;margin-right:auto">
+        <div class="kicker" style="color:var(--pri);text-align:center">🎬 LIVE DEMO</div>
+        <h2 style="text-align:center;font-size:28px;margin:8px 0 20px">
+          <span class="t" data-de="So funktioniert's in der Praxis" data-en="See it in action">So funktioniert's in der Praxis</span>
+        </h2>
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#0f1318">
+          <video 
+            controls 
+            preload="metadata"
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"
+            poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Crect fill='%230f1318' width='1920' height='1080'/%3E%3Ctext x='50%25' y='50%25' font-size='48' fill='%2366d9e8' text-anchor='middle' dominant-baseline='middle'%3E▶ Borgo-Bot Demo%3C/text%3E%3C/svg%3E">
+            <source src="https://github.com/SvenFriess/strategix-ai/raw/main/40_borgobatone/Borgo-Bot-Video-V2.mp4" type="video/mp4">
+            <p class="muted t" data-de="Ihr Browser unterstützt HTML5 Video nicht. Laden Sie das Video hier herunter: " data-en="Your browser doesn't support HTML5 video. Download the video here: ">Ihr Browser unterstützt HTML5 Video nicht. <a href="https://github.com/SvenFriess/strategix-ai/raw/main/40_borgobatone/Borgo-Bot-Video-V2.mp4" style="color:var(--pri)">Video herunterladen</a></p>
+          </video>
+        </div>
+        <p style="margin:16px 0 0;text-align:center;font-size:16px">
+          <span class="t" data-de="Borgo-Batone-Bot: Signal-Integration für Gäste-Support – 100% lokal, DSGVO-konform" data-en="Borgo-Batone Bot: Signal integration for guest support – 100% local, GDPR-compliant">Borgo-Batone-Bot: Signal-Integration für Gäste-Support – 100% lokal, DSGVO-konform</span>
         </p>
       </div>
-      
-      <div class="video-container" id="demo">
-        <video controls poster="">
-          <source src="borgo-bot-demo-with-title.mov" type="video/quicktime">
-          <source src="borgo-bot-demo-with-title.mp4" type="video/mp4">
-          Dein Browser unterstützt keine Videos.
-        </video>
-        <p class="video-caption">Borgo-Bot Demo – Live-Interaktion via Signal</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Features Section -->
-  <section id="features">
-    <div class="section-header">
-      <h2>Kernfunktionen</h2>
-      <p>Entwickelt für echte Community-Bedürfnisse mit modernster On-Premise KI</p>
-    </div>
-    
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🧠</div>
-        <h3>Lokale KI</h3>
-        <p>Läuft komplett auf lokaler Hardware (Mac Mini M4/M2). Keine Cloud-Abhängigkeit, volle Datenkontrolle.</p>
-      </div>
-      
-      <div class="feature-card">
-        <div class="feature-icon">🔒</div>
-        <h3>GDPR-Ready</h3>
-        <p>100% DSGVO-konform. Alle Daten bleiben lokal, keine externen APIs, volle Compliance für deutsche Unternehmen.</p>
-      </div>
-      
-      <div class="feature-card">
-        <div class="feature-icon">💬</div>
-        <h3>Signal Integration</h3>
-        <p>Nahtlose Integration via Signal-CLI. Natürliche Konversationen in der gewohnten Messaging-Umgebung.</p>
-      </div>
-      
-      <div class="feature-card">
-        <div class="feature-icon">📚</div>
-        <h3>YAML Knowledge Base</h3>
-        <p>40+ Themen, 200+ Keywords. Einfach editierbar, versionskontrolliert, schnell erweiterbar.</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- Architecture Section -->
-  <section id="architecture">
-    <div class="section-header">
-      <h2>System-Architektur</h2>
-      <p>Datenfluss-Pipeline mit Signal-Integration</p>
+<section class="section" style="margin-top:10px">
+  <div class="hero-visual card" style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;padding:32px;max-width:800px;margin:0 auto">
+    <div style="text-align:center">
+      <div style="font-size:56px;margin-bottom:12px">🔒</div>
+      <div style="font-size:18px;font-weight:600;margin-bottom:6px">100% Lokal</div>
+      <div class="muted">Keine Cloud-Abhängigkeit</div>
     </div>
-    
-    <div class="pipeline-container">
-      <div class="pipeline-step">
-        <div class="step-number">1</div>
-        <div class="step-icon">📱</div>
-        <h4>Signal User</h4>
-        <p>Nachricht mit <code>!bot</code> senden</p>
-      </div>
-      
-      <div class="pipeline-arrow">→</div>
-      
-      <div class="pipeline-step">
-        <div class="step-number">2</div>
-        <div class="step-icon">📡</div>
-        <h4>Signal-CLI</h4>
-        <p>Nachricht empfangen<br>& Queue weiterleiten</p>
-      </div>
-      
-      <div class="pipeline-arrow">→</div>
-      
-      <div class="pipeline-step">
-        <div class="step-number">3</div>
-        <div class="step-icon">✅</div>
-        <h4>Input Validation</h4>
-        <p>3-500 Zeichen<br>Anti-Spam Checks</p>
-      </div>
-      
-      <div class="pipeline-arrow">→</div>
-      
-      <div class="pipeline-step">
-        <div class="step-number">4</div>
-        <div class="step-icon">🔍</div>
-        <h4>Keyword Extraction</h4>
-        <p>200+ Keywords<br>Fuzzy-Match 80%</p>
-      </div>
-      
-      <div class="pipeline-arrow">→</div>
-      
-      <div class="pipeline-step">
-        <div class="step-number">5</div>
-        <div class="step-icon">📚</div>
-        <h4>YAML Knowledge Base</h4>
-        <p>Context Building<br>40+ Themen</p>
-      </div>
-      
-      <div class="pipeline-arrow">→</div>
-      
-      <div class="pipeline-step">
-        <div class="step-number">6</div>
-        <div class="step-icon">🧠</div>
-        <h4>LLM (Ollama)</h4>
-        <p>mistral:instruct<br>Max 800 words context</p>
-      </div>
-      
-      <div class="pipeline-arrow">→</div>
-      
-      <div class="pipeline-step">
-        <div class="step-number">7</div>
-        <div class="step-icon">🛡️</div>
-        <h4>Response Validation</h4>
-        <p>Anti-Hallucination<br>Context-Mixing Checks</p>
-      </div>
-      
-      <div class="pipeline-arrow">→</div>
-      
-      <div class="pipeline-step">
-        <div class="step-number">8</div>
-        <div class="step-icon">💬</div>
-        <h4>Signal Response</h4>
-        <p>Antwort via Signal-CLI<br>zurück an User</p>
-      </div>
+    <div style="text-align:center">
+      <div style="font-size:56px;margin-bottom:12px">⚡</div>
+      <div style="font-size:18px;font-weight:600;margin-bottom:6px">Signal & Web</div>
+      <div class="muted">Sofort einsatzbereit</div>
     </div>
-    
-    <div class="tech-specs">
-      <h3>⚙️ Technische Spezifikationen</h3>
-      
-      <div class="specs-grid">
-        <div class="spec-card">
-          <strong>🖥️ Hardware & Runtime</strong>
-          <p>Mac Mini M4 (16GB RAM) – Hauptknoten<br>
-          Mac Mini M2 – Backup/Support<br>
-          MacBook M3 – Development<br>
-          Betrieb: Headless via SSH & Screen Sharing</p>
-        </div>
-        
-        <div class="spec-card">
-          <strong>⚡ Performance</strong>
-          <p>&lt;60s für 95% aller Queries<br>
-          LLM Timeout: 30s<br>
-          Queue Timeout: 60s<br>
-          Max Context: 800 words</p>
-        </div>
-        
-        <div class="spec-card">
-          <strong>🧠 LLM Stack</strong>
-          <p>Ollama (lokale Runtime)<br>
-          Primary: mistral:7b-instruct<br>
-          Fallback: granite3.1:2b<br>
-          Fallback: llama3.2:3b</p>
-        </div>
-        
-        <div class="spec-card">
-          <strong>👥 Concurrency</strong>
-          <p>3 Worker Threads<br>
-          Parallel Processing<br>
-          Queue Management<br>
-          Deduplizierung aktiv</p>
-        </div>
-        
-        <div class="spec-card">
-          <strong>💬 Signal Integration</strong>
-          <p>signal-cli (Daemon-Mode)<br>
-          Gruppen-Filter aktiv<br>
-          Trigger: <code>!bot</code><br>
-          Retry-Mechanismus</p>
-        </div>
-        
-        <div class="spec-card">
-          <strong>📚 Context Management</strong>
-          <p>YAML Knowledge Base<br>
-          40+ Themen, 200+ Keywords<br>
-          Versionskontrolliert (Git)<br>
-          Single Source of Truth</p>
-        </div>
-        
-        <div class="spec-card">
-          <strong>🛡️ Sicherheit & Compliance</strong>
-          <p>100% lokal, keine Cloud<br>
-          DSGVO-konform<br>
-          Keine externen APIs<br>
-          Audit-fähiges Logging</p>
-        </div>
-        
-        <div class="spec-card">
-          <strong>📊 Monitoring & Logging</strong>
-          <p>Rotierendes Logging<br>
-          Zeitstempel & Quellenzuordnung<br>
-          Performance-Tracking<br>
-          Nachvollziehbare Antworten</p>
-        </div>
-      </div>
-      
-      <div class="info-box" style="margin-top: 2rem;">
-        <h4>🎯 Designprinzipien</h4>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
-          <div>
-            <strong>Single Source of Truth</strong>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Wissen liegt im Context, nicht im Modell. LLM ist reine Sprachschicht.</p>
-          </div>
-          <div>
-            <strong>Config-driven</strong>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Verhalten über Dateien steuerbar, keine Hard-coded Logik.</p>
-          </div>
-          <div>
-            <strong>Modular & Wiederverwendbar</strong>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Einsetzbar für KMU-Bots, Steuer-Bots, Community-Projekte.</p>
-          </div>
-          <div>
-            <strong>Erklärbar & Transparent</strong>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Jede Antwort ist technisch nachvollziehbar und auditierbar.</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="warning-box" style="margin-top: 2rem;">
-        <h4>⚙️ Message Processing Flow</h4>
-        <ol style="margin-top: 1rem; line-height: 1.8;">
-          <li><strong>Signal-Empfang:</strong> Bot lauscht via signal-cli auf konfigurierte Gruppe</li>
-          <li><strong>Filterung:</strong> Gruppen-Check + Trigger-Keyword (<code>!bot</code>) Validierung</li>
-          <li><strong>Deduplizierung:</strong> Verhindert Mehrfachantworten bei Re-Reads</li>
-          <li><strong>Normalization:</strong> Trigger entfernen, Zitate/Emojis bereinigen</li>
-          <li><strong>Fixe Antworten:</strong> Vordefinierte Commands (Status, Hilfe) ohne LLM</li>
-          <li><strong>Context-Loading:</strong> Relevante YAML-Einträge laden (max 800 words)</li>
-          <li><strong>LLM-Inference:</strong> Prompt + Context → Ollama → Antwort generieren</li>
-          <li><strong>Validation:</strong> Anti-Hallucination + Context-Mixing Checks</li>
-          <li><strong>Signal-Versand:</strong> Antwort zurück an Gruppe mit Retry-Logik</li>
-          <li><strong>Logging:</strong> Timestamp, Quelle, Antworttyp für Audit-Trail</li>
-        </ol>
-      </div>
+    <div style="text-align:center">
+      <div style="font-size:56px;margin-bottom:12px">🛡️</div>
+      <div style="font-size:18px;font-weight:600;margin-bottom:6px">DSGVO-konform</div>
+      <div class="muted">Datenschutz garantiert</div>
     </div>
-    
-    <div class="highlight-box" style="margin-top: 3rem;">
-      <h3>🎯 Architektur-Highlights</h3>
-      <ul>
-        <li><strong>Zero-Cloud-Dependency:</strong> Alle Komponenten laufen lokal auf Mac Mini Cluster – kein SaaS, kein Vendor-Lock-in, keine externen API-Calls</li>
-        <li><strong>Context-First Approach:</strong> LLM hat kein Eigenwissen – arbeitet ausschließlich mit geladenen Context. Wissensarm, aber kontextreich.</li>
-        <li><strong>Anti-Hallucination Pipeline:</strong> 7-Stufen Validierung reduziert Fehler von 30% auf 0% – Context-Mixing Prevention, Pattern Detection</li>
-        <li><strong>Deterministisch + Transparent:</strong> Fixe Antworten für FAQs (Status, Hilfe) umgehen LLM vollständig – sofort, reproduzierbar, kostenfrei</li>
-        <li><strong>Fuzzy Keyword Matching:</strong> 80% Threshold für flexible Keyword-Erkennung über 200+ definierte Begriffe</li>
-        <li><strong>Multi-Model Fallback:</strong> Automatisches Failover bei LLM-Problemen – 3 Modelle mit gestaffelter Komplexität</li>
-        <li><strong>Message Normalization:</strong> Trigger-Entfernung, Emoji-Bereinigung, Zitat-Handling für cleane Prompts</li>
-        <li><strong>Group & Rate Control:</strong> Deduplizierung, Gruppen-Filter, Rate-Stabilität – kein Spam-Verhalten</li>
-        <li><strong>Audit-Ready Logging:</strong> Jede Antwort nachvollziehbar: Warum hat der Bot was gesagt? Timestamp + Quellenzuordnung</li>
-        <li><strong>Config-Driven & Modular:</strong> Verhalten über YAML steuerbar, wiederverwendbar für KMU/Community/Steuer-Bots</li>
-      </ul>
-      
-      <div class="info-box" style="margin-top: 1.5rem; background: rgba(107, 122, 90, 0.05);">
-        <p style="margin: 0; font-style: italic; color: var(--olive);">
-          <strong>Kernphilosophie:</strong> Der Bot denkt nicht – er gibt strukturiert wieder, was definiert wurde. 
-          Das LLM ist reine Sprachschicht, der "Verstand" liegt im Context. 
-          Ideal für skeptische IT-Stakeholder, Governance-Umfelder und datenschutzkritische Projekte.
-        </p>
-      </div>
+    <div style="text-align:center">
+      <div style="font-size:56px;margin-bottom:12px">🧩</div>
+      <div style="font-size:18px;font-weight:600;margin-bottom:6px">Modular</div>
+      <div class="muted">Kein Vendor-Lock-in</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Test Guide Section -->
-  <section id="testing">
-    <div class="section-header">
-      <h2>Community Testing Guide</h2>
-      <p>So testest du den Borgo-Bot richtig</p>
-    </div>
-    
-    <div class="info-box">
-      <h3>🎉 Neu in v0.99</h3>
-      <ul>
-        <li><strong>Kritischer Fix:</strong> LLM Response Validation korrigiert – kurze, präzise Antworten werden nicht mehr abgelehnt</li>
-        <li><strong>YAML Migration:</strong> 55 Einträge repariert – Context Building funktioniert jetzt (164 words statt 0)</li>
-        <li><strong>Fallback System:</strong> KeyError behoben, stabiler Betrieb</li>
-      </ul>
+<section class="section" id="usps" style="margin-top:10px">
+  <h2>USPs – Lokal · DSGVO · Kein Vendor-Lock-in</h2>
+  <div class="usp-wrap">
+    <!-- Pie -->
+    <div class="usp-card">
+      <svg class="usp-pie" viewBox="0 0 360 360" role="img" aria-label="USP-Tortendiagramm">
+        <defs><filter id="usp-hover"><feDropShadow dx="0" dy="0" stdDeviation="6" flood-opacity=".45"/></filter></defs>
+        <circle cx="180" cy="180" r="70" fill="white" opacity=".06"></circle>
+        <text x="180" y="180" text-anchor="middle" dominant-baseline="middle" fill="#cfd3e3"
+              style="font-size:13px;font-weight:600">Lokal • Sicher • Souverän</text>
+        <g id="usp-segments"></g>
+      </svg>
     </div>
 
-    <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;">📚 Wissensgebiete</h3>
-    <p style="margin-bottom: 1.5rem;">Der Bot kennt aktuell <strong>40 Themen</strong> mit über <strong>200 Stichwörtern</strong>:</p>
-    
-    <div class="keywords-grid">
-      <div class="keyword-tag">WLAN</div>
-      <div class="keyword-tag">Pool</div>
-      <div class="keyword-tag new">Pool Technik</div>
-      <div class="keyword-tag">Pizzaofen</div>
-      <div class="keyword-tag">Müll</div>
-      <div class="keyword-tag">Hunde</div>
-      <div class="keyword-tag">Schlangen</div>
-      <div class="keyword-tag">Notfall</div>
-      <div class="keyword-tag">Einkaufen</div>
-      <div class="keyword-tag new">Bettwäsche</div>
-      <div class="keyword-tag new">Sicherungskasten</div>
-      <div class="keyword-tag">Check-in</div>
-      <div class="keyword-tag">Parken</div>
-      <div class="keyword-tag">Grillen</div>
-      <div class="keyword-tag">Restaurant</div>
-      <div class="keyword-tag">Kontakt</div>
-    </div>
+    <!-- Details -->
+    <aside class="usp-card usp-detail" aria-live="polite">
+      <h3 id="usp-title">🧠 Lokal & unabhängig</h3>
+      <p class="usp-muted" id="usp-blurb">100 % On-Premise. Volle Kontrolle über Daten & Infrastruktur – keine Cloud-Abhängigkeit.</p>
+      <ul class="usp-list" id="usp-bullets"></ul>
+      <div class="usp-switch" id="usp-switch"></div>
+    </aside>
+  </div>
+</section>
 
-    <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;">🚀 Nutzung</h3>
-    <div class="highlight-box">
-      <p>Schreibe in der Signal-Gruppe <strong>"Borgo-Bot Community-Test"</strong> eine Nachricht mit <span class="command">!bot</span> am Anfang:</p>
-      <p style="margin-top: 1rem;"><span class="command">!bot Wie funktioniert der Pizzaofen?</span></p>
-    </div>
-
-    <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;">✅ Test-Befehle</h3>
-    <div class="test-commands">
-      <div class="command-card">
-        <h3>🏊 Pool</h3>
-        <p><span class="command">!bot pool</span> → Öffnungszeiten & Regeln</p>
-        <p><span class="command">!bot pool technik</span> <span class="badge">Neu</span></p>
-      </div>
-      
-      <div class="command-card">
-        <h3>🔌 Elektrik</h3>
-        <p><span class="command">!bot sicherungskasten</span> <span class="badge">Neu</span></p>
-        <p><span class="command">!bot stromausfall</span></p>
-      </div>
-      
-      <div class="command-card">
-        <h3>🛏️ Unterkunft</h3>
-        <p><span class="command">!bot bettwäsche</span> <span class="badge">Neu</span></p>
-        <p><span class="command">!bot wlan</span></p>
-      </div>
-      
-      <div class="command-card">
-        <h3>🍕 Einrichtungen</h3>
-        <p><span class="command">!bot pizzaofen</span></p>
-        <p><span class="command">!bot müll</span></p>
-      </div>
-      
-      <div class="command-card">
-        <h3>🐕 Tiere & Sicherheit</h3>
-        <p><span class="command">!bot hunde</span></p>
-        <p><span class="command">!bot schlangen</span></p>
-      </div>
-      
-      <div class="command-card">
-        <h3>🚨 Notfälle</h3>
-        <p><span class="command">!bot notfall</span></p>
-        <p><span class="command">!bot arzt</span></p>
-      </div>
-    </div>
-
-    <div class="warning-box" style="margin-top: 3rem;">
-      <h3>⚠️ Wichtig zu wissen</h3>
-      <ul>
-        <li>Der Bot hat <strong>keinen Internet-Zugriff</strong></li>
-        <li>Nur Fragen aus der Knowledge Base können beantwortet werden</li>
-        <li>Keine Erinnerung an vorherige Gespräche</li>
-        <li>Bei unbekannten Themen verweist der Bot auf die Onsite-Gruppe</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Version History Section -->
-  <section id="history">
-    <div class="section-header">
-      <h2>Version History</h2>
-      <p>Entwicklungsfortschritt und wichtige Updates</p>
-    </div>
-
-    <div class="highlight-box">
-      <h3>🔄 Versionierungsschema-Änderung (Januar 2026)</h3>
-      <p><strong>Von 3.x → 0.x Versionierung gewechselt</strong></p>
-      <p style="margin-top: 1rem;">
-        Das alte Schema (3.91) war irreführend und suggerierte Produktionsreife. 
-        Das neue Schema (0.99) zeigt ehrlich den Pre-1.0 Entwicklungsstatus. 
-        Version 1.0 wird erst nach erfolgreichem Community-Test (8.1.2026) 
-        erreicht und folgt damit Semantic Versioning Standards für Pre-Release Software.
+<!-- Branchenlösungen -->
+<section class="section" style="margin-top:26px">
+  <div class="kicker" style="text-align:center;color:var(--pri)">🎯 BRANCHEN</div>
+  <h2 style="text-align:center;font-size:clamp(24px,3.5vw,32px);margin:8px 0 32px">
+    <span class="t" data-de="Bewährte Lösungen für Ihre Branche" data-en="Proven solutions for your industry">Bewährte Lösungen für Ihre Branche</span>
+  </h2>
+  
+  <div class="grid-3">
+    <!-- Tourismus & Gastronomie -->
+    <div class="card">
+      <div style="font-size:48px;margin-bottom:12px">🏖️</div>
+      <h3 class="t" data-de="Tourismus & Gastronomie" data-en="Tourism & Hospitality">Tourismus & Gastronomie</h3>
+      <p class="muted" style="font-size:15px">
+        <span class="t" 
+              data-de="Gäste-Support via Signal: Check-in, Hausregeln, lokale Tipps. 24/7 verfügbar, mehrsprachig."
+              data-en="Guest support via Signal: check-in, house rules, local tips. Available 24/7, multilingual.">
+          Gäste-Support via Signal: Check-in, Hausregeln, lokale Tipps. 24/7 verfügbar, mehrsprachig.
+        </span>
       </p>
-    </div>
-
-    <div class="version-list">
-      <div class="version-entry">
-        <h3>v3.91 – Pre-Release Final</h3>
-        <p><strong>Release:</strong> 07. Januar 2026</p>
-        
-        <h4>📋 Minor Version Bump</h4>
-        <p>Letzte Version vor Versionierungsschema-Wechsel zu 0.x</p>
-        <ul>
-          <li>Community-Test läuft erfolgreich (4.1. - 7.1.2026)</li>
-          <li>Keine technischen Änderungen zu v3.9</li>
-          <li>Versionsnummer dokumentiert Test-Abschluss</li>
-        </ul>
-
-        <span class="status-badge" style="background: var(--stone);">📦 SUPERSEDED by v0.99</span>
-      </div>
-
-      <div class="version-entry">
-        <h3>v3.9 – Critical Fixes & Community-Test Ready</h3>
-        <p><strong>Release:</strong> 07. Januar 2026</p>
-        
-        <h4>🐛 8 Critical Fixes</h4>
-        <ul>
-          <li><strong>Anreise-Adresse:</strong> Korrekte Adresse statt Halluzination</li>
-          <li><strong>Lebensmittel-Lagerung:</strong> Keine "Pantry" Halluzination mehr</li>
-          <li><strong>Yoga-Matten:</strong> Keine "Yoga-Halle" Halluzination mehr</li>
-          <li><strong>Pizzaofen-Sicherheit:</strong> Eiseneimer + Asche-Anleitung ergänzt</li>
-          <li><strong>Holz-Stapel:</strong> Konkrete Locations (Leccio, Parkplatz)</li>
-          <li><strong>Bettwäsche:</strong> Schrank-Location in Villa spezifiziert</li>
-          <li><strong>Fahrräder:</strong> 2 Mountainbikes + 2 Rennräder dokumentiert</li>
-          <li><strong>Poolroboter:</strong> Pool-Technik Info hinzugefügt</li>
-        </ul>
-
-        <h4>🔧 Technische Verbesserungen</h4>
-        <ul>
-          <li>YAML-Bereinigung: 94 Zeilen Duplikate entfernt</li>
-          <li>Synonym-Fixes: 26 fehlende Synonyme hinzugefügt</li>
-          <li>LLM_TIMEOUT: 30s → 60s erhöht</li>
-          <li>Signal-CLI Watchdog mit Auto-Restart implementiert</li>
-          <li>Professionelles Startup-System (start_borgo_bot.sh)</li>
-        </ul>
-
-        <h4>🧪 Testing-Erfolg</h4>
-        <ul>
-          <li>Tests durchgeführt: 14/14</li>
-          <li>Tests bestanden: 14/14</li>
-          <li>Erfolgsquote: <strong>100%</strong></li>
-          <li>Halluzinationen: <strong>0</strong></li>
-        </ul>
-
-        <span class="status-badge">✅ COMMUNITY-TEST APPROVED</span>
-      </div>
-
-      <div class="version-entry">
-        <h3>v3.8 – Version Bump & Stability</h3>
-        <p><strong>Release:</strong> 06. Januar 2026</p>
-        
-        <h4>📊 Änderungen</h4>
-        <ul>
-          <li>Version 3.7 → 3.8 upgrade in allen Dateien</li>
-          <li>Backup-System für Version-Updates etabliert</li>
-          <li>5 Core-Dateien synchronisiert (config, bot, validator, watchdog, startup)</li>
-        </ul>
-
-        <h4>✅ Validation</h4>
-        <ul>
-          <li>Alle 3.7 Referenzen erfolgreich auf 3.8 migriert</li>
-          <li>Signal-CLI Watchdog aktiv</li>
-          <li>57 YAML Entries geladen</li>
-        </ul>
-
-        <span class="status-badge" style="background: var(--olive);">🔄 STABLE</span>
-      </div>
-
-      <div class="version-entry">
-        <h3>v3.71 – YAML Knowledge Base Fix</h3>
-        <p><strong>Release:</strong> 30. Dezember 2025</p>
-        
-        <h4>🐛 Critical YAML Fix</h4>
-        <p><strong>Problem:</strong> Code "4711" führte zu Verwirrung und unerwarteten Antworten</p>
-        <ul>
-          <li>Falscher Code "4711" aus YAML entfernt</li>
-          <li>Keyword "schlüssel" korrekt formuliert</li>
-          <li>51 YAML Entries validiert</li>
-        </ul>
-
-        <h4>✅ Validation Results</h4>
-        <ul>
-          <li>YAML erfolgreich geladen (51 entries)</li>
-          <li>15/16 Checks bestanden</li>
-          <li>Deployment-ready Status erreicht</li>
-        </ul>
-
-        <h4>📁 Files Changed</h4>
-        <ul>
-          <li><code>borgo_knowledge_base.yaml</code> – Code "4711" entfernt</li>
-          <li><code>validate_yaml.py</code> – Enhanced validation</li>
-          <li><code>config.py</code> – Version bump zu 3.71</li>
-        </ul>
-
-        <span class="status-badge" style="background: var(--olive);">🔄 STABLE</span>
-      </div>
-
-      <div class="version-entry">
-        <h3>v3.7 – Meta-Query Detection & Anti-Hallucination</h3>
-        <p><strong>Release:</strong> 30. Dezember 2025</p>
-        
-        <h4>🎯 Neue Features</h4>
-        <ul>
-          <li><strong>Meta-Query Detector:</strong> Erkennt Bot-bezogene Fragen</li>
-          <li><strong>Erweiterte Anti-Hallucination:</strong> Pattern-based detection</li>
-          <li><strong>Hallucination Rate:</strong> &lt;5% Target erreicht</li>
-        </ul>
-
-        <h4>🔧 User Experience Improvements</h4>
-        <ul>
-          <li>Generic Fallback-Dumps eliminiert</li>
-          <li>Meta-Queries werden zu 100% erkannt</li>
-          <li>Fabricated Codes/Details verhindert</li>
-        </ul>
-
-        <h4>🧪 Community Feedback</h4>
-        <p>Positive Rückmeldungen von Marion und Andreas – "Hmmm🤔" Momente eliminiert</p>
-
-        <span class="status-badge" style="background: var(--olive);">🔄 STABLE</span>
-      </div>
-
-      <div class="version-entry">
-        <h3>v3.6 – Robuste Bot-Architektur</h3>
-        <p><strong>Release:</strong> Dezember 2025</p>
-        
-        <h4>🏗️ Architektur-Updates</h4>
-        <ul>
-          <li>Multi-Bot Setup (DEV/TEST/PROD)</li>
-          <li>Fehlerbehandlung verbessert</li>
-          <li>Modell-Hierarchie für Fallback implementiert</li>
-        </ul>
-
-        <h4>⚙️ Konfiguration</h4>
-        <ul>
-          <li>LLM Models: mistral:7b-instruct (Primary)</li>
-          <li>Fallback: granite3.1:2b, llama3.2:3b</li>
-          <li>Context Limits: 800 words, 3 entries max</li>
-        </ul>
-
-        <span class="status-badge" style="background: var(--olive);">🔄 STABLE</span>
-      </div>
-
-      <div class="version-entry">
-        <h3>v3.5 – Foundation Release</h3>
-        <p><strong>Release:</strong> Dezember 2025</p>
-        
-        <h4>🎯 Kern-Features</h4>
-        <ul>
-          <li>Zentrale Konfiguration (config.py)</li>
-          <li>Input Validierung (3-500 Zeichen)</li>
-          <li>Keyword Extraction mit Fuzzy-Match (80%)</li>
-          <li>Halluzinations-Erkennung implementiert</li>
-          <li>Response Validierung (10-2000 Zeichen)</li>
-        </ul>
-
-        <h4>📚 Knowledge Base</h4>
-        <ul>
-          <li>YAML-basierte Knowledge Base</li>
-          <li>10 Kategorien definiert</li>
-          <li>Confidence-basiertes Keyword-Matching</li>
-        </ul>
-
-        <h4>🔧 Infrastructure</h4>
-        <ul>
-          <li>Signal-CLI Integration</li>
-          <li>Ollama LLM Runtime</li>
-          <li>Worker-basierte Architektur (3 Workers)</li>
-          <li>Logging & Monitoring System</li>
-        </ul>
-
-        <span class="status-badge" style="background: var(--stone);">📦 INITIAL RELEASE</span>
-      </div>
-
-      <div class="version-entry">
-        <h3>v0.99 – CRITICAL FIX: LLM Response Validation</h3>
-        <p><strong>Release:</strong> 07. Januar 2026</p>
-        
-        <h4>🐛 Critical Bug Fixed</h4>
-        <p><strong>Problem:</strong> LLM-generierte Antworten wurden systematisch abgelehnt</p>
-        <ul>
-          <li><code>is_helpful()</code> Validierung zu streng: Minimum 20 Zeichen</li>
-          <li>Kurze, präzise Antworten wie "1 kg Mehl (Tipo 00)" (19 chars) wurden rejected</li>
-          <li>Resultat: Fallback statt echter LLM-Response</li>
-        </ul>
-
-        <h4>✅ Comprehensive Fixes</h4>
-        <p><strong>1. Response Validation (fallback_system.py)</strong></p>
-        <ul>
-          <li><code>is_helpful()</code>: Minimum Length von 20 → 10 Zeichen</li>
-          <li>Ermöglicht kurze, präzise Antworten</li>
-        </ul>
-
-        <p><strong>2. YAML Content Migration (borgo_knowledge_base.yaml)</strong></p>
-        <ul>
-          <li>55 Einträge von <code>content:</code> → <code>answer:</code> konvertiert</li>
-          <li>Bug existierte seit v0.31 (context_manager las 'answer:', YAML hatte 'content:')</li>
-          <li>Context Building: 0 words → 164 words</li>
-        </ul>
-
-        <p><strong>3. Config Cleanup (config_multi_bot.py)</strong></p>
-        <ul>
-          <li>Doppelte FALLBACK_RESPONSES Definition entfernt (Zeile 536-543)</li>
-          <li>Verhindert KeyError: 'unknown' bei Fallback-Fehlern</li>
-        </ul>
-
-        <p><strong>4. Debug Logging (llm_handler.py)</strong></p>
-        <ul>
-          <li>LLM Response Content wird geloggt (erste 500 chars)</li>
-          <li>Hilft bei zukünftiger Diagnose von Validierungs-Issues</li>
-        </ul>
-
-        <h4>🎯 Impact</h4>
-        <ul>
-          <li><strong>Context Building:</strong> ✅ Funktioniert (164 words statt 0)</li>
-          <li><strong>LLM Generation:</strong> ✅ Generiert korrekte Antworten</li>
-          <li><strong>Response Validation:</strong> ✅ Akzeptiert kurze & lange Antworten</li>
-          <li><strong>Fallback System:</strong> ✅ KeyError behoben</li>
-        </ul>
-
-        <h4>📁 Files Changed</h4>
-        <ul>
-          <li><code>borgo_knowledge_base.yaml</code> – 55 field migrations</li>
-          <li><code>fallback_system.py</code> – is_helpful() threshold adjusted</li>
-          <li><code>config_multi_bot.py</code> – duplicate definition removed</li>
-          <li><code>llm_handler.py</code> – enhanced debug logging</li>
-          <li><code>borgo_bot_community_only.py</code> – logging.DEBUG enabled</li>
-        </ul>
-
-        <span class="status-badge">✅ PRODUCTION READY</span>
+      <div style="margin-top:12px">
+        <div class="pill">Borgo-Batone (Italien)</div>
       </div>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <h3>strategix AI</h3>
-      <p>GDPR-konforme On-Premise AI-Lösungen für den deutschen Mittelstand</p>
-      <p style="margin-top: 3rem;">© 2026 strategix AI · Borgo-Bot Showcase · Stand: 07.01.2026</p>
+    <!-- Bildung & Öffentliche Verwaltung -->
+    <div class="card">
+      <div style="font-size:48px;margin-bottom:12px">📚</div>
+      <h3 class="t" data-de="Bildung & Verwaltung" data-en="Education & Public Sector">Bildung & Verwaltung</h3>
+      <p class="muted" style="font-size:15px">
+        <span class="t" 
+              data-de="Interne Wissensdatenbank für Mitarbeiter, automatisierte FAQ-Beantwortung, Schulungsmaterialien."
+              data-en="Internal knowledge base for staff, automated FAQ responses, training materials.">
+          Interne Wissensdatenbank für Mitarbeiter, automatisierte FAQ-Beantwortung, Schulungsmaterialien.
+        </span>
+      </p>
+      <div style="margin-top:12px">
+        <div class="pill">KVHS Vechta</div>
+      </div>
     </div>
-  </footer>
+
+    <!-- Steuerberatung & Finanzwesen -->
+    <div class="card">
+      <div style="font-size:48px;margin-bottom:12px">💼</div>
+      <h3 class="t" data-de="Steuerberatung & Finanzwesen" data-en="Tax Advisory & Finance">Steuerberatung & Finanzwesen</h3>
+      <p class="muted" style="font-size:15px">
+        <span class="t" 
+              data-de="Mandanten-FAQ, interne Prozessdokumentation, gesetzeskonforme Datenverarbeitung (StBerG §62)."
+              data-en="Client FAQ, internal process documentation, legally compliant data processing (StBerG §62).">
+          Mandanten-FAQ, interne Prozessdokumentation, gesetzeskonforme Datenverarbeitung (StBerG §62).
+        </span>
+      </p>
+      <div style="margin-top:12px">
+        <div class="pill">SteuerBot</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    <section id="solutions" class="section" style="margin-top:10px">
+      <h2 class="t" data-de="Lösungen" data-en="Solutions">Lösungen</h2>
+      <div class="grid-3">
+        <div class="card"><h3 class="t" data-de="Signal‑Chatbot" data-en="Signal chatbot">Signal‑Chatbot</h3><p class="muted t" data-de="Interner Helfer, Team‑Support oder Gäste‑Service – datenschutzfreundlich via Signal." data-en="Internal helper, team support or guest service – privacy‑friendly via Signal.">Interner Helfer, Team‑Support oder Gäste‑Service – datenschutzfreundlich via Signal.</p></div>
+        <div class="card"><h3 class="t" data-de="Website‑Chatbot" data-en="Website chatbot">Website‑Chatbot</h3><p class="muted t" data-de="Beantwortet Fragen zu Ihren Leistungen, Öffnungszeiten, Preisen – 24/7 auf Ihrer Seite." data-en="Answers questions about your services, hours and pricing – 24/7 on your site.">Beantwortet Fragen zu Ihren Leistungen, Öffnungszeiten, Preisen – 24/7 auf Ihrer Seite.</p></div>
+        <div class="card"><h3 class="t" data-de="Wissens‑Bot (Dokumente)" data-en="Knowledge bot (documents)">Wissens‑Bot (Dokumente)</h3><p class="muted t" data-de="Liest bereitgestellte PDF/HTML/Texte – kein Freitext‑Internet, volle Kontrolle über Inhalte." data-en="Reads your PDFs/HTML/texts – no open‑internet context, full control of answers.">Liest bereitgestellte PDF/HTML/Texte – kein Freitext‑Internet, volle Kontrolle über Inhalte.</p></div>
+      </div>
+      <div class="grid-2" style="margin-top:18px">
+        <div class="card"><h3 class="t" data-de="Automatisierung" data-en="Automation">Automatisierung</h3><p class="muted t" data-de="Ticketanlage, Protokolle, FAQ‑Updates – Workflows, die Zeit sparen." data-en="Ticket creation, minutes, FAQ updates – workflows that save time.">Ticketanlage, Protokolle, FAQ‑Updates – Workflows, die Zeit sparen.</p></div>
+        <div class="card"><h3 class="t" data-de="Beratung & Betrieb" data-en="Advisory & Operations">Beratung & Betrieb</h3><p class="muted t" data-de="Von der Pilotierung bis zum stabilen Betrieb – inkl. Monitoring & Logging." data-en="From pilot to stable operations – incl. monitoring & logging.">Von der Pilotierung bis zum stabilen Betrieb – inkl. Monitoring & Logging.</p></div>
+      </div>
+    </section>
+
+    <section id="how" class="section" style="margin-top:26px">
+      <h2 class="t" data-de="So arbeiten wir" data-en="How it works">So arbeiten wir</h2>
+      <div class="grid-2 steps">
+        <div class="card step"><h3 class="t" data-de="Inhalte erfassen" data-en="Capture content">Inhalte erfassen</h3><p class="muted t" data-de="Wir sammeln Ihre vorhandenen Dokumente, Webseiten, PDFs und strukturieren sie für den Bot." data-en="We collect your documents, websites, PDFs and structure them for the bot.">Wir sammeln Ihre vorhandenen Dokumente, Webseiten, PDFs und strukturieren sie für den Bot.</p></div>
+        <div class="card step"><h3 class="t" data-de="Integration wählen" data-en="Choose integration">Integration wählen</h3><p class="muted t" data-de="Signal‑Bot für intern/Teams oder Website‑Widget für Kund:innen – oder beides." data-en="Signal bot for teams/internal or website widget for customers – or both.">Signal‑Bot für intern/Teams oder Website‑Widget für Kund:innen – oder beides.</p></div>
+        <div class="card step"><h3 class="t" data-de="On‑Prem LLM" data-en="On‑prem LLM">On‑Prem LLM</h3><p class="muted t" data-de="Lokale Modelle via Ollama (z. B. Mistral, Phi, Qwen). Keine Cloud, volle Datenhoheit." data-en="Local models via Ollama (e.g., Mistral, Phi, Qwen). No cloud, full data control.">Lokale Modelle via Ollama (z. B. Mistral, Phi, Qwen). Keine Cloud, volle Datenhoheit.</p></div>
+        <div class="card step"><h3 class="t" data-de="Betrieb & Support" data-en="Operate & support">Betrieb & Support</h3><p class="muted t" data-de="Monitoring, Logging, Updates – wir halten den Bot sicher und aktuell." data-en="Monitoring, logging, updates – keeping your bot secure and current.">Monitoring, Logging, Updates – wir halten den Bot sicher und aktuell.</p></div>
+      </div>
+    </section>
+
+
+    <section id="pricing" class="section" style="margin-top:26px">
+  <h2 class="t" data-de="Preise" data-en="Pricing">Preise</h2>
+  <div class="price">
+    <!-- 1) Fixed -->
+    <div class="card">
+      <div class="tag t" data-de="Fixed (ohne LLM)" data-en="Fixed (no LLM)">Fixed (ohne LLM)</div>
+      <h3 class="t" data-de="„Einschränker" – Regelbasiert" data-en="„Restrictor" – Rule-based">„Einschränker" – Regelbasiert</h3>
+      <p class="muted"><span class="t" data-de="Feste Dialogflüsse & FAQ-Regeln – ohne LLM, maximale Stabilität und volle Kontrolle." data-en="Fixed dialog flows & FAQ rules – no LLM, maximum stability and full control.">Feste Dialogflüsse & FAQ-Regeln – ohne LLM, maximale Stabilität und volle Kontrolle.</span></p>
+      <ul style="margin:10px 0 0 0; padding-left:18px">
+        <li><span class="t" data-de="✅ Klare Antworten, kein Halluzinieren" data-en="✅ Clear answers, no hallucinations">✅ Klare Antworten, kein Halluzinieren</span></li>
+        <li><span class="t" data-de="🧩 Website-Widget oder Signal-Integration" data-en="🧩 Website widget or Signal integration">🧩 Website-Widget oder Signal-Integration</span></li>
+        <li><span class="t" data-de="📄 Bis 50 FAQ-Einträge / Flows" data-en="📄 Up to 50 FAQ entries / flows">📄 Bis 50 FAQ-Einträge / Flows</span></li>
+        <li><span class="t" data-de="🔒 DSGVO-konform, On-Prem" data-en="🔒 GDPR-compliant, on-prem">🔒 DSGVO-konform, On-Prem</span></li>
+        <li>⏱️ Go-Live <span class="t" data-de="in" data-en="in">in</span> <b>2–3 <span class="t" data-de="Wochen" data-en="weeks">Wochen</span></b></li>
+      </ul>
+
+      <!-- Preisstaffeln -->
+      <div style="margin-top:12px;border-top:1px solid #223042;padding-top:10px">
+        <div style="display:flex;justify-content:space-between">
+          <span class="muted t" data-de="Standard" data-en="Standard">Standard</span>
+          <strong>1 490 €</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px">
+          <span class="muted t" data-de="mit UI/Widget & Schulung" data-en="with UI/Widget & training">mit UI/Widget &amp; Schulung</span>
+          <strong>2 490 €</strong>
+        </div>
+      </div>
+
+      <div class="mini-badges" style="margin-top:10px">
+        <span class="mini-badge">On-Prem</span>
+        <span class="mini-badge t" data-de="DSGVO" data-en="GDPR">DSGVO</span>
+        <span class="mini-badge">No Cloud</span>
+      </div>
+    </div>
+
+    <!-- 2) Assist -->
+    <div class="card">
+      <div class="tag">Assist</div>
+      <h3 class="t" data-de="„Assist" – LLM + Wissensbasis" data-en="„Assist" – LLM + Knowledge Base">„Assist" – LLM + Wissensbasis</h3>
+      <p class="muted">
+        <span class="t" data-de="Lokales LLM (On-Prem) kombiniert mit kuratierter Wissensbasis. Formuliert Antworten und generiert Content." data-en="Local LLM (on-prem) combined with curated knowledge base. Formulates answers and generates content.">Lokales LLM (On-Prem) kombiniert mit kuratierter Wissensbasis. Formuliert Antworten und generiert Content.</span>
+      </p>
+      <ul style="margin:10px 0 0 0; padding-left:18px">
+        <li><span class="t" data-de="🤖 On-Prem LLM (z. B. Mistral / Phi / Mixtral via Ollama)" data-en="🤖 On-prem LLM (e.g. Mistral / Phi / Mixtral via Ollama)">🤖 On-Prem LLM (z. B. Mistral / Phi / Mixtral via Ollama)</span></li>
+        <li><span class="t" data-de="📚 Wissensbasis aus Dokumenten/Webseiten (RAG)" data-en="📚 Knowledge base from documents/websites (RAG)">📚 Wissensbasis aus Dokumenten/Webseiten (RAG)</span></li>
+        <li><span class="t" data-de="🧠 Content-Generierung (Texte, Zusammenfassungen)" data-en="🧠 Content generation (texts, summaries)">🧠 Content-Generierung (Texte, Zusammenfassungen)</span></li>
+        <li><span class="t" data-de="🔌 1 Integration (Signal oder Website)" data-en="🔌 1 integration (Signal or website)">🔌 1 Integration (Signal <i>oder</i> Website)</span></li>
+        <li><span class="t" data-de="📊 Logging & einfache Evaluierung" data-en="📊 Logging & simple evaluation">📊 Logging &amp; einfache Evaluierung</span></li>
+        <li>⏱️ Go-Live <span class="t" data-de="in" data-en="in">in</span> <b>3–4 <span class="t" data-de="Wochen" data-en="weeks">Wochen</span></b></li>
+      </ul>
+
+      <!-- Preisstaffeln -->
+      <div style="margin-top:12px;border-top:1px solid #223042;padding-top:10px">
+        <div style="display:flex;justify-content:space-between">
+          <span class="muted t" data-de="Klein (1 Quelle)" data-en="Small (1 source)">Klein (1 Quelle)</span>
+          <strong>3 900 €</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px">
+          <span class="muted t" data-de="Standard KMU" data-en="Standard SMB">Standard KMU</span>
+          <strong>5 900–7 900 €</strong>
+        </div>
+      </div>
+
+      <div class="mini-badges" style="margin-top:10px">
+        <span class="mini-badge">On-Prem</span>
+        <span class="mini-badge">LLM</span>
+        <span class="mini-badge">RAG</span>
+        <span class="mini-badge">Content Gen</span>
+      </div>
+    </div>
+
+    <!-- 3) Codex -->
+    <div class="card">
+      <div class="tag">Codex</div>
+      <h3 class="t" data-de="„Codex" – Wissensaufbereitung" data-en="„Codex" – Knowledge Curation">„Codex" – Wissensaufbereitung</h3>
+      <p class="muted">
+        <span class="t" data-de="Strategische Aufbereitung Ihrer Inhalte: Taxonomie, Chunking, QS, Embeddings-Optimierung und laufende Verbesserung." data-en="Strategic curation of your content: taxonomy, chunking, QA, embeddings optimization and continuous improvement.">Strategische Aufbereitung Ihrer Inhalte: Taxonomie, Chunking, QS, Embeddings-Optimierung und laufende Verbesserung.</span>
+      </p>
+      <ul style="margin:10px 0 0 0; padding-left:18px">
+        <li><span class="t" data-de="🏛️ Wissens-Codex (Taxonomie & Struktur)" data-en="🏛️ Knowledge codex (taxonomy & structure)">🏛️ Wissens-Codex (Taxonomie &amp; Struktur)</span></li>
+        <li><span class="t" data-de="🧩 Aufbereitung von PDF, HTML, Doku, Supportfällen" data-en="🧩 Processing of PDFs, HTML, docs, support cases">🧩 Aufbereitung von PDF, HTML, Doku, Supportfällen</span></li>
+        <li><span class="t" data-de="🧠 Embeddings-Optimierung & RAG-Qualitätstests" data-en="🧠 Embeddings optimization & RAG quality tests">🧠 Embeddings-Optimierung &amp; RAG-Qualitätstests</span></li>
+        <li><span class="t" data-de="📈 Monitoring & inhaltliche Pflege" data-en="📈 Monitoring & content maintenance">📈 Monitoring &amp; inhaltliche Pflege</span></li>
+        <li><span class="t" data-de="👥 Team-Schulung zur Selbstpflege" data-en="👥 Team training for self-maintenance">👥 Team-Schulung zur Selbstpflege</span></li>
+        <li>⏱️ <span class="t" data-de="Projektphase" data-en="Project phase">Projektphase</span> <b>4–8 <span class="t" data-de="Wochen" data-en="weeks">Wochen</span></b></li>
+      </ul>
+
+      <!-- Preisstaffeln -->
+      <div style="margin-top:12px;border-top:1px solid #223042;padding-top:10px">
+        <div style="display:flex;justify-content:space-between">
+          <span class="muted t" data-de="Klein" data-en="Small">Klein</span>
+          <strong>6 900 €</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px">
+          <span class="muted t" data-de="Komplett Setup" data-en="Complete setup">Komplett Setup</span>
+          <strong>9 900–14 900 €</strong>
+        </div>
+      </div>
+
+      <div class="mini-badges" style="margin-top:10px">
+        <span class="mini-badge">Content Architecture</span>
+        <span class="mini-badge">Embeddings</span>
+        <span class="mini-badge">Quality</span>
+        <span class="mini-badge">Long-Term</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ➕ Add-ons -->
+  <div class="price" style="margin-top:12px">
+    <div class="card" style="flex:1">
+      <div class="tag">Add-ons</div>
+      <h3><span class="t" data-de="Ergänzungen & Services" data-en="Additions & Services">Ergänzungen &amp; Services</span></h3>
+      <ul style="margin:10px 0 0 0; padding-left:18px">
+        <li><span class="t" data-de="📱 Signal-Gruppen-Integration inkl. Hosting-Support (lokal) — + 590 €" data-en="📱 Signal group integration incl. hosting support (local) — + 590 €">📱 Signal-Gruppen-Integration inkl. Hosting-Support (lokal) — <b>+ 590 €</b></span></li>
+        <li><span class="t" data-de="🧩 Website-Widget (Frontend) — + 490 €" data-en="🧩 Website widget (frontend) — + 490 €">🧩 Website-Widget (Frontend) — <b>+ 490 €</b></span></li>
+        <li><span class="t" data-de="🎓 Schulung / Workshop (½ Tag) — + 350 €" data-en="🎓 Training / workshop (½ day) — + 350 €">🎓 Schulung / Workshop (½ Tag) — <b>+ 350 €</b></span></li>
+        <li><span class="t" data-de="🛠️ Wartung & Updates (jährlich) — 10–15 % vom Projektwert" data-en="🛠️ Maintenance & updates (yearly) — 10–15 % of project value">🛠️ Wartung &amp; Updates (jährlich) — <b>10–15 % vom Projektwert</b></span></li>
+      </ul>
+    </div>
+
+    <div class="card" style="flex:1">
+      <div class="tag">Optional</div>
+      <h3><span class="t" data-de="Managed Mac-mini Hosting (Startphase)" data-en="Managed Mac mini hosting (start phase)">Managed Mac-mini Hosting (Startphase)</span></h3>
+      <p class="muted"><span class="t" data-de="Wir hosten Ihren Bot vorübergehend (EU), bis Ihre eigene Hardware bereit ist." data-en="We host your bot temporarily (EU) until your own hardware is ready.">Wir hosten Ihren Bot vorübergehend (EU), bis Ihre eigene Hardware bereit ist.</span></p>
+      <ul style="margin:10px 0 0 0; padding-left:18px">
+        <li><span class="t" data-de="🖥️ Dedizierter Mac mini (M2/M4), VPN-Zugang" data-en="🖥️ Dedicated Mac mini (M2/M4), VPN access">🖥️ Dedizierter Mac mini (M2/M4), VPN-Zugang</span></li>
+        <li><span class="t" data-de="🔒 EU-Standort, verschlüsselte Backups" data-en="🔒 EU location, encrypted backups">🔒 EU-Standort, verschlüsselte Backups</span></li>
+        <li><span class="t" data-de="📊 Monitoring & Updates inklusive" data-en="📊 Monitoring & updates included">📊 Monitoring & Updates inklusive</span></li>
+        <li><span class="t" data-de="🌐 Custom-Domain & HTTPS" data-en="🌐 Custom domain & HTTPS">🌐 Custom-Domain & HTTPS</span></li>
+        <li><span class="t" data-de="🔄 Nahtloser Umzug On-Prem" data-en="🔄 Seamless migration on-prem">🔄 Nahtloser Umzug On-Prem</span></li>
+      </ul>
+      <div class="pill t" data-de="Preis auf Anfrage" data-en="Price on request">Preis auf Anfrage</div>
+    </div>
+  </div>
+</section>
+
+    <section id="about" class="section" style="margin:28px 0 10px">
+      <h2 class="t" data-de="Über mich" data-en="About me">Über mich</h2>
+      <div class="card" style="display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:center;max-width:800px;margin:0 auto">
+        <img src="./SvenFriess-offiziell++.jpg" 
+             alt="Sven Friess" 
+             style="width:200px;height:200px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow)"
+             loading="lazy">
+        <div>
+          <h3 style="margin:0 0 8px;font-size:22px">Sven Friess</h3>
+          <p class="muted" style="margin:0">
+            <span class="t" 
+                  data-de="15+ Jahre SAP/IT-Beratung, heute fokussiert auf DSGVO-konforme, lokale KI-Lösungen für den deutschen Mittelstand. Keine Cloud-Abhängigkeit, keine Vendor-Lock-ins – nur volle Datensouveränität."
+                  data-en="15+ years SAP/IT consulting, now focused on GDPR-compliant, local AI solutions for German SMBs. No cloud dependencies, no vendor lock-ins – just full data sovereignty.">
+              15+ Jahre SAP/IT-Beratung, heute fokussiert auf DSGVO-konforme, lokale KI-Lösungen für den deutschen Mittelstand. Keine Cloud-Abhängigkeit, keine Vendor-Lock-ins – nur volle Datensouveränität.
+            </span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section" style="margin:28px 0 10px">
+      <h2 class="t" data-de="Kontakt" data-en="Contact">Kontakt</h2>
+      <div class="grid-2">
+        <div class="card">
+          <p class="muted t" data-de="Schreiben Sie uns kurz Ihr Vorhaben. Wir melden uns mit einer passenden Empfehlung." data-en="Tell us briefly about your project. We'll reply with a fitting recommendation.">Schreiben Sie uns kurz Ihr Vorhaben. Wir melden uns mit einer passenden Empfehlung.</p>
+          <p>📧 <a href="mailto:info@strategix-ai.tech">info@strategix-ai.tech</a></p>
+          <p>📞 <a href="tel:+49XXXXXXXXX">+49 160 90822476</a> <span class="muted">– persönliche Rücksprache nach Anfrage</span></p>
+
+
+
+          <p>🔒 <span class="t" data-de="Datenschutz‑Hinweis: Ihre Daten verlassen Ihr System nur, wenn Sie es möchten." data-en="Privacy note: your data never leaves your system unless you want it to.">Datenschutz‑Hinweis: Ihre Daten verlassen Ihr System nur, wenn Sie es möchten.</span></p>
+          <div class="cta-row"><a class="btn primary" href="#" onclick="document.getElementById('brief').focus();return false;"><span class="t" data-de="Projekt anfragen" data-en="Request project">Projekt anfragen</span></a></div>
+        </div>
+        <form class="card" action="mailto:info@strategix-ai.tech?subject=Projektanfrage%20strategix-AI" method="post" enctype="text/plain" onsubmit="return validateForm()">
+          <label class="t" data-de="Kurzbeschreibung" data-en="Short description">Kurzbeschreibung</label>
+          <textarea id="brief" name="body" rows="5" placeholder="z. B. Website‑FAQ‑Bot für Autohaus, Start im Oktober" style="width:100%;margin-top:8px;background:#0f1318;border:1px solid #222b36;border-radius:12px;color:var(--txt);padding:10px"></textarea>
+          <button type="submit" class="btn primary" style="margin-top:14px;width:100%">
+          <span class="t" data-de="Anfrage senden" data-en="Send request">Anfrage senden</span>
+          </button>
+        <div style="margin-top:10px" class="muted">📧 Öffnet Ihr E-Mail-Programm zum Versenden.</div>     
+        </form>
+      </div>
+    </section>
+  </main>
+
+  
+
+  <footer class="container footer" style="padding:20px">
+  <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
+    <div>© <span id="year"></span> strategix AI</div>
+    <div class="muted">
+      <a href="./impressum.html">Impressum</a> · 
+      <a href="./datenschutz.html">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Setze das aktuelle Jahr automatisch ein
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
   <script>
-    // Smooth scroll for navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
+    // Simple i18n toggle (DE/EN)
+    let lang = 'de';
+    const btn = document.getElementById('lang');
+    const els = document.querySelectorAll('.t');
+    function setLang(l){
+      lang = l;
+      document.documentElement.lang = l === 'de' ? 'de' : 'en';
+      btn.textContent = l.toUpperCase();
+      els.forEach(el=>{ const t = el.getAttribute('data-'+l); if(t) el.textContent = t; });
+    }
+    btn.addEventListener('click',()=> setLang(lang==='de'?'en':'de'));
+    setLang('de');
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+<script>
+  // === USP Pie (pure SVG/JS) ===
+  const USP_DATA = [
+    {
+      id:'local', label:'🧠 Lokal & unabhängig', color:'#66d9e8',
+      blurb:'100 % On-Premise. Volle Kontrolle über Daten & Infrastruktur – keine Cloud-Abhängigkeit.',
+      bullets:[
+        '💻 Standardhardware (Mac Mini, Linux-Server)',
+        '🚫 Kein Internetzwang, <b>0</b> externe Dienste',
+        '⚡ Niedrige Latenz, <b>keine</b> API-Limits',
+        '🔌 Integrationen: Signal-Bot, Web-Chat, CLI'
+      ]
+    },
+    {
+      id:'gdpr', label:'🛡️ DSGVO-konform & sicher', color:'#22c55e',
+      blurb:'Verarbeitung ausschließlich lokal. Keine Datenübertragung an Dritte.',
+      bullets:[
+        '🧾 Keine Cloud-Logs, kein Tracking, keine Accounts',
+        '🔒 Ende-zu-Ende-verschlüsselter Kommunikationskanal',
+        '📚 Einfache Audit-Doku (Art. 30/32 DSGVO)',
+        '⚖️ Rechtliche Basis: Art. 6 Abs. 1 lit. f/b DSGVO'
+      ]
+    },
+    {
+      id:'nolock', label:'🧩 Kein Vendor-Lock-in', color:'#7c4dff',
+      blurb:'Open-Source-First, offene Standards, volle Portabilität.',
+      bullets:[
+        '🧠 Europäische Modelle (Mistral/Mixtral, Aleph Alpha, etc.)',
+        '🧩 Offene Lizenzen/Standards (Apache, MIT, CC-BY)',
+        '🔄 Austauschbare Komponenten (LLM, RAG, UI)',
+        '🧭 Zukunftssicher: EU-AI-Act im Blick'
+      ]
+    }
+  ];
+
+  function uspArcPath(cx, cy, r, startDeg, endDeg){
+    const rad = d => (d - 90) * Math.PI/180;
+    const sx = cx + r * Math.cos(rad(startDeg));
+    const sy = cy + r * Math.sin(rad(startDeg));
+    const ex = cx + r * Math.cos(rad(endDeg));
+    const ey = cy + r * Math.sin(rad(endDeg));
+    const largeArc = (endDeg - startDeg) <= 180 ? 0 : 1;
+    return `M ${cx} ${cy} L ${sx} ${sy} A ${r} ${r} 0 ${largeArc} 1 ${ex} ${ey} Z`;
+  }
+
+  (function initUspPie(){
+    const segRoot = document.getElementById('usp-segments');
+    if(!segRoot) return;
+
+    const cx=180, cy=180, r=170;
+    const segs = [
+      { usp: USP_DATA[0], start: 0,   end:120 },
+      { usp: USP_DATA[1], start:120,  end:240 },
+      { usp: USP_DATA[2], start:240,  end:360 }
+    ];
+
+    const titleEl   = document.getElementById('usp-title');
+    const blurbEl   = document.getElementById('usp-blurb');
+    const bulletsEl = document.getElementById('usp-bullets');
+    const switchEl  = document.getElementById('usp-switch');
+
+    function renderDetail(u){
+      titleEl.textContent = u.label;
+      blurbEl.innerHTML = u.blurb;
+      bulletsEl.innerHTML = u.bullets.map(b => `<li><span class="usp-dot"></span><span>${b}</span></li>`).join('');
+      switchEl.innerHTML = USP_DATA.map(x =>
+        `<button type="button" data-id="${x.id}" aria-pressed="${x.id===u.id}">${x.label}</button>`).join('');
+      switchEl.querySelectorAll('button').forEach(btn =>
+        btn.addEventListener('click',()=> setActive(btn.dataset.id)));
+    }
+
+    function setActive(id){
+      segRoot.querySelectorAll('path').forEach(p =>
+        p.setAttribute('aria-current', p.dataset.id===id ? 'true' : 'false'));
+      renderDetail(USP_DATA.find(x => x.id===id));
+    }
+
+    segs.forEach(({usp,start,end})=>{
+      const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+      p.setAttribute('d', uspArcPath(cx,cy,r,start,end));
+      p.setAttribute('fill', usp.color);
+      p.setAttribute('opacity', '.95');
+      p.setAttribute('data-id', usp.id);
+      p.setAttribute('tabindex', '0');
+      p.setAttribute('role', 'button');
+      p.setAttribute('aria-label', usp.label);
+      p.addEventListener('mouseenter',()=> setActive(usp.id));
+      p.addEventListener('click',()=> setActive(usp.id));
+      p.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); setActive(usp.id);} });
+      segRoot.appendChild(p);
     });
 
-    // Add stagger animation to keyword tags
-    const keywords = document.querySelectorAll('.keyword-tag');
-    keywords.forEach((keyword, index) => {
-      keyword.style.animation = `fadeInUp 0.5s ease-out ${index * 0.03}s backwards`;
-    });
-  </script>
-</body>
-</html>
+    setActive(USP_DATA[0].id);
+  })();
+</script>
+
+
+<script>
+function validateForm() {
+  const brief = document.getElementById('brief').value.trim();
+  if (!bri
