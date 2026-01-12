@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>strategix‑AI – Lokale, DSGVO‑konforme KI‑Chatbots für KMU</title>
-  <meta name="description" content="strategix‑AI: On‑Prem KI‑Chatbots für KMU – DSGVO‑konform, modular, ohne Vendor‑Lock‑in. Signal‑ und Web‑Integration. Läuft auf Standardhardware (z. B. Mac Mini)." />
+  <title>strategix‑AI – On-Premise KI für regulierte Branchen | DSGVO-konform</title>
+  <meta name="description" content="strategix‑AI: On‑Premise KI für Steuerberater, Anwälte, Verwaltung & Hospitality. DSGVO-konform, keine Cloud, kein Vendor-Lock-in. Von Ex-SAP Senior Consultant." />
   <style>
     :root{
       --bg:#0b0d10;--bg2:#12161b;--card:#151a20;--txt:#e8eef5;--muted:#b1c0d0;--pri:#66d9e8;--acc:#7c4dff;--ok:#22c55e;--warn:#f59e0b;--maxw:1200px;
@@ -14,79 +14,89 @@
     *{box-sizing:border-box}
     html,body{margin:0;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--txt);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;}
     a{color:var(--pri);text-decoration:none}
-    header{position:sticky;top:0;background:rgba(11,13,16,.7);backdrop-filter:blur(10px);border-bottom:1px solid #1f2630;z-index:10}
+    header{position:sticky;top:0;background:rgba(11,13,16,.85);backdrop-filter:blur(12px);border-bottom:1px solid #1f2630;z-index:100}
     .nav{display:flex;align-items:center;justify-content:space-between;max-width:var(--maxw);margin:0 auto;padding:14px 20px}
     .brand{display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:.3px}
    .logo{width:68px;height:68px;border-radius:10px;box-shadow:0 6px 18px rgba(124,77,255,.35)}
     .menu{display:flex;gap:18px;align-items:center}
-    .menu a{color:var(--muted)}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:#1b222b;border:1px solid #26303b;color:var(--txt);box-shadow:var(--shadow)}
+    .menu a{color:var(--muted);transition:color .2s}
+    .menu a:hover{color:var(--pri)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:#1b222b;border:1px solid #26303b;color:var(--txt);box-shadow:var(--shadow);cursor:pointer;transition:all .2s}
     .btn.primary{background:linear-gradient(135deg,#0ea5e9,#7c4dff);border:0}
+    .btn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(14,165,233,.4)}
     .btn.ghost{background:transparent;border:1px solid #2c3642}
     .container{max-width:var(--maxw);margin:0 auto;padding:40px 20px}
-    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:40px 0}
-    .title{font-size:clamp(28px,4.2vw,46px);line-height:1.1;margin:4px 0}
-    .lead{color:var(--muted);font-size:clamp(15px,2.1vw,18px)}
-    .badgebar{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:20px}
+    .hero{padding:80px 0 60px;text-align:center}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(102,217,232,.1);border:1px solid rgba(102,217,232,.3);border-radius:999px;color:var(--pri);font-size:13px;font-weight:600;margin-bottom:24px}
+    .title{font-size:clamp(32px,5vw,56px);line-height:1.1;margin:0 0 16px;font-weight:800}
+    .title-gradient{background:linear-gradient(135deg,#66d9e8,#7c4dff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .lead{color:var(--muted);font-size:clamp(16px,2.2vw,20px);margin:0 0 12px;max-width:800px;margin-left:auto;margin-right:auto}
+    .pain-point{color:#a8b6c6;font-size:clamp(15px,2vw,18px);max-width:700px;margin:0 auto 32px}
+    .pain-point .highlight{color:var(--pri)}
+    .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+    .social-proof{padding-top:48px;border-top:1px solid #1f2732}
+    .social-proof-label{font-size:13px;color:#6b7280;margin-bottom:16px}
+    .social-proof-items{display:flex;flex-wrap:wrap;justify-content:center;gap:32px;color:var(--muted)}
+    .social-proof-item{display:flex;align-items:center;gap:8px}
+    .check-icon{color:var(--ok)}
+    .card{background:var(--card);border:1px solid #233042;border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;transition:all .3s}
+    .card:hover{border-color:rgba(102,217,232,.3);transform:translateY(-4px)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+    .section{padding:80px 0}
+    .section-header{text-align:center;margin-bottom:64px}
+    .section-title{font-size:clamp(28px,4vw,42px);margin:0 0 16px;font-weight:800}
+    .section-subtitle{color:var(--muted);font-size:clamp(16px,2vw,20px);max-width:700px;margin:0 auto}
     .badge{display:flex;gap:10px;align-items:center;background:var(--card);padding:10px 12px;border-radius:12px;border:1px solid #233042}
     .badge svg{flex:0 0 18px}
-    .card{background:var(--card);border:1px solid #233042;border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-    .section h2{font-size:clamp(22px,3vw,30px);margin:0 0 12px}
+    .icon-box{width:64px;height:64px;background:rgba(102,217,232,.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:all .3s}
+    .card:hover .icon-box{background:rgba(102,217,232,.2)}
+    .icon-box svg{width:32px;height:32px;color:var(--pri)}
+    .price-tag{font-size:13px;color:#6b7280;margin-top:20px;padding-top:20px;border-top:1px solid #1f2732}
+    .case-study{background:linear-gradient(180deg,#0f1318,#12161b);border-radius:var(--radius);overflow:hidden}
+    .case-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
+    .metric-value{font-size:28px;font-weight:800;color:var(--txt);margin-bottom:4px}
+    .metric-label{font-size:13px;color:var(--muted)}
+    .testimonial{background:linear-gradient(135deg,#1a1f26,#151a20);padding:24px;border-radius:16px;border:1px solid rgba(102,217,232,.2)}
+    .testimonial-avatar{width:48px;height:48px;background:rgba(102,217,232,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .testimonial-avatar svg{width:24px;height:24px;color:var(--pri)}
+    .video-placeholder{aspect-ratio:16/9;background:#0f1318;border-radius:16px;border:1px solid #1f2732;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px}
+    .video-placeholder svg{width:64px;height:64px;color:var(--pri)}
+    .floating-stat{position:absolute;bottom:-24px;right:-24px;background:linear-gradient(135deg,#0ea5e9,#7c4dff);padding:24px;border-radius:16px;box-shadow:0 12px 32px rgba(0,0,0,.3);z-index:10}
+    .floating-stat-value{font-size:32px;font-weight:800;margin-bottom:4px}
+    .floating-stat-label{font-size:13px;color:rgba(255,255,255,.9)}
+    .kicker{letter-spacing:.15em;text-transform:uppercase;color:#95a7ba;font-weight:600;font-size:12px;margin-bottom:16px}
+    .footer{border-top:1px solid #1f2732;color:#a8b6c6;padding:32px 0}
     pre{background:#0f1318;border:1px solid #222b36;border-radius:14px;padding:14px;overflow:auto}
     code{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;color:#bfe4ff}
-    .pill{display:inline-block;background:#0f1620;border:1px solid #243143;padding:6px 10px;border-radius:999px;color:var(--muted);font-size:12px}
-    .footer{border-top:1px solid #1f2732;color:#a8b6c6}
-    .kicker{letter-spacing:.15em;text-transform:uppercase;color:#95a7ba;font-weight:600;font-size:12px}
-    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-    .hero-visual{aspect-ratio:16/10;border-radius:18px;padding:14px;background:radial-gradient(1200px 400px at 10% 0%, rgba(102,217,232,.25), transparent 40%),linear-gradient(180deg,#0c1117,#0f141a);border:1px solid #26313f;box-shadow:var(--shadow)}
-    .steps{counter-reset:step}
-    .step{position:relative;padding-left:44px}
-    .step:before{counter-increment:step;content:counter(step);position:absolute;left:0;top:2px;width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#0ea5e9,#7c4dff);display:grid;place-items:center;font-weight:700}
-    .price{display:flex;gap:18px;flex-wrap:wrap}
-    .price .card{flex:1;min-width:260px}
-    .price h3{margin:6px 0}
-    .tag{font-weight:700}
-    .muted{color:var(--muted)}
-    .lang-toggle{cursor:pointer}
+    
+    /* === USP Pie === */
+    .usp-wrap{display:grid;grid-template-columns:1fr;gap:18px;margin-top:10px}
+    @media (min-width:980px){.usp-wrap{grid-template-columns:1fr 1fr}}
+    .usp-card{background:var(--card);border:1px solid #233042;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    .usp-pie{width:min(92vw,440px);height:min(92vw,440px);margin:auto;display:block}
+    .usp-pie path{cursor:pointer;transition:transform .18s ease,opacity .18s ease}
+    .usp-pie path[aria-current="true"]{filter:drop-shadow(0 0 10px rgba(255,255,255,.25));transform:scale(1.02)}
+    .usp-detail h3{margin:.2rem 0 .4rem;font-size:20px}
+    .usp-muted{color:var(--muted)}
+    .usp-list{list-style:none;margin:.6rem 0 0;padding:0}
+    .usp-list li{display:flex;gap:.6rem;align-items:flex-start;padding:.28rem 0}
+    .usp-dot{width:.5rem;height:.5rem;margin-top:.55rem;border-radius:999px;background:#6b7280}
+    .usp-switch{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .usp-switch button{background:#0f1620;border:1px solid #243143;color:var(--txt);padding:8px 10px;border-radius:10px;font-size:14px;cursor:pointer}
+    .usp-switch button[aria-pressed="true"]{outline:2px solid #0ea5e9}
+
     @media (max-width: 980px){
-      .hero{grid-template-columns:1fr}
-      .badgebar{grid-template-columns:repeat(3,1fr)}
       .grid-3{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
-      #about .card{grid-template-columns:1fr;text-align:center}
-      #about img{margin:0 auto}
-      /* Mac Mini Sektion responsive */
-      section .card[style*="grid-template-columns:1fr 1.2fr"]{
-        grid-template-columns:1fr !important;
-        text-align:center;
-      }
+      .case-metrics{grid-template-columns:1fr}
+      .hero{padding:60px 0 40px}
     }
-  
-/* === USP Pie === */
-.usp-wrap{display:grid;grid-template-columns:1fr;gap:18px;margin-top:10px}
-@media (min-width:980px){.usp-wrap{grid-template-columns:1fr 1fr}}
-.usp-card{background:var(--card);border:1px solid #233042;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
-.usp-pie{width:min(92vw,440px);height:min(92vw,440px);margin:auto;display:block}
-.usp-pie path{cursor:pointer;transition:transform .18s ease,opacity .18s ease}
-.usp-pie path[aria-current="true"]{filter:drop-shadow(0 0 10px rgba(255,255,255,.25));transform:scale(1.02)}
-.usp-detail h3{margin:.2rem 0 .4rem;font-size:20px}
-.usp-muted{color:var(--muted)}
-.usp-list{list-style:none;margin:.6rem 0 0;padding:0}
-.usp-list li{display:flex;gap:.6rem;align-items:flex-start;padding:.28rem 0}
-.usp-dot{width:.5rem;height:.5rem;margin-top:.55rem;border-radius:999px;background:#6b7280}
-.usp-switch{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.usp-switch button{background:#0f1620;border:1px solid #243143;color:var(--txt);padding:8px 10px;border-radius:10px;font-size:14px;cursor:pointer}
-.usp-switch button[aria-pressed="true"]{outline:2px solid #0ea5e9}
-
-</style>
+  </style>
 </head>
 <body>
   <header>
     <div class="nav">
-      <!-- <div class="brand"><div class="logo" aria-hidden="true"></div><span>strategix‑AI</span></div> -->
-      
       <div class="brand">
         <img class="logo" src="icons/LOGO-strategixAI-tech.png"
             alt="strategix-AI Logo" width="400" height="400" loading="eager" />
@@ -94,590 +104,655 @@
       </div>
       
       <nav class="menu">
-        <a href="#solutions" class="t" data-de="Lösungen" data-en="Solutions">Lösungen</a>
-        <a href="#benefits" class="t" data-de="Vorteile" data-en="Benefits">Vorteile</a>
-        <a href="#pricing" class="t" data-de="Preise" data-en="Pricing">Preise</a>
-        <a href="#about" class="t" data-de="Über uns" data-en="About">Über uns</a>
-        <a href="#contact" class="t" data-de="Kontakt" data-en="Contact">Kontakt</a>
-        <button id="lang" class="btn ghost lang-toggle" aria-label="Language">DE</button>
+        <a href="#branches">Branchen</a>
+        <a href="#benefits">Vorteile</a>
+        <a href="#case">Case Study</a>
+        <a href="#pricing">Preise</a>
+        <a href="#contact">Kontakt</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
+    <!-- HERO Section - Completely Redesigned -->
     <section class="hero">
-      <div>
-        <div class="kicker t" data-de="KI‑Chatbots für KMU" data-en="AI chatbots for SMBs">KI‑Chatbots für KMU</div>
-        <h1 class="title t" data-de="KI nutzen, ohne dass Ihre Daten das Haus verlassen" data-en="Use AI without your data leaving the building">KI nutzen, ohne dass Ihre Daten das Haus verlassen</h1>
-        <p class="lead t" data-de="strategix‑AI liefert Chatbots und Automatisierungen, die auf Ihrer eigenen Hardware laufen (z. B. Mac Mini). Modular, sicher und schnell integrierbar – per Signal oder Website." data-en="strategix‑AI delivers chatbots and automations running on your own hardware (e.g., Mac Mini). Modular, secure and fast to integrate – via Signal or Website.">strategix‑AI liefert Chatbots und Automatisierungen, die auf Ihrer eigenen Hardware laufen (z. B. Mac Mini). Modular, sicher und schnell integrierbar – per Signal oder Website.</p>
-        <div class="cta-row">
-
-          <a class="btn primary" href="#contact"><span class="t" data-de="Kostenloses Erstgespräch buchen" data-en="Book free consultation">Kostenloses Erstgespräch buchen</span></a>
-        </div>
-        <div class="badgebar" id="benefits">
-          <div class="badge"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z"/></svg><span class="t" data-de="DSGVO‑konform" data-en="GDPR‑compliant">DSGVO‑konform</span></div>
-          <div class="badge"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18"/><path d="M8 21h8"/><path d="M7 3h10"/></svg><span class="t" data-de="On‑Prem / Lokal" data-en="On‑prem / Local">On‑Prem / Lokal</span></div>
-          <div class="badge"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l4 7-4 2-4-2 4-7z"/><path d="M12 22l4-7-4-2-4 2 4 7z"/></svg><span class="t" data-de="Modular erweiterbar" data-en="Modular & Extensible">Modular erweiterbar</span></div>
-          <div class="badge"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="7" height="14" rx="2"/><rect x="14" y="7" width="7" height="8" rx="2"/></svg><span class="t" data-de="Standardhardware (Mac Mini)" data-en="Standard hardware (Mac Mini)">Standardhardware (Mac Mini)</span></div>
-          <div class="badge"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10a3 3 0 01-3 3H8l-5 4V5a3 3 0 013-3h12a3 3 0 013 3v5z"/></svg><span class="t" data-de="Signal‑Integration" data-en="Signal integration">Signal‑Integration</span></div>
-          <div class="badge"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2l5 5-5 5"/><path d="M2 7h20"/></svg><span class="t" data-de="Kein Vendor‑Lock‑in" data-en="No vendor lock‑in">Kein Vendor‑Lock‑in</span></div>
-        </div>
+      <div class="hero-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <span>Von Ex-SAP Senior Consultant entwickelt</span>
       </div>
       
-    </section>
-
-
-    <!-- Prozess Section -->
-    <section class="process" style="padding:4rem 0;background-color:#12161b">
-      <div class="container">
-        <h2 style="text-align:center;margin-bottom:3rem;font-size:2rem"><span class="t" data-de="So einfach geht's" data-en="How it works">So einfach geht's</span></h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;max-width:1000px;margin:0 auto">
-          <div style="text-align:center;padding:2rem">
-            <div style="font-size:3rem;margin-bottom:1rem">📄</div>
-            <h3 style="margin-bottom:1rem;color:var(--txt)"><span class="t" data-de="1. Wissen analysieren" data-en="1. Analyze knowledge">1. Wissen analysieren</span></h3>
-            <p style="color:var(--muted);line-height:1.6"><span class="t" data-de="Wir strukturieren Ihre Dokumente, Vorlagen und Fachwissen" data-en="We structure your documents, templates and expertise">Wir strukturieren Ihre Dokumente, Vorlagen und Fachwissen</span></p>
+      <h1 class="title">
+        On-Premise KI für<br/>
+        <span class="title-gradient">regulierte Branchen</span>
+      </h1>
+      
+      <p class="lead">
+        DSGVO-konform · Keine Cloud · Kein Vendor-Lock-in
+      </p>
+      
+      <p class="pain-point">
+        Für Steuerberater, Rechtsanwälte, Verwaltung & Hospitality – 
+        <span class="highlight">dort, wo Datensouveränität nicht verhandelbar ist</span>
+      </p>
+      
+      <div class="cta-row">
+        <a class="btn primary" href="#contact">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10a3 3 0 01-3 3H8l-5 4V5a3 3 0 013-3h12a3 3 0 013 3v5z"/>
+          </svg>
+          Live-Demo vereinbaren
+        </a>
+        <a class="btn ghost" href="#branches">
+          Für meine Branche
+        </a>
+      </div>
+      
+      <div class="social-proof">
+        <p class="social-proof-label">Produktiv im Einsatz seit 8 Monaten:</p>
+        <div class="social-proof-items">
+          <div class="social-proof-item">
+            <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            <span>23 aktive Nutzer</span>
           </div>
-          <div style="text-align:center;padding:2rem">
-            <div style="font-size:3rem;margin-bottom:1rem">🖥️</div>
-            <h3 style="margin-bottom:1rem;color:var(--txt)"><span class="t" data-de="2. KI installieren" data-en="2. Install AI">2. KI installieren</span></h3>
-            <p style="color:var(--muted);line-height:1.6"><span class="t" data-de="Kompakte Hardware bei Ihnen vor Ort – einfach einstecken" data-en="Compact hardware on-site – just plug in">Kompakte Hardware bei Ihnen vor Ort – einfach einstecken</span></p>
+          <div class="social-proof-item">
+            <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            <span>&lt;60s Antwortzeit</span>
           </div>
-          <div style="text-align:center;padding:2rem">
-            <div style="font-size:3rem;margin-bottom:1rem">💬</div>
-            <h3 style="margin-bottom:1rem;color:var(--txt)"><span class="t" data-de="3. Sicher chatten" data-en="3. Chat securely">3. Sicher chatten</span></h3>
-            <p style="color:var(--muted);line-height:1.6"><span class="t" data-de="Bedienung über Signal – vertraut und ohne neue Software (auf Wunsch auch WhatsApp)" data-en="Use via Signal – familiar and no new software (WhatsApp available on request)">Bedienung über Signal – vertraut und ohne neue Software (auf Wunsch auch WhatsApp)</span></p>
+          <div class="social-proof-item">
+            <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            <span>100% DSGVO-konform</span>
           </div>
         </div>
       </div>
     </section>
 
-
-    <!-- Vorteile Section -->
-    <section class="benefits" style="padding:4rem 0">
-      <div class="container">
-        <h2 style="text-align:center;margin-bottom:3rem;font-size:2rem"><span class="t" data-de="Warum KMU auf strategix AI setzen" data-en="Why SMBs choose strategix AI">Warum KMU auf strategix AI setzen</span></h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem">
-          <div class="card">
-            <div style="font-size:2.5rem;margin-bottom:1rem">🔒</div>
-            <h3 style="margin-bottom:1rem;color:var(--txt)"><span class="t" data-de="Datentresor-Effekt" data-en="Data vault effect">Datentresor-Effekt</span></h3>
-            <p style="color:var(--muted);line-height:1.6"><span class="t" data-de="Ihr KI-Bot lernt aus Ihren PDFs und Dokumenten – aber dieses Wissen bleibt physikalisch in Ihrem Unternehmen. Perfekt für Ärzte, Anwälte und diskrete Dienstleister." data-en="Your AI bot learns from your PDFs and documents – but this knowledge stays physically in your company. Perfect for doctors, lawyers and discreet service providers.">Ihr KI-Bot lernt aus Ihren PDFs und Dokumenten – aber dieses Wissen bleibt physikalisch in Ihrem Unternehmen. Perfekt für Ärzte, Anwälte und diskrete Dienstleister.</span></p>
-          </div>
-          <div class="card">
-            <div style="font-size:2.5rem;margin-bottom:1rem">💬</div>
-            <h3 style="margin-bottom:1rem;color:var(--txt)"><span class="t" data-de="Team-Mitglied in der Hosentasche" data-en="Team member in your pocket">Team-Mitglied in der Hosentasche</span></h3>
-            <p style="color:var(--muted);line-height:1.6"><span class="t" data-de="Auf der Baustelle oder im Kundentermin: Schreiben Sie Ihrem Bot via Signal. Er prüft Lagerbestände, fasst E-Mails zusammen oder sucht Infos aus Ihren Akten. Standard: Signal (datenschutzkonform) – auf Wunsch auch WhatsApp." data-en="On construction site or in customer meetings: Message your bot via Signal. It checks inventory, summarizes emails or searches your files. Standard: Signal (privacy-compliant) – WhatsApp available on request.">Auf der Baustelle oder im Kundentermin: Schreiben Sie Ihrem Bot via Signal. Er prüft Lagerbestände, fasst E-Mails zusammen oder sucht Infos aus Ihren Akten. Standard: Signal (datenschutzkonform) – auf Wunsch auch WhatsApp.</span></p>
-          </div>
-          <div class="card">
-            <div style="font-size:2.5rem;margin-bottom:1rem">💸</div>
-            <h3 style="margin-bottom:1rem;color:var(--txt)"><span class="t" data-de="Einmal kaufen, dauerhaft nutzen" data-en="Buy once, use forever">Einmal kaufen, dauerhaft nutzen</span></h3>
-            <p style="color:var(--muted);line-height:1.6"><span class="t" data-de="Schluss mit unkalkulierbaren API-Kosten. Da die KI auf Ihrer Hardware läuft, zahlen Sie keine „Miete" für jeden Gedanken, den die KI formuliert." data-en="No more unpredictable API costs. Since the AI runs on your hardware, you don't pay 'rent' for every thought the AI formulates.">Schluss mit unkalkulierbaren API-Kosten. Da die KI auf Ihrer Hardware läuft, zahlen Sie keine „Miete" für jeden Gedanken, den die KI formuliert.</span></p>
-          </div>
-          <div class="card">
-            <div style="font-size:2.5rem;margin-bottom:1rem">🗝️</div>
-            <h3 style="margin-bottom:1rem;color:var(--txt)"><span class="t" data-de="Unabhängigkeit" data-en="Independence">Unabhängigkeit</span></h3>
-            <p style="color:var(--muted);line-height:1.6"><span class="t" data-de="Offene Standards, keine Vendor-Lock-ins. Sollten wir wegfallen, läuft Ihre Hardware einfach weiter. Sie haben die volle Kontrolle." data-en="Open standards, no vendor lock-ins. If we disappear, your hardware simply continues running. You have full control.">Offene Standards, keine Vendor-Lock-ins. Sollten wir wegfallen, läuft Ihre Hardware einfach weiter. Sie haben die volle Kontrolle.</span></p>
+    <!-- USP Section - Unchanged -->
+    <section id="solutions" style="padding:4rem 0">
+      <h2 style="text-align:center;font-size:clamp(26px,3.5vw,36px);margin-bottom:1.5rem">
+        USPs – Lokal · DSGVO · Kein Vendor-Lock-in
+      </h2>
+      <div class="usp-wrap">
+        <div class="usp-card">
+          <svg class="usp-pie" viewBox="0 0 360 360" aria-hidden="true">
+            <g id="usp-segments"></g>
+          </svg>
+        </div>
+        <div class="usp-card">
+          <div class="usp-detail">
+            <h3 id="usp-title" style="font-size:clamp(18px,2.2vw,22px)"></h3>
+            <p id="usp-blurb" class="usp-muted" style="font-size:15px"></p>
+            <ul id="usp-bullets" class="usp-list"></ul>
+            <div id="usp-switch" class="usp-switch"></div>
           </div>
         </div>
       </div>
     </section>
 
-
-    <!-- Mac Mini Hardware-Highlight -->
-    <section class="section" style="margin-top:20px">
-      <div class="card" style="display:grid;grid-template-columns:1fr 1.2fr;gap:32px;align-items:center;max-width:900px;margin:0 auto;padding:32px">
-        <img src="./Macmini-M4-16GB.jpg" 
-             alt="Mac Mini M4 16GB" 
-             style="width:100%;border-radius:12px;box-shadow:var(--shadow)"
-             loading="eager">
-        <div>
-          <div class="kicker" style="color:var(--pri)">🖥️ HARDWARE</div>
-          <h2 style="font-size:28px;margin:8px 0 12px">Ihre KI passt in eine Handfläche</h2>
-          <p class="muted" style="font-size:16px">
-            <span class="t" 
-                  data-de="Kein Serverraum, keine Cloud-Abos. Ein Mac Mini (ab 16 GB RAM) reicht für professionelle KI-Chatbots. Volle Kontrolle im eigenen Büro."
-                  data-en="No server room, no cloud subscriptions. A Mac Mini (16 GB+ RAM) is enough for professional AI chatbots. Full control in your office.">
-              Kein Serverraum, keine Cloud-Abos. Ein Mac Mini (ab 16 GB RAM) reicht für professionelle KI-Chatbots. Volle Kontrolle im eigenen Büro.
-            </span>
-          </p>
-          <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
-            <div class="pill">💰 Keine monatlichen Cloud-Kosten</div>
-            <div class="pill">🔌 Plug & Play</div>
-            <div class="pill">📊 Niedrige Latenz</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Video Demo - prominent platziert -->
-    <section class="section" style="margin-top:26px">
-      <div class="card" style="padding:28px;margin-bottom:24px;max-width:900px;margin-left:auto;margin-right:auto">
-        <div class="kicker" style="color:var(--pri);text-align:center">🎬 LIVE DEMO</div>
-        <h2 style="text-align:center;font-size:28px;margin:8px 0 20px">
-          <span class="t" data-de="So funktioniert's in der Praxis" data-en="See it in action">So funktioniert's in der Praxis</span>
+    <!-- NEW: Branchen Section -->
+    <section id="branches" class="section">
+      <div class="section-header">
+        <h2 class="section-title">
+          Spezialisiert auf<br/>
+          <span class="title-gradient">regulierte Branchen</span>
         </h2>
-        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#0f1318">
-          <video 
-            controls 
-            preload="metadata"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"
-            poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Crect fill='%230f1318' width='1920' height='1080'/%3E%3Ctext x='50%25' y='50%25' font-size='48' fill='%2366d9e8' text-anchor='middle' dominant-baseline='middle'%3E▶ Borgo-Bot Demo%3C/text%3E%3C/svg%3E">
-            <source src="https://github.com/SvenFriess/strategix-ai/raw/main/40_borgobatone/Borgo-Bot-Video-V2.mp4" type="video/mp4">
-            <p class="muted t" data-de="Ihr Browser unterstützt HTML5 Video nicht. Laden Sie das Video hier herunter: " data-en="Your browser doesn't support HTML5 video. Download the video here: ">Ihr Browser unterstützt HTML5 Video nicht. <a href="https://github.com/SvenFriess/strategix-ai/raw/main/40_borgobatone/Borgo-Bot-Video-V2.mp4" style="color:var(--pri)">Video herunterladen</a></p>
-          </video>
-        </div>
-        <p style="margin:16px 0 0;text-align:center;font-size:16px">
-          <span class="t" data-de="Borgo-Batone-Bot: Signal-Integration für Gäste-Support – 100% lokal, DSGVO-konform" data-en="Borgo-Batone Bot: Signal integration for guest support – 100% local, GDPR-compliant">Borgo-Batone-Bot: Signal-Integration für Gäste-Support – 100% lokal, DSGVO-konform</span>
+        <p class="section-subtitle">
+          Dort, wo Cloud-KI rechtliche Risiken birgt und Datensouveränität entscheidend ist
         </p>
       </div>
-    </section>
 
-
-<section class="section" style="margin-top:10px">
-  <div class="hero-visual card" style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;padding:32px;max-width:800px;margin:0 auto">
-    <div style="text-align:center">
-      <div style="font-size:56px;margin-bottom:12px">🔒</div>
-      <div style="font-size:18px;font-weight:600;margin-bottom:6px">100% Lokal</div>
-      <div class="muted">Keine Cloud-Abhängigkeit</div>
-    </div>
-    <div style="text-align:center">
-      <div style="font-size:56px;margin-bottom:12px">⚡</div>
-      <div style="font-size:18px;font-weight:600;margin-bottom:6px">Signal & Web</div>
-      <div class="muted">Sofort einsatzbereit</div>
-    </div>
-    <div style="text-align:center">
-      <div style="font-size:56px;margin-bottom:12px">🛡️</div>
-      <div style="font-size:18px;font-weight:600;margin-bottom:6px">DSGVO-konform</div>
-      <div class="muted">Datenschutz garantiert</div>
-    </div>
-    <div style="text-align:center">
-      <div style="font-size:56px;margin-bottom:12px">🧩</div>
-      <div style="font-size:18px;font-weight:600;margin-bottom:6px">Modular</div>
-      <div class="muted">Kein Vendor-Lock-in</div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="usps" style="margin-top:10px">
-  <h2>USPs – Lokal · DSGVO · Kein Vendor-Lock-in</h2>
-  <div class="usp-wrap">
-    <!-- Pie -->
-    <div class="usp-card">
-      <svg class="usp-pie" viewBox="0 0 360 360" role="img" aria-label="USP-Tortendiagramm">
-        <defs><filter id="usp-hover"><feDropShadow dx="0" dy="0" stdDeviation="6" flood-opacity=".45"/></filter></defs>
-        <circle cx="180" cy="180" r="70" fill="white" opacity=".06"></circle>
-        <text x="180" y="180" text-anchor="middle" dominant-baseline="middle" fill="#cfd3e3"
-              style="font-size:13px;font-weight:600">Lokal • Sicher • Souverän</text>
-        <g id="usp-segments"></g>
-      </svg>
-    </div>
-
-    <!-- Details -->
-    <aside class="usp-card usp-detail" aria-live="polite">
-      <h3 id="usp-title">🧠 Lokal & unabhängig</h3>
-      <p class="usp-muted" id="usp-blurb">100 % On-Premise. Volle Kontrolle über Daten & Infrastruktur – keine Cloud-Abhängigkeit.</p>
-      <ul class="usp-list" id="usp-bullets"></ul>
-      <div class="usp-switch" id="usp-switch"></div>
-    </aside>
-  </div>
-</section>
-
-<!-- Branchenlösungen -->
-<section class="section" style="margin-top:26px">
-  <div class="kicker" style="text-align:center;color:var(--pri)">🎯 BRANCHEN</div>
-  <h2 style="text-align:center;font-size:clamp(24px,3.5vw,32px);margin:8px 0 32px">
-    <span class="t" data-de="Bewährte Lösungen für Ihre Branche" data-en="Proven solutions for your industry">Bewährte Lösungen für Ihre Branche</span>
-  </h2>
-  
-  <div class="grid-3">
-    <!-- Tourismus & Gastronomie -->
-    <div class="card">
-      <div style="font-size:48px;margin-bottom:12px">🏖️</div>
-      <h3 class="t" data-de="Tourismus & Gastronomie" data-en="Tourism & Hospitality">Tourismus & Gastronomie</h3>
-      <p class="muted" style="font-size:15px">
-        <span class="t" 
-              data-de="Gäste-Support via Signal: Check-in, Hausregeln, lokale Tipps. 24/7 verfügbar, mehrsprachig."
-              data-en="Guest support via Signal: check-in, house rules, local tips. Available 24/7, multilingual.">
-          Gäste-Support via Signal: Check-in, Hausregeln, lokale Tipps. 24/7 verfügbar, mehrsprachig.
-        </span>
-      </p>
-      <div style="margin-top:12px">
-        <div class="pill">Borgo-Batone (Italien)</div>
-      </div>
-    </div>
-
-    <!-- Bildung & Öffentliche Verwaltung -->
-    <div class="card">
-      <div style="font-size:48px;margin-bottom:12px">📚</div>
-      <h3 class="t" data-de="Bildung & Verwaltung" data-en="Education & Public Sector">Bildung & Verwaltung</h3>
-      <p class="muted" style="font-size:15px">
-        <span class="t" 
-              data-de="Interne Wissensdatenbank für Mitarbeiter, automatisierte FAQ-Beantwortung, Schulungsmaterialien."
-              data-en="Internal knowledge base for staff, automated FAQ responses, training materials.">
-          Interne Wissensdatenbank für Mitarbeiter, automatisierte FAQ-Beantwortung, Schulungsmaterialien.
-        </span>
-      </p>
-      <div style="margin-top:12px">
-        <div class="pill">KVHS Vechta</div>
-      </div>
-    </div>
-
-    <!-- Steuerberatung & Finanzwesen -->
-    <div class="card">
-      <div style="font-size:48px;margin-bottom:12px">💼</div>
-      <h3 class="t" data-de="Steuerberatung & Finanzwesen" data-en="Tax Advisory & Finance">Steuerberatung & Finanzwesen</h3>
-      <p class="muted" style="font-size:15px">
-        <span class="t" 
-              data-de="Mandanten-FAQ, interne Prozessdokumentation, gesetzeskonforme Datenverarbeitung (StBerG §62)."
-              data-en="Client FAQ, internal process documentation, legally compliant data processing (StBerG §62).">
-          Mandanten-FAQ, interne Prozessdokumentation, gesetzeskonforme Datenverarbeitung (StBerG §62).
-        </span>
-      </p>
-      <div style="margin-top:12px">
-        <div class="pill">SteuerBot</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-    <section id="solutions" class="section" style="margin-top:10px">
-      <h2 class="t" data-de="Lösungen" data-en="Solutions">Lösungen</h2>
       <div class="grid-3">
-        <div class="card"><h3 class="t" data-de="Signal‑Chatbot" data-en="Signal chatbot">Signal‑Chatbot</h3><p class="muted t" data-de="Interner Helfer, Team‑Support oder Gäste‑Service – datenschutzfreundlich via Signal." data-en="Internal helper, team support or guest service – privacy‑friendly via Signal.">Interner Helfer, Team‑Support oder Gäste‑Service – datenschutzfreundlich via Signal.</p></div>
-        <div class="card"><h3 class="t" data-de="Website‑Chatbot" data-en="Website chatbot">Website‑Chatbot</h3><p class="muted t" data-de="Beantwortet Fragen zu Ihren Leistungen, Öffnungszeiten, Preisen – 24/7 auf Ihrer Seite." data-en="Answers questions about your services, hours and pricing – 24/7 on your site.">Beantwortet Fragen zu Ihren Leistungen, Öffnungszeiten, Preisen – 24/7 auf Ihrer Seite.</p></div>
-        <div class="card"><h3 class="t" data-de="Wissens‑Bot (Dokumente)" data-en="Knowledge bot (documents)">Wissens‑Bot (Dokumente)</h3><p class="muted t" data-de="Liest bereitgestellte PDF/HTML/Texte – kein Freitext‑Internet, volle Kontrolle über Inhalte." data-en="Reads your PDFs/HTML/texts – no open‑internet context, full control of answers.">Liest bereitgestellte PDF/HTML/Texte – kein Freitext‑Internet, volle Kontrolle über Inhalte.</p></div>
-      </div>
-      <div class="grid-2" style="margin-top:18px">
-        <div class="card"><h3 class="t" data-de="Automatisierung" data-en="Automation">Automatisierung</h3><p class="muted t" data-de="Ticketanlage, Protokolle, FAQ‑Updates – Workflows, die Zeit sparen." data-en="Ticket creation, minutes, FAQ updates – workflows that save time.">Ticketanlage, Protokolle, FAQ‑Updates – Workflows, die Zeit sparen.</p></div>
-        <div class="card"><h3 class="t" data-de="Beratung & Betrieb" data-en="Advisory & Operations">Beratung & Betrieb</h3><p class="muted t" data-de="Von der Pilotierung bis zum stabilen Betrieb – inkl. Monitoring & Logging." data-en="From pilot to stable operations – incl. monitoring & logging.">Von der Pilotierung bis zum stabilen Betrieb – inkl. Monitoring & Logging.</p></div>
+        <!-- Steuerberater -->
+        <div class="card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <line x1="3" y1="9" x2="21" y2="9"/>
+              <line x1="9" y1="21" x2="9" y2="9"/>
+            </svg>
+          </div>
+          <h3 style="font-size:22px;margin:0 0 12px">Steuerberatung</h3>
+          <p style="color:var(--muted);margin:0 0 20px">
+            Berufsgeheimnis § 203 StGB macht Cloud-KI zur Haftungsfalle. 
+            DATEV-Ergänzung statt Ersatz.
+          </p>
+          <ul style="list-style:none;padding:0;margin:0 0 20px">
+            <li style="display:flex;gap:8px;margin-bottom:10px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Mandanten-FAQ automatisiert</span>
+            </li>
+            <li style="display:flex;gap:8px;margin-bottom:10px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Fristen-Checklisten verwalten</span>
+            </li>
+            <li style="display:flex;gap:8px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Internes Wissensmanagement</span>
+            </li>
+          </ul>
+          <div class="price-tag">Ab €2.500 Ersteinrichtung</div>
+        </div>
+
+        <!-- Rechtsanwälte -->
+        <div class="card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2l4 7h7l-5.5 5 2 7.5L12 17l-7.5 4.5 2-7.5L1 9h7l4-7z"/>
+            </svg>
+          </div>
+          <h3 style="font-size:22px;margin:0 0 12px">Rechtsanwälte</h3>
+          <p style="color:var(--muted);margin:0 0 20px">
+            Mandantengeheimnis erfordert lokale Lösungen. 
+            Präzedenzfälle & Fristen intelligent verwalten.
+          </p>
+          <ul style="list-style:none;padding:0;margin:0 0 20px">
+            <li style="display:flex;gap:8px;margin-bottom:10px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Präzedenzfall-Datenbank</span>
+            </li>
+            <li style="display:flex;gap:8px;margin-bottom:10px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Fristenkontrolle automatisiert</span>
+            </li>
+            <li style="display:flex;gap:8px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Mandanten-Self-Service</span>
+            </li>
+          </ul>
+          <div class="price-tag">Ab €2.500 Ersteinrichtung</div>
+        </div>
+
+        <!-- Hospitality -->
+        <div class="card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <h3 style="font-size:22px;margin:0 0 12px">Hospitality</h3>
+          <p style="color:var(--muted);margin:0 0 20px">
+            50x pro Saison dieselbe Frage? Gäste-Support automatisieren, 
+            Team entlasten.
+          </p>
+          <ul style="list-style:none;padding:0;margin:0 0 20px">
+            <li style="display:flex;gap:8px;margin-bottom:10px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Check-in/out-Anweisungen</span>
+            </li>
+            <li style="display:flex;gap:8px;margin-bottom:10px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Lokale Empfehlungen</span>
+            </li>
+            <li style="display:flex;gap:8px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>24/7 Gäste-Support</span>
+            </li>
+          </ul>
+          <div class="price-tag">Ab €2.500 Ersteinrichtung</div>
+        </div>
       </div>
     </section>
 
-    <section id="how" class="section" style="margin-top:26px">
-      <h2 class="t" data-de="So arbeiten wir" data-en="How it works">So arbeiten wir</h2>
-      <div class="grid-2 steps">
-        <div class="card step"><h3 class="t" data-de="Inhalte erfassen" data-en="Capture content">Inhalte erfassen</h3><p class="muted t" data-de="Wir sammeln Ihre vorhandenen Dokumente, Webseiten, PDFs und strukturieren sie für den Bot." data-en="We collect your documents, websites, PDFs and structure them for the bot.">Wir sammeln Ihre vorhandenen Dokumente, Webseiten, PDFs und strukturieren sie für den Bot.</p></div>
-        <div class="card step"><h3 class="t" data-de="Integration wählen" data-en="Choose integration">Integration wählen</h3><p class="muted t" data-de="Signal‑Bot für intern/Teams oder Website‑Widget für Kund:innen – oder beides." data-en="Signal bot for teams/internal or website widget for customers – or both.">Signal‑Bot für intern/Teams oder Website‑Widget für Kund:innen – oder beides.</p></div>
-        <div class="card step"><h3 class="t" data-de="On‑Prem LLM" data-en="On‑prem LLM">On‑Prem LLM</h3><p class="muted t" data-de="Lokale Modelle via Ollama (z. B. Mistral, Phi, Qwen). Keine Cloud, volle Datenhoheit." data-en="Local models via Ollama (e.g., Mistral, Phi, Qwen). No cloud, full data control.">Lokale Modelle via Ollama (z. B. Mistral, Phi, Qwen). Keine Cloud, volle Datenhoheit.</p></div>
-        <div class="card step"><h3 class="t" data-de="Betrieb & Support" data-en="Operate & support">Betrieb & Support</h3><p class="muted t" data-de="Monitoring, Logging, Updates – wir halten den Bot sicher und aktuell." data-en="Monitoring, logging, updates – keeping your bot secure and current.">Monitoring, Logging, Updates – wir halten den Bot sicher und aktuell.</p></div>
+    <!-- NEW: Borgo Batone Case Study -->
+    <section id="case" class="section" style="background:linear-gradient(180deg,var(--bg),var(--bg2))">
+      <div class="section-header">
+        <div class="hero-badge" style="display:inline-flex;background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.3);color:var(--ok)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <span>Produktiv seit 8 Monaten</span>
+        </div>
+        <h2 class="section-title">Borgo Batone Case Study</h2>
+        <p class="section-subtitle">
+          Wie eine Ferienkooperative mit 100 Mitgliedern den Gäste-Support automatisiert
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <!-- Links: Video -->
+        <div style="position:relative">
+          <div class="video-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polygon points="10 8 16 12 10 16 10 8"/>
+            </svg>
+            <p style="color:var(--muted);margin:0">Demo-Video</p>
+          </div>
+          <div class="floating-stat">
+            <div class="floating-stat-value">26%</div>
+            <div class="floating-stat-label">Aktivierungsrate</div>
+          </div>
+        </div>
+
+        <!-- Rechts: Details -->
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="card" style="background:rgba(21,26,32,.5)">
+            <h4 style="color:var(--pri);margin:0 0 12px;font-size:18px">Das Problem</h4>
+            <p style="color:var(--txt);margin:0">
+              200-250 Gäste pro Jahr stellen dieselben Fragen: 
+              "Wie funktioniert der Pizzaofen?", "Wo ist der nächste Supermarkt?", 
+              "Wann ist Check-out?" – <strong>50x pro Saison</strong>
+            </p>
+          </div>
+
+          <div class="card" style="background:rgba(21,26,32,.5)">
+            <h4 style="color:var(--pri);margin:0 0 12px;font-size:18px">Die Lösung</h4>
+            <p style="color:var(--txt);margin:0">
+              Borgo-Bot auf Mac Mini lokal gehostet. Signal-Integration für 
+              sofortigen Zugang. Kein Cloud-Abo, volle Datenkontrolle.
+            </p>
+          </div>
+
+          <div class="card" style="background:rgba(21,26,32,.5)">
+            <h4 style="color:var(--pri);margin:0 0 16px;font-size:18px">Die Ergebnisse</h4>
+            <div class="case-metrics">
+              <div>
+                <div class="metric-value">23</div>
+                <div class="metric-label">Aktive Nutzer</div>
+              </div>
+              <div>
+                <div class="metric-value">&lt;60s</div>
+                <div class="metric-label">Antwortzeit</div>
+              </div>
+              <div>
+                <div class="metric-value">100%</div>
+                <div class="metric-label">DSGVO</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial">
+            <div style="display:flex;gap:16px">
+              <div class="testimonial-avatar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </div>
+              <div>
+                <p style="color:var(--txt);font-style:italic;margin:0 0 12px">
+                  "Als IT-Administrator war ich skeptisch. Nach dem Test: überzeugt. 
+                  Volle Kontrolle, keine Cloud-Abhängigkeit."
+                </p>
+                <p style="margin:0">
+                  <strong style="color:var(--txt)">Prof. Andreas Ingerl</strong><br/>
+                  <span style="font-size:13px;color:var(--muted)">HTW Berlin, Communication Design</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-
-    <section id="pricing" class="section" style="margin-top:26px">
-  <h2 class="t" data-de="Preise" data-en="Pricing">Preise</h2>
-  <div class="price">
-    <!-- 1) Fixed -->
-    <div class="card">
-      <div class="tag t" data-de="Fixed (ohne LLM)" data-en="Fixed (no LLM)">Fixed (ohne LLM)</div>
-      <h3 class="t" data-de="„Einschränker" – Regelbasiert" data-en="„Restrictor" – Rule-based">„Einschränker" – Regelbasiert</h3>
-      <p class="muted"><span class="t" data-de="Feste Dialogflüsse & FAQ-Regeln – ohne LLM, maximale Stabilität und volle Kontrolle." data-en="Fixed dialog flows & FAQ rules – no LLM, maximum stability and full control.">Feste Dialogflüsse & FAQ-Regeln – ohne LLM, maximale Stabilität und volle Kontrolle.</span></p>
-      <ul style="margin:10px 0 0 0; padding-left:18px">
-        <li><span class="t" data-de="✅ Klare Antworten, kein Halluzinieren" data-en="✅ Clear answers, no hallucinations">✅ Klare Antworten, kein Halluzinieren</span></li>
-        <li><span class="t" data-de="🧩 Website-Widget oder Signal-Integration" data-en="🧩 Website widget or Signal integration">🧩 Website-Widget oder Signal-Integration</span></li>
-        <li><span class="t" data-de="📄 Bis 50 FAQ-Einträge / Flows" data-en="📄 Up to 50 FAQ entries / flows">📄 Bis 50 FAQ-Einträge / Flows</span></li>
-        <li><span class="t" data-de="🔒 DSGVO-konform, On-Prem" data-en="🔒 GDPR-compliant, on-prem">🔒 DSGVO-konform, On-Prem</span></li>
-        <li>⏱️ Go-Live <span class="t" data-de="in" data-en="in">in</span> <b>2–3 <span class="t" data-de="Wochen" data-en="weeks">Wochen</span></b></li>
-      </ul>
-
-      <!-- Preisstaffeln -->
-      <div style="margin-top:12px;border-top:1px solid #223042;padding-top:10px">
-        <div style="display:flex;justify-content:space-between">
-          <span class="muted t" data-de="Standard" data-en="Standard">Standard</span>
-          <strong>1 490 €</strong>
-        </div>
-        <div style="display:flex;justify-content:space-between;margin-top:6px">
-          <span class="muted t" data-de="mit UI/Widget & Schulung" data-en="with UI/Widget & training">mit UI/Widget &amp; Schulung</span>
-          <strong>2 490 €</strong>
-        </div>
+    <!-- Hardware Section - Unchanged but improved -->
+    <section id="hardware" class="section">
+      <div class="section-header">
+        <div class="kicker">HARDWARE</div>
+        <h2 class="section-title">Ihre KI passt in eine Handfläche</h2>
+        <p class="section-subtitle">
+          No server room, no cloud subscriptions. A Mac Mini (16 GB+ RAM) is enough for professional AI chatbots. Full control in your office.
+        </p>
       </div>
 
-      <div class="mini-badges" style="margin-top:10px">
-        <span class="mini-badge">On-Prem</span>
-        <span class="mini-badge t" data-de="DSGVO" data-en="GDPR">DSGVO</span>
-        <span class="mini-badge">No Cloud</span>
-      </div>
-    </div>
-
-    <!-- 2) Assist -->
-    <div class="card">
-      <div class="tag">Assist</div>
-      <h3 class="t" data-de="„Assist" – LLM + Wissensbasis" data-en="„Assist" – LLM + Knowledge Base">„Assist" – LLM + Wissensbasis</h3>
-      <p class="muted">
-        <span class="t" data-de="Lokales LLM (On-Prem) kombiniert mit kuratierter Wissensbasis. Formuliert Antworten und generiert Content." data-en="Local LLM (on-prem) combined with curated knowledge base. Formulates answers and generates content.">Lokales LLM (On-Prem) kombiniert mit kuratierter Wissensbasis. Formuliert Antworten und generiert Content.</span>
-      </p>
-      <ul style="margin:10px 0 0 0; padding-left:18px">
-        <li><span class="t" data-de="🤖 On-Prem LLM (z. B. Mistral / Phi / Mixtral via Ollama)" data-en="🤖 On-prem LLM (e.g. Mistral / Phi / Mixtral via Ollama)">🤖 On-Prem LLM (z. B. Mistral / Phi / Mixtral via Ollama)</span></li>
-        <li><span class="t" data-de="📚 Wissensbasis aus Dokumenten/Webseiten (RAG)" data-en="📚 Knowledge base from documents/websites (RAG)">📚 Wissensbasis aus Dokumenten/Webseiten (RAG)</span></li>
-        <li><span class="t" data-de="🧠 Content-Generierung (Texte, Zusammenfassungen)" data-en="🧠 Content generation (texts, summaries)">🧠 Content-Generierung (Texte, Zusammenfassungen)</span></li>
-        <li><span class="t" data-de="🔌 1 Integration (Signal oder Website)" data-en="🔌 1 integration (Signal or website)">🔌 1 Integration (Signal <i>oder</i> Website)</span></li>
-        <li><span class="t" data-de="📊 Logging & einfache Evaluierung" data-en="📊 Logging & simple evaluation">📊 Logging &amp; einfache Evaluierung</span></li>
-        <li>⏱️ Go-Live <span class="t" data-de="in" data-en="in">in</span> <b>3–4 <span class="t" data-de="Wochen" data-en="weeks">Wochen</span></b></li>
-      </ul>
-
-      <!-- Preisstaffeln -->
-      <div style="margin-top:12px;border-top:1px solid #223042;padding-top:10px">
-        <div style="display:flex;justify-content:space-between">
-          <span class="muted t" data-de="Klein (1 Quelle)" data-en="Small (1 source)">Klein (1 Quelle)</span>
-          <strong>3 900 €</strong>
-        </div>
-        <div style="display:flex;justify-content:space-between;margin-top:6px">
-          <span class="muted t" data-de="Standard KMU" data-en="Standard SMB">Standard KMU</span>
-          <strong>5 900–7 900 €</strong>
-        </div>
-      </div>
-
-      <div class="mini-badges" style="margin-top:10px">
-        <span class="mini-badge">On-Prem</span>
-        <span class="mini-badge">LLM</span>
-        <span class="mini-badge">RAG</span>
-        <span class="mini-badge">Content Gen</span>
-      </div>
-    </div>
-
-    <!-- 3) Codex -->
-    <div class="card">
-      <div class="tag">Codex</div>
-      <h3 class="t" data-de="„Codex" – Wissensaufbereitung" data-en="„Codex" – Knowledge Curation">„Codex" – Wissensaufbereitung</h3>
-      <p class="muted">
-        <span class="t" data-de="Strategische Aufbereitung Ihrer Inhalte: Taxonomie, Chunking, QS, Embeddings-Optimierung und laufende Verbesserung." data-en="Strategic curation of your content: taxonomy, chunking, QA, embeddings optimization and continuous improvement.">Strategische Aufbereitung Ihrer Inhalte: Taxonomie, Chunking, QS, Embeddings-Optimierung und laufende Verbesserung.</span>
-      </p>
-      <ul style="margin:10px 0 0 0; padding-left:18px">
-        <li><span class="t" data-de="🏛️ Wissens-Codex (Taxonomie & Struktur)" data-en="🏛️ Knowledge codex (taxonomy & structure)">🏛️ Wissens-Codex (Taxonomie &amp; Struktur)</span></li>
-        <li><span class="t" data-de="🧩 Aufbereitung von PDF, HTML, Doku, Supportfällen" data-en="🧩 Processing of PDFs, HTML, docs, support cases">🧩 Aufbereitung von PDF, HTML, Doku, Supportfällen</span></li>
-        <li><span class="t" data-de="🧠 Embeddings-Optimierung & RAG-Qualitätstests" data-en="🧠 Embeddings optimization & RAG quality tests">🧠 Embeddings-Optimierung &amp; RAG-Qualitätstests</span></li>
-        <li><span class="t" data-de="📈 Monitoring & inhaltliche Pflege" data-en="📈 Monitoring & content maintenance">📈 Monitoring &amp; inhaltliche Pflege</span></li>
-        <li><span class="t" data-de="👥 Team-Schulung zur Selbstpflege" data-en="👥 Team training for self-maintenance">👥 Team-Schulung zur Selbstpflege</span></li>
-        <li>⏱️ <span class="t" data-de="Projektphase" data-en="Project phase">Projektphase</span> <b>4–8 <span class="t" data-de="Wochen" data-en="weeks">Wochen</span></b></li>
-      </ul>
-
-      <!-- Preisstaffeln -->
-      <div style="margin-top:12px;border-top:1px solid #223042;padding-top:10px">
-        <div style="display:flex;justify-content:space-between">
-          <span class="muted t" data-de="Klein" data-en="Small">Klein</span>
-          <strong>6 900 €</strong>
-        </div>
-        <div style="display:flex;justify-content:space-between;margin-top:6px">
-          <span class="muted t" data-de="Komplett Setup" data-en="Complete setup">Komplett Setup</span>
-          <strong>9 900–14 900 €</strong>
-        </div>
-      </div>
-
-      <div class="mini-badges" style="margin-top:10px">
-        <span class="mini-badge">Content Architecture</span>
-        <span class="mini-badge">Embeddings</span>
-        <span class="mini-badge">Quality</span>
-        <span class="mini-badge">Long-Term</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ➕ Add-ons -->
-  <div class="price" style="margin-top:12px">
-    <div class="card" style="flex:1">
-      <div class="tag">Add-ons</div>
-      <h3><span class="t" data-de="Ergänzungen & Services" data-en="Additions & Services">Ergänzungen &amp; Services</span></h3>
-      <ul style="margin:10px 0 0 0; padding-left:18px">
-        <li><span class="t" data-de="📱 Signal-Gruppen-Integration inkl. Hosting-Support (lokal) — + 590 €" data-en="📱 Signal group integration incl. hosting support (local) — + 590 €">📱 Signal-Gruppen-Integration inkl. Hosting-Support (lokal) — <b>+ 590 €</b></span></li>
-        <li><span class="t" data-de="🧩 Website-Widget (Frontend) — + 490 €" data-en="🧩 Website widget (frontend) — + 490 €">🧩 Website-Widget (Frontend) — <b>+ 490 €</b></span></li>
-        <li><span class="t" data-de="🎓 Schulung / Workshop (½ Tag) — + 350 €" data-en="🎓 Training / workshop (½ day) — + 350 €">🎓 Schulung / Workshop (½ Tag) — <b>+ 350 €</b></span></li>
-        <li><span class="t" data-de="🛠️ Wartung & Updates (jährlich) — 10–15 % vom Projektwert" data-en="🛠️ Maintenance & updates (yearly) — 10–15 % of project value">🛠️ Wartung &amp; Updates (jährlich) — <b>10–15 % vom Projektwert</b></span></li>
-      </ul>
-    </div>
-
-    <div class="card" style="flex:1">
-      <div class="tag">Optional</div>
-      <h3><span class="t" data-de="Managed Mac-mini Hosting (Startphase)" data-en="Managed Mac mini hosting (start phase)">Managed Mac-mini Hosting (Startphase)</span></h3>
-      <p class="muted"><span class="t" data-de="Wir hosten Ihren Bot vorübergehend (EU), bis Ihre eigene Hardware bereit ist." data-en="We host your bot temporarily (EU) until your own hardware is ready.">Wir hosten Ihren Bot vorübergehend (EU), bis Ihre eigene Hardware bereit ist.</span></p>
-      <ul style="margin:10px 0 0 0; padding-left:18px">
-        <li><span class="t" data-de="🖥️ Dedizierter Mac mini (M2/M4), VPN-Zugang" data-en="🖥️ Dedicated Mac mini (M2/M4), VPN access">🖥️ Dedizierter Mac mini (M2/M4), VPN-Zugang</span></li>
-        <li><span class="t" data-de="🔒 EU-Standort, verschlüsselte Backups" data-en="🔒 EU location, encrypted backups">🔒 EU-Standort, verschlüsselte Backups</span></li>
-        <li><span class="t" data-de="📊 Monitoring & Updates inklusive" data-en="📊 Monitoring & updates included">📊 Monitoring & Updates inklusive</span></li>
-        <li><span class="t" data-de="🌐 Custom-Domain & HTTPS" data-en="🌐 Custom domain & HTTPS">🌐 Custom-Domain & HTTPS</span></li>
-        <li><span class="t" data-de="🔄 Nahtloser Umzug On-Prem" data-en="🔄 Seamless migration on-prem">🔄 Nahtloser Umzug On-Prem</span></li>
-      </ul>
-      <div class="pill t" data-de="Preis auf Anfrage" data-en="Price on request">Preis auf Anfrage</div>
-    </div>
-  </div>
-</section>
-
-    <section id="about" class="section" style="margin:28px 0 10px">
-      <h2 class="t" data-de="Über mich" data-en="About me">Über mich</h2>
-      <div class="card" style="display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:center;max-width:800px;margin:0 auto">
-        <img src="./SvenFriess-offiziell++.jpg" 
-             alt="Sven Friess" 
-             style="width:200px;height:200px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow)"
-             loading="lazy">
+      <div class="grid-2">
         <div>
-          <h3 style="margin:0 0 8px;font-size:22px">Sven Friess</h3>
-          <p class="muted" style="margin:0">
-            <span class="t" 
-                  data-de="15+ Jahre SAP/IT-Beratung, heute fokussiert auf DSGVO-konforme, lokale KI-Lösungen für den deutschen Mittelstand. Keine Cloud-Abhängigkeit, keine Vendor-Lock-ins – nur volle Datensouveränität."
-                  data-en="15+ years SAP/IT consulting, now focused on GDPR-compliant, local AI solutions for German SMBs. No cloud dependencies, no vendor lock-ins – just full data sovereignty.">
-              15+ Jahre SAP/IT-Beratung, heute fokussiert auf DSGVO-konforme, lokale KI-Lösungen für den deutschen Mittelstand. Keine Cloud-Abhängigkeit, keine Vendor-Lock-ins – nur volle Datensouveränität.
-            </span>
+          <img src="https://via.placeholder.com/600x400/1a1f26/66d9e8?text=Mac+Mini" 
+               alt="Mac Mini Hardware" 
+               style="width:100%;height:auto;border-radius:var(--radius);border:1px solid #1f2732" />
+        </div>
+        <div style="display:flex;flex-direction:column;justify-content:center;gap:20px">
+          <div class="badge">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+            <span>Keine monatlichen Cloud-Kosten</span>
+          </div>
+          <div class="badge">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+            <span>Plug & Play</span>
+          </div>
+          <div class="badge">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v20M2 12h20"/>
+            </svg>
+            <span>Niedrige Latenz</span>
+          </div>
+          <p style="color:var(--muted);margin-top:12px">
+            <strong style="color:var(--txt)">€2.500 einmalig</strong> vs. Copilot <strong style="color:var(--txt)">€360/User/Jahr</strong>
+            <br/>→ ROI bereits nach 7 Monaten bei 1 Nutzer
           </p>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="section" style="margin:28px 0 10px">
-      <h2 class="t" data-de="Kontakt" data-en="Contact">Kontakt</h2>
+    <!-- Pricing Section - Keep original but enhanced -->
+    <section id="pricing" class="section">
+      <div class="section-header">
+        <div class="kicker">PREISE</div>
+        <h2 class="section-title">Transparent und fair</h2>
+        <p class="section-subtitle">
+          Keine versteckten Kosten. Bezahlte Pilotprojekte statt Gratis-Tests.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3 style="font-size:22px;margin:0 0 8px">Hospitality</h3>
+          <div style="font-size:36px;font-weight:800;margin:16px 0">€2.500</div>
+          <p style="color:var(--muted);margin:0 0 20px">Einmalige Einrichtung</p>
+          <ul style="list-style:none;padding:0;margin:0">
+            <li style="display:flex;gap:8px;margin-bottom:10px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Mac Mini Setup</span>
+            </li>
+            <li style="display:flex;gap:8px;margin-bottom:10px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Signal-Bot Integration</span>
+            </li>
+            <li style="display:flex;gap:8px;margin-bottom:10px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Knowledge Base Setup</span>
+            </li>
+            <li style="display:flex;gap:8px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>4 Wochen Support</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card" style="border:2px solid var(--pri)">
+          <div style="background:var(--pri);color:#000;display:inline-block;padding:4px 12px;border-radius:6px;font-size:12px;font-weight:700;margin-bottom:8px">EMPFOHLEN</div>
+          <h3 style="font-size:22px;margin:0 0 8px">Steuerberater / Anwälte</h3>
+          <div style="font-size:36px;font-weight:800;margin:16px 0">€2.500</div>
+          <p style="color:var(--muted);margin:0 0 20px">Einmalige Einrichtung</p>
+          <ul style="list-style:none;padding:0;margin:0">
+            <li style="display:flex;gap:8px;margin-bottom:10px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Alles aus Hospitality</span>
+            </li>
+            <li style="display:flex;gap:8px;margin-bottom:10px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>DSGVO-Compliance-Check</span>
+            </li>
+            <li style="display:flex;gap:8px;margin-bottom:10px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Branchen-Templates</span>
+            </li>
+            <li style="display:flex;gap:8px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Prioritäts-Support</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size:22px;margin:0 0 8px">Enterprise</h3>
+          <div style="font-size:36px;font-weight:800;margin:16px 0">auf Anfrage</div>
+          <p style="color:var(--muted);margin:0 0 20px">Individuelle Lösung</p>
+          <ul style="list-style:none;padding:0;margin:0">
+            <li style="display:flex;gap:8px;margin-bottom:10px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Multi-Standort-Deployment</span>
+            </li>
+            <li style="display:flex;gap:8px;margin-bottom:10px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Custom Integrationen</span>
+            </li>
+            <li style="display:flex;gap:8px;margin-bottom:10px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>SLA-Garantien</span>
+            </li>
+            <li style="display:flex;gap:8px">
+              <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Dedicated Support</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section - Keep original -->
+    <section id="contact" class="section">
+      <div class="section-header">
+        <div class="kicker">KONTAKT</div>
+        <h2 class="section-title">Bereit für den nächsten Schritt?</h2>
+        <p class="section-subtitle">
+          Buchen Sie ein kostenloses Erstgespräch oder senden Sie eine Projektanfrage
+        </p>
+      </div>
+
       <div class="grid-2">
         <div class="card">
-          <p class="muted t" data-de="Schreiben Sie uns kurz Ihr Vorhaben. Wir melden uns mit einer passenden Empfehlung." data-en="Tell us briefly about your project. We'll reply with a fitting recommendation.">Schreiben Sie uns kurz Ihr Vorhaben. Wir melden uns mit einer passenden Empfehlung.</p>
-          <p>📧 <a href="mailto:info@strategix-ai.tech">info@strategix-ai.tech</a></p>
-          <p>📞 <a href="tel:+49XXXXXXXXX">+49 160 90822476</a> <span class="muted">– persönliche Rücksprache nach Anfrage</span></p>
-
-
-
-          <p>🔒 <span class="t" data-de="Datenschutz‑Hinweis: Ihre Daten verlassen Ihr System nur, wenn Sie es möchten." data-en="Privacy note: your data never leaves your system unless you want it to.">Datenschutz‑Hinweis: Ihre Daten verlassen Ihr System nur, wenn Sie es möchten.</span></p>
-          <div class="cta-row"><a class="btn primary" href="#" onclick="document.getElementById('brief').focus();return false;"><span class="t" data-de="Projekt anfragen" data-en="Request project">Projekt anfragen</span></a></div>
+          <h3 style="margin:0 0 16px">📅 Erstgespräch buchen</h3>
+          <p style="color:var(--muted);margin:0 0 20px">
+            30 Minuten kostenlose Beratung. Wir besprechen Ihren Use-Case und 
+            prüfen, ob strategix-AI für Sie passt.
+          </p>
+          <a href="https://calendly.com/strategix-ai/demo" class="btn primary" style="width:100%;justify-content:center">
+            Termin vereinbaren
+          </a>
         </div>
-        <form class="card" action="mailto:info@strategix-ai.tech?subject=Projektanfrage%20strategix-AI" method="post" enctype="text/plain" onsubmit="return validateForm()">
-          <label class="t" data-de="Kurzbeschreibung" data-en="Short description">Kurzbeschreibung</label>
-          <textarea id="brief" name="body" rows="5" placeholder="z. B. Website‑FAQ‑Bot für Autohaus, Start im Oktober" style="width:100%;margin-top:8px;background:#0f1318;border:1px solid #222b36;border-radius:12px;color:var(--txt);padding:10px"></textarea>
-          <button type="submit" class="btn primary" style="margin-top:14px;width:100%">
-          <span class="t" data-de="Anfrage senden" data-en="Send request">Anfrage senden</span>
-          </button>
-        <div style="margin-top:10px" class="muted">📧 Öffnet Ihr E-Mail-Programm zum Versenden.</div>     
-        </form>
+
+        <div class="card">
+          <h3 style="margin:0 0 16px">📧 Projektanfrage senden</h3>
+          <p style="color:var(--muted);margin:0 0 20px">
+            Beschreiben Sie kurz Ihr Projekt. Wir melden uns innerhalb von 24 Stunden.
+          </p>
+          <form action="mailto:info@strategix-ai.tech?subject=Projektanfrage%20strategix-AI" method="post" enctype="text/plain">
+            <textarea 
+              name="body" 
+              rows="4" 
+              placeholder="z. B. Website-FAQ-Bot für Steuerberatung, Start im Q2" 
+              style="width:100%;margin-bottom:12px;background:#0f1318;border:1px solid #222b36;border-radius:12px;color:var(--txt);padding:12px;font-family:inherit;resize:vertical"
+              required
+            ></textarea>
+            <button type="submit" class="btn primary" style="width:100%;justify-content:center">
+              Anfrage senden
+            </button>
+          </form>
+          <p style="margin-top:12px;font-size:13px;color:#6b7280">
+            📧 Öffnet Ihr E-Mail-Programm zum Versenden
+          </p>
+        </div>
       </div>
     </section>
   </main>
 
-  
-
-  <footer class="container footer" style="padding:20px">
-  <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
-    <div>© <span id="year"></span> strategix AI</div>
-    <div class="muted">
-      <a href="./impressum.html">Impressum</a> · 
-      <a href="./datenschutz.html">Datenschutz</a>
+  <footer class="footer">
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px">
+        <div>
+          <div style="font-weight:700;margin-bottom:8px">strategix-AI</div>
+          <div style="color:var(--muted);font-size:14px">
+            On-Premise KI für regulierte Branchen<br/>
+            DSGVO-konform · Keine Cloud · Kein Vendor-Lock-in
+          </div>
+        </div>
+        <div style="color:var(--muted);font-size:14px;text-align:right">
+          © <span id="year"></span> strategix AI<br/>
+          <a href="./impressum.html" style="color:inherit">Impressum</a> · 
+          <a href="./datenschutz.html" style="color:inherit">Datenschutz</a>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
-
-<script>
-  // Setze das aktuelle Jahr automatisch ein
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+  </footer>
 
   <script>
-    // Simple i18n toggle (DE/EN)
-    let lang = 'de';
-    const btn = document.getElementById('lang');
-    const els = document.querySelectorAll('.t');
-    function setLang(l){
-      lang = l;
-      document.documentElement.lang = l === 'de' ? 'de' : 'en';
-      btn.textContent = l.toUpperCase();
-      els.forEach(el=>{ const t = el.getAttribute('data-'+l); if(t) el.textContent = t; });
-    }
-    btn.addEventListener('click',()=> setLang(lang==='de'?'en':'de'));
-    setLang('de');
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-<script>
-  // === USP Pie (pure SVG/JS) ===
-  const USP_DATA = [
-    {
-      id:'local', label:'🧠 Lokal & unabhängig', color:'#66d9e8',
-      blurb:'100 % On-Premise. Volle Kontrolle über Daten & Infrastruktur – keine Cloud-Abhängigkeit.',
-      bullets:[
-        '💻 Standardhardware (Mac Mini, Linux-Server)',
-        '🚫 Kein Internetzwang, <b>0</b> externe Dienste',
-        '⚡ Niedrige Latenz, <b>keine</b> API-Limits',
-        '🔌 Integrationen: Signal-Bot, Web-Chat, CLI'
-      ]
-    },
-    {
-      id:'gdpr', label:'🛡️ DSGVO-konform & sicher', color:'#22c55e',
-      blurb:'Verarbeitung ausschließlich lokal. Keine Datenübertragung an Dritte.',
-      bullets:[
-        '🧾 Keine Cloud-Logs, kein Tracking, keine Accounts',
-        '🔒 Ende-zu-Ende-verschlüsselter Kommunikationskanal',
-        '📚 Einfache Audit-Doku (Art. 30/32 DSGVO)',
-        '⚖️ Rechtliche Basis: Art. 6 Abs. 1 lit. f/b DSGVO'
-      ]
-    },
-    {
-      id:'nolock', label:'🧩 Kein Vendor-Lock-in', color:'#7c4dff',
-      blurb:'Open-Source-First, offene Standards, volle Portabilität.',
-      bullets:[
-        '🧠 Europäische Modelle (Mistral/Mixtral, Aleph Alpha, etc.)',
-        '🧩 Offene Lizenzen/Standards (Apache, MIT, CC-BY)',
-        '🔄 Austauschbare Komponenten (LLM, RAG, UI)',
-        '🧭 Zukunftssicher: EU-AI-Act im Blick'
-      ]
-    }
-  ];
-
-  function uspArcPath(cx, cy, r, startDeg, endDeg){
-    const rad = d => (d - 90) * Math.PI/180;
-    const sx = cx + r * Math.cos(rad(startDeg));
-    const sy = cy + r * Math.sin(rad(startDeg));
-    const ex = cx + r * Math.cos(rad(endDeg));
-    const ey = cy + r * Math.sin(rad(endDeg));
-    const largeArc = (endDeg - startDeg) <= 180 ? 0 : 1;
-    return `M ${cx} ${cy} L ${sx} ${sy} A ${r} ${r} 0 ${largeArc} 1 ${ex} ${ey} Z`;
-  }
-
-  (function initUspPie(){
-    const segRoot = document.getElementById('usp-segments');
-    if(!segRoot) return;
-
-    const cx=180, cy=180, r=170;
-    const segs = [
-      { usp: USP_DATA[0], start: 0,   end:120 },
-      { usp: USP_DATA[1], start:120,  end:240 },
-      { usp: USP_DATA[2], start:240,  end:360 }
+    // === USP Pie (pure SVG/JS) ===
+    const USP_DATA = [
+      {
+        id:'local', label:'🧠 Lokal & unabhängig', color:'#66d9e8',
+        blurb:'100 % On-Premise. Volle Kontrolle über Daten & Infrastruktur – keine Cloud-Abhängigkeit.',
+        bullets:[
+          '💻 Standardhardware (Mac Mini, Linux-Server)',
+          '🚫 Kein Internetzwang, <b>0</b> externe Dienste',
+          '⚡ Niedrige Latenz, <b>keine</b> API-Limits',
+          '🔌 Integrationen: Signal-Bot, Web-Chat, CLI'
+        ]
+      },
+      {
+        id:'gdpr', label:'🛡️ DSGVO-konform & sicher', color:'#22c55e',
+        blurb:'Verarbeitung ausschließlich lokal. Keine Datenübertragung an Dritte.',
+        bullets:[
+          '🧾 Keine Cloud-Logs, kein Tracking, keine Accounts',
+          '🔒 Ende-zu-Ende-verschlüsselter Kommunikationskanal',
+          '📚 Einfache Audit-Doku (Art. 30/32 DSGVO)',
+          '⚖️ Rechtliche Basis: Art. 6 Abs. 1 lit. f/b DSGVO'
+        ]
+      },
+      {
+        id:'nolock', label:'🧩 Kein Vendor-Lock-in', color:'#7c4dff',
+        blurb:'Open-Source-First, offene Standards, volle Portabilität.',
+        bullets:[
+          '🧠 Europäische Modelle (Mistral/Mixtral, Aleph Alpha, etc.)',
+          '🧩 Offene Lizenzen/Standards (Apache, MIT, CC-BY)',
+          '🔄 Austauschbare Komponenten (LLM, RAG, UI)',
+          '🧭 Zukunftssicher: EU-AI-Act im Blick'
+        ]
+      }
     ];
 
-    const titleEl   = document.getElementById('usp-title');
-    const blurbEl   = document.getElementById('usp-blurb');
-    const bulletsEl = document.getElementById('usp-bullets');
-    const switchEl  = document.getElementById('usp-switch');
-
-    function renderDetail(u){
-      titleEl.textContent = u.label;
-      blurbEl.innerHTML = u.blurb;
-      bulletsEl.innerHTML = u.bullets.map(b => `<li><span class="usp-dot"></span><span>${b}</span></li>`).join('');
-      switchEl.innerHTML = USP_DATA.map(x =>
-        `<button type="button" data-id="${x.id}" aria-pressed="${x.id===u.id}">${x.label}</button>`).join('');
-      switchEl.querySelectorAll('button').forEach(btn =>
-        btn.addEventListener('click',()=> setActive(btn.dataset.id)));
+    function uspArcPath(cx, cy, r, startDeg, endDeg){
+      const rad = d => (d - 90) * Math.PI/180;
+      const sx = cx + r * Math.cos(rad(startDeg));
+      const sy = cy + r * Math.sin(rad(startDeg));
+      const ex = cx + r * Math.cos(rad(endDeg));
+      const ey = cy + r * Math.sin(rad(endDeg));
+      const largeArc = (endDeg - startDeg) <= 180 ? 0 : 1;
+      return `M ${cx} ${cy} L ${sx} ${sy} A ${r} ${r} 0 ${largeArc} 1 ${ex} ${ey} Z`;
     }
 
-    function setActive(id){
-      segRoot.querySelectorAll('path').forEach(p =>
-        p.setAttribute('aria-current', p.dataset.id===id ? 'true' : 'false'));
-      renderDetail(USP_DATA.find(x => x.id===id));
-    }
+    (function initUspPie(){
+      const segRoot = document.getElementById('usp-segments');
+      if(!segRoot) return;
 
-    segs.forEach(({usp,start,end})=>{
-      const p = document.createElementNS('http://www.w3.org/2000/svg','path');
-      p.setAttribute('d', uspArcPath(cx,cy,r,start,end));
-      p.setAttribute('fill', usp.color);
-      p.setAttribute('opacity', '.95');
-      p.setAttribute('data-id', usp.id);
-      p.setAttribute('tabindex', '0');
-      p.setAttribute('role', 'button');
-      p.setAttribute('aria-label', usp.label);
-      p.addEventListener('mouseenter',()=> setActive(usp.id));
-      p.addEventListener('click',()=> setActive(usp.id));
-      p.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); setActive(usp.id);} });
-      segRoot.appendChild(p);
-    });
+      const cx=180, cy=180, r=170;
+      const segs = [
+        { usp: USP_DATA[0], start: 0,   end:120 },
+        { usp: USP_DATA[1], start:120,  end:240 },
+        { usp: USP_DATA[2], start:240,  end:360 }
+      ];
 
-    setActive(USP_DATA[0].id);
-  })();
-</script>
+      const titleEl   = document.getElementById('usp-title');
+      const blurbEl   = document.getElementById('usp-blurb');
+      const bulletsEl = document.getElementById('usp-bullets');
+      const switchEl  = document.getElementById('usp-switch');
 
+      function renderDetail(u){
+        titleEl.textContent = u.label;
+        blurbEl.innerHTML = u.blurb;
+        bulletsEl.innerHTML = u.bullets.map(b => `<li><span class="usp-dot"></span><span>${b}</span></li>`).join('');
+        switchEl.innerHTML = USP_DATA.map(x =>
+          `<button type="button" data-id="${x.id}" aria-pressed="${x.id===u.id}">${x.label}</button>`).join('');
+        switchEl.querySelectorAll('button').forEach(btn =>
+          btn.addEventListener('click',()=> setActive(btn.dataset.id)));
+      }
 
-<script>
-function validateForm() {
-  const brief = document.getElementById('brief').value.trim();
-  if (!bri
+      function setActive(id){
+        segRoot.querySelectorAll('path').forEach(p =>
+          p.setAttribute('aria-current', p.dataset.id===id ? 'true' : 'false'));
+        renderDetail(USP_DATA.find(x => x.id===id));
+      }
+
+      segs.forEach(({usp,start,end})=>{
+        const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+        p.setAttribute('d', uspArcPath(cx,cy,r,start,end));
+        p.setAttribute('fill', usp.color);
+        p.setAttribute('opacity', '.95');
+        p.setAttribute('data-id', usp.id);
+        p.setAttribute('tabindex', '0');
+        p.setAttribute('role', 'button');
+        p.setAttribute('aria-label', usp.label);
+        p.addEventListener('mouseenter',()=> setActive(usp.id));
+        p.addEventListener('click',()=> setActive(usp.id));
+        p.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' ') setActive(usp.id); });
+        segRoot.appendChild(p);
+      });
+
+      setActive('local');
+    })();
+  </script>
+</body>
+</html>
