@@ -351,13 +351,16 @@
       <div class="grid-2">
         <!-- Links: Video -->
         <div style="position:relative">
-          <div class="video-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <polygon points="10 8 16 12 10 16 10 8"/>
-            </svg>
-            <p style="color:var(--muted);margin:0">Demo-Video</p>
-          </div>
+          <video 
+            controls 
+            poster="videos/borgo-thumbnail.jpg"
+            style="width:100%;border-radius:16px;border:1px solid #1f2732;box-shadow:0 10px 30px rgba(0,0,0,.35)"
+            preload="metadata"
+          >
+            <source src="videos/Borgo-Bot-Video-V2.mp4" type="video/mp4">
+            Ihr Browser unterstützt die Videowiedergabe nicht. 
+            <a href="videos/Borgo-Bot-Video-V2.mp4">Video herunterladen</a>
+          </video>
           <div class="floating-stat">
             <div class="floating-stat-value">26%</div>
             <div class="floating-stat-label">Aktivierungsrate</div>
